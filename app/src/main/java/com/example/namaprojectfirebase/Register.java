@@ -110,8 +110,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-//                                        Toast.makeText(RegisterUser.this, "User has been registered!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Register.this," User has been registered", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.VISIBLE);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(Register.this," Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
@@ -121,4 +126,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                         });
     }
+
+
 }
