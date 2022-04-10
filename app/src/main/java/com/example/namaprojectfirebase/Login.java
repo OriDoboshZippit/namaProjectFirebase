@@ -17,12 +17,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
     private TextView register;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
+    private String users;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
 
     @Override
@@ -34,6 +39,7 @@ public class Login extends AppCompatActivity {
         editTextEmail = (EditText) findViewById (R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById (R.id.editTextTextPassword);
         //progressBar == (ProgressBar) findViewById (R.id.progressBar);
+
 
     }
 
@@ -70,20 +76,23 @@ public class Login extends AppCompatActivity {
         }
        // progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    //redirect to the
-                    System.out.println("Yeeeeey");
-                    startActivity(new Intent(  Login.this, ProfileActivity.class));
-                } else {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        //redirect to the
+                        System.out.println("Yeeeeey");
+
+                        startActivity(new Intent(  Login.this, ProfileActivity.class));
+                    } else {
+
+                    }
+                    ;
 
                 }
-                ;
+            });
 
-            }
-        });
+
     }
 }
 

@@ -42,8 +42,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     @Override
@@ -104,7 +105,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                                 User user = new User(fullName, adress, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -112,6 +113,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     if(task.isSuccessful()){
                                         Toast.makeText(Register.this," User has been registered", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.VISIBLE);
+
                                     }
                                     else
                                     {
