@@ -2,7 +2,7 @@ package com.example.namaprojectfirebase;
 
 public class User {
     public String fullName, adressText, email;
-.
+
     public User(String name, String email) {
 
     }
