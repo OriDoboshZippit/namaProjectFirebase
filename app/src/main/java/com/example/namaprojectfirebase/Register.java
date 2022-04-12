@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Register extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
 
-    public TextView banner, registeruser;
+    public TextView banner, registeruser,loginBtn;
     private EditText editTextFullName, adressText, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
 
@@ -36,6 +36,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         registeruser = (Button) findViewById(R.id.registerUser);
         registeruser.setOnClickListener(this);
+
+
+        loginBtn = (TextView) findViewById(R.id.loginButton);
+        loginBtn.setOnClickListener(this);
 
         editTextFullName = (EditText) findViewById(R.id.fulLName);
         adressText = (EditText) findViewById(R.id.adressText);
@@ -56,6 +60,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.registerUser:
                 registeruser();
                 break;
+            case R.id.loginButton:
+                startActivity(new Intent(this, Login.class));
+                break;
+
         }
     }
 
@@ -130,4 +138,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
 
+    public void tologinpage() {
+
+    }
 }
