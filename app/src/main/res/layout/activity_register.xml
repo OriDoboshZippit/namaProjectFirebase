@@ -98,12 +98,12 @@
         app:layout_constraintVertical_bias="0.65" />
 
 
-<!--    <ProgressBar-->
+
+<!--        <ProgressBar-->
 <!--        android:id="@+id/progressBar"-->
 <!--        style="?android:attr/progressBarStyleHorizontal"-->
 <!--        android:layout_width="368dp"-->
 <!--        android:layout_height="14dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView2"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/registerUser" />-->

@@ -5,12 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WELCOME"
+        android:text="WELCOME TO THE SYSTEM"
         tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="75dp" />
+        tools:layout_editor_absoluteY="75dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/activeUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IM USER"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="75dp"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints" />
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

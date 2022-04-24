@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public TextView banner, registeruser,loginBtn;
     private EditText editTextFullName, adressText, editTextEmail, editTextPassword;
-    private ProgressBar progressBar;
+//    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         adressText = (EditText) findViewById(R.id.adressText);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+//        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -105,7 +105,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
 
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -120,13 +120,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         Toast.makeText(Register.this," User has been registered", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.VISIBLE);
+//                                        progressBar.setVisibility(View.VISIBLE);
 
                                     }
                                     else
                                     {
                                         Toast.makeText(Register.this," Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
+//                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
