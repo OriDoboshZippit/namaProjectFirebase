@@ -53,22 +53,21 @@ public class Login extends AppCompatActivity {
 //        progressBar = (ProgressBar) findViewById (R.id.progressBar);
 
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-        Query currentUser = databaseReference.orderByChild("adressText").equalTo("Asss");
+        Query currentUser = databaseReference.orderByChild("adressText");
 
         currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
-                System.out.println("Password is " +  nameFromDB);
                 if(dataSnapshot.exists()){
                     System.out.println("Data snap shoot work" );
+                    System.out.println("Password is " +  nameFromDB);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
@@ -113,7 +112,7 @@ public class Login extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         //redirect to the
-                        System.out.println("Yeeeeey we got in to the system !!!!");
+                        System.out.println("Yeeeeey we got in to the system with name !!!! " + nameFromDB);
 
                         Intent i = new Intent(Login.this, ProfileActivity.class);
                         i.putExtra("id", nameFromDB);
