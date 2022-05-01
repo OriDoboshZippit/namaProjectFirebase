@@ -23,8 +23,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private FirebaseAuth mAuth;
 
     public TextView banner, registeruser,loginBtn;
+
     private EditText editTextFullName, adressText, editTextEmail, editTextPassword;
 //    private ProgressBar progressBar;
+    public int permission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String fullName = editTextFullName.getText().toString().trim();
         String adress = adressText.getText().toString().trim();
 
+
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required!");
             adressText.requestFocus();
@@ -104,6 +107,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             editTextPassword.requestFocus();
             return;
         }
+        if(permission > 0 && permission <5){
+            Toast.makeText(this, "message", Toast.LENGTH_LONG).show();
+
+        }
+
 
 //        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -112,7 +120,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                                User user = new User(fullName, adress, email);
+                                User user = new User(fullName, adress, email, permission);
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -141,4 +149,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     public void tologinpage() {
 
     }
+
+    public void onRadioButtonClickedAdmin(View view) {
+        permission = 1;
+        System.out.println("Admin");
+    }
+    public void onRadioButtonClickedWorker(View view) {
+        permission = 2;
+        System.out.println("Worker");
+    }
+    public void onRadioButtonClickedCourier(View view) {
+        permission = 3;
+        System.out.println("Courier");
+    }
+    public void onRadioButtonClickedAccountant(View view) {
+        permission = 4;
+        System.out.println("Accountant");
+    }
+
 }

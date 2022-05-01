@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
     public String nameFromDB;
+    public Query currentUser;
 //    ActivityReadDataBinding binding;
     DatabaseReference databaseReference;
 
@@ -45,18 +46,22 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        binding = ActivityReadDataBinding.inflate(getLayoutInflater());
         signIn = (Button) findViewById(R.id.login);
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = (EditText) findViewById (R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById (R.id.editTextTextPassword);
-//        progressBar = (ProgressBar) findViewById (R.id.progressBar);
-
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-        Query currentUser = databaseReference.orderByChild("adressText");
+        currentUser = databaseReference.orderByChild("adressText");
 
+
+
+
+    }
+
+    //login button
+    public void loginFunc(View view) {
+        userLogin();
+        //pull the current user
         currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -68,18 +73,14 @@ public class Login extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
-
-    }
-
-
-    public void loginFunc(View view) {
-        userLogin();
         System.out.println("IM in LOGIN");
     }
 
+    //login function with data base
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -105,7 +106,7 @@ public class Login extends AppCompatActivity {
             editTextPassword.requestFocus();
             return;
         }
-       // progressBar.setVisibility(View.VISIBLE);
+
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                 @Override
@@ -123,7 +124,6 @@ public class Login extends AppCompatActivity {
 
 
 
-//                        startActivity(new Intent(  Login.this, ProfileActivity.class));
                     } else {
 
                     }
