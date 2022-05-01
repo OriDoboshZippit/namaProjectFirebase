@@ -69,6 +69,23 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+    public void onRadioButtonClickedAdmin(View view) {
+        permission = 1;
+        System.out.println("Admin");
+    }
+    public void onRadioButtonClickedWorker(View view) {
+        permission = 2;
+        System.out.println("Worker");
+    }
+    public void onRadioButtonClickedCourier(View view) {
+        permission = 3;
+        System.out.println("Courier");
+    }
+    public void onRadioButtonClickedAccountant(View view) {
+        permission = 4;
+        System.out.println("Accountant");
+    }
+
     private void registeruser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -107,64 +124,45 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             editTextPassword.requestFocus();
             return;
         }
-        if(permission > 0 && permission <5){
-            Toast.makeText(this, "message", Toast.LENGTH_LONG).show();
+        if(permission > 0 && permission <5) {
+            mAuth.createUserWithEmailAndPassword(email, password)
 
-        }
-
-
-//        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
-
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
                                 User user = new User(fullName, adress, email, permission);
-                            FirebaseDatabase.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(Register.this," User has been registered", Toast.LENGTH_LONG).show();
+                                FirebaseDatabase.getInstance().getReference("users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
 //                                        progressBar.setVisibility(View.VISIBLE);
 
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(Register.this," Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 //                                        progressBar.setVisibility(View.GONE);
+                                        }
                                     }
-                                }
-                            });
+                                });
 
+                            }
                         }
-                    }
 
-                        });
-    }
+                    });
+        }
+        else
+            Toast.makeText(this, "You need to select the permission", Toast.LENGTH_LONG).show();
+
+        }
 
 
     public void tologinpage() {
 
     }
 
-    public void onRadioButtonClickedAdmin(View view) {
-        permission = 1;
-        System.out.println("Admin");
-    }
-    public void onRadioButtonClickedWorker(View view) {
-        permission = 2;
-        System.out.println("Worker");
-    }
-    public void onRadioButtonClickedCourier(View view) {
-        permission = 3;
-        System.out.println("Courier");
-    }
-    public void onRadioButtonClickedAccountant(View view) {
-        permission = 4;
-        System.out.println("Accountant");
-    }
+
 
 }
