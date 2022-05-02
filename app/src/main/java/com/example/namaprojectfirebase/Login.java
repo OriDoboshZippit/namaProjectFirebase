@@ -81,30 +81,30 @@ public class Login extends AppCompatActivity {
     }
 
     //login function with data base
-//    private void userLogin() {
-//        System.out.println("email is " + email + "pass" + password);
-//        if (email.isEmpty()) {
-//            editTextEmail.setError("Email is required!");
-//            editTextEmail.requestFocus();
-//            return;
-//        }
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            editTextEmail.setError("Please enter a valid email!");
-//            editTextEmail.requestFocus();
-//            return;
-//        }
-//        if (password.isEmpty()) {
-//            editTextPassword.setError("Password is required!");
-//            editTextPassword.requestFocus();
-//            return;
-//        }
-//        if (password.length() < 6) {
-//            editTextPassword.setError("Min password length is 6 characters!");
-//            editTextPassword.requestFocus();
-//            return;
-//        }
-//
-//    }
+    private void userLogin() {
+        System.out.println("email is " + email + "pass" + password);
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter a valid email!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required!");
+            editTextPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            editTextPassword.setError("Min password length is 6 characters!");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+    }
 
     public void mAuthFunc() {
         System.out.println("HHHHHEYYY "+ email + password);
@@ -123,6 +123,7 @@ public class Login extends AppCompatActivity {
 
                     } else {
                         System.out.println("Yeeeeey we DONT got in to the system with name because nameFromDb is " + nameFromDB);
+                        Toast.makeText(Login.this, "Try again ", Toast.LENGTH_LONG).show();
                     }
 
                 }
