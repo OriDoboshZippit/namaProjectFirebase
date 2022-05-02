@@ -58,11 +58,13 @@ public class Login extends AppCompatActivity {
     public void loginFunc(View view) {
         email = editTextEmail.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
-        userLogin();
+//        userLogin();
         mAuthFunc();
+        
         //pull the current user
         currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
+
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
                 if(dataSnapshot.exists()){
@@ -78,32 +80,31 @@ public class Login extends AppCompatActivity {
         System.out.println("IM in LOGIN");
     }
 
-
     //login function with data base
-    private void userLogin() {
-        System.out.println("email is " + email + "pass" + password);
-        if (email.isEmpty()) {
-            editTextEmail.setError("Email is required!");
-            editTextEmail.requestFocus();
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please enter a valid email!");
-            editTextEmail.requestFocus();
-            return;
-        }
-        if (password.isEmpty()) {
-            editTextPassword.setError("Password is required!");
-            editTextPassword.requestFocus();
-            return;
-        }
-        if (password.length() < 6) {
-            editTextPassword.setError("Min password length is 6 characters!");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-    }
+//    private void userLogin() {
+//        System.out.println("email is " + email + "pass" + password);
+//        if (email.isEmpty()) {
+//            editTextEmail.setError("Email is required!");
+//            editTextEmail.requestFocus();
+//            return;
+//        }
+//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+//            editTextEmail.setError("Please enter a valid email!");
+//            editTextEmail.requestFocus();
+//            return;
+//        }
+//        if (password.isEmpty()) {
+//            editTextPassword.setError("Password is required!");
+//            editTextPassword.requestFocus();
+//            return;
+//        }
+//        if (password.length() < 6) {
+//            editTextPassword.setError("Min password length is 6 characters!");
+//            editTextPassword.requestFocus();
+//            return;
+//        }
+//
+//    }
 
     public void mAuthFunc() {
         System.out.println("HHHHHEYYY "+ email + password);

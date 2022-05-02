@@ -91,6 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.36" />
+
     <EditText
         android:id="@+id/adressText"
         android:layout_width="wrap_content"
@@ -98,9 +99,9 @@
         android:ems="10"
         android:hint="Address"
         android:inputType="text"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="293dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="292dp" />
 
     <RadioGroup
         android:layout_width="150dp"

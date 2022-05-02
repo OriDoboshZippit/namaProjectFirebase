@@ -60,6 +60,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.registerUser:
+                System.out.println("Register blah");
                 registeruser();
                 break;
             case R.id.loginButton:
@@ -87,6 +88,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void registeruser() {
+
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
@@ -124,14 +126,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             editTextPassword.requestFocus();
             return;
         }
-        if(permission > 0 && permission <5) {
+
+
+//        if(permission > 0 && permission <5) {
             mAuth.createUserWithEmailAndPassword(email, password)
 
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            System.out.println("After task new user");
                             if (task.isSuccessful()) {
                                 User user = new User(fullName, adress, email, permission);
+                                System.out.println("After builder new user");
                                 FirebaseDatabase.getInstance().getReference("users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,24 +146,27 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
-//                                        progressBar.setVisibility(View.VISIBLE);
+
 
                                         } else {
                                             Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
-//                                        progressBar.setVisibility(View.GONE);
+
                                         }
                                     }
                                 });
 
                             }
+                            else{
+                                Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                     });
         }
-        else
-            Toast.makeText(this, "You need to select the permission", Toast.LENGTH_LONG).show();
+//        else
+//            Toast.makeText(this, "You need to select the permission", Toast.LENGTH_LONG).show();
 
-        }
+//        }
 
 
     public void tologinpage() {
