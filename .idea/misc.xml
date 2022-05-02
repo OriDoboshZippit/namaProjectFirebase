@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/app/src/main/res/layout/activity_login.xml" value="0.2015625" />
+        <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/app/src/main/res/layout/activity_profile.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/app/src/main/res/layout/activity_register.xml" value="0.2015625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2685076904296875" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
       </map>
     </option>
   </component>
