@@ -3,29 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/040522/app/src/main/res/layout/content_drawer.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.203" />
-        <entry key="app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.203" />
-        <entry key="app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.203" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.203" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/050522Ori/app/src/main/res/layout/app_bar_drawer.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.31197916666666664" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/menu_layout.xml" value="0.21653594970703127" />
-        <entry key="app/src/main/res/layout/nav_header.xml" value="0.29270833333333335" />
-        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/naviagtion_activity.xml" value="0.1890625" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1492584228515625" />
-        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.29270833333333335" />
-        <entry key="app/src/main/res/menu/naviagtion.xml" value="0.21302083333333333" />
-        <entry key="app/src/main/res/menu/naviagtion_activity_drawer.xml" value="0.30572916666666666" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
       </map>
     </option>
   </component>
