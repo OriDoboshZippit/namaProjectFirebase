@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
     private String users,email,password;
-    public FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
     public String nameFromDB;

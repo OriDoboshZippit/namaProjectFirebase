@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/050522Ori/app/src/main/res/layout/app_bar_drawer.xml" value="0.15" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/070522Ori/app/src/main/res/layout/activity_drawer.xml" value="0.15" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/070522Ori/app/src/main/res/layout/activity_profile.xml" value="0.15" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/070522Ori/app/src/main/res/layout/app_bar_drawer.xml" value="0.12314814814814815" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/070522Ori/app/src/main/res/layout/fragment_home.xml" value="0.15" />
+        <entry key="..\:/Users/dobos/Desktop/namaProjectFirebase/070522Ori/app/src/main/res/layout/nav_header_drawer.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
