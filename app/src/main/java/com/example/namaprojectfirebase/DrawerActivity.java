@@ -57,16 +57,14 @@ public class DrawerActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        System.out.println("The user is: ");
 
-
+        //change the nav_view details
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView activeUserEmail = (TextView) headerView.findViewById(R.id.activeUserEmail);
-        activeUserEmail.setText("Your Text Here");
+        activeUserEmail.setText(Login.mAuth.getCurrentUser().getEmail());
 
 
-        System.out.println( Login.mAuth.getCurrentUser().getEmail());
 
 
 
