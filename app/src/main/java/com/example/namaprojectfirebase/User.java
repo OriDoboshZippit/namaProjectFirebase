@@ -1,15 +1,15 @@
 package com.example.namaprojectfirebase;
 
 public class User {
-    public String fullName, adressText, email;
+    public String fullName, licenseNum, email;
     public int permission;
 
 //    public User(String name, String email) {
 //
 //    }
-    public User(String fullName, String address, String email, int permission){
+    public User(String fullName, String license, String email, int permission){
         this.fullName = fullName;
-        this.adressText = address;
+        this.licenseNum = license;
         this.email = email;
         this.permission = permission;
     }

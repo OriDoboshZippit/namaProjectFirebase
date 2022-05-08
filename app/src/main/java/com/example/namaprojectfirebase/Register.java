@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public TextView banner, registeruser,loginBtn;
 
-    private EditText editTextFullName, adressText, editTextEmail, editTextPassword;
+    private EditText editTextFullName, licenseNum, editTextEmail, editTextPassword;
 //    private ProgressBar progressBar;
     public int permission;
 
@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         loginBtn.setOnClickListener(this);
 
         editTextFullName = (EditText) findViewById(R.id.fulLName);
-        adressText = (EditText) findViewById(R.id.adressText);
+        licenseNum = (EditText) findViewById(R.id.licenseNum);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
 //        progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -92,18 +92,18 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
-        String adress = adressText.getText().toString().trim();
+        String license = licenseNum.getText().toString().trim();
 
 
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required!");
-            adressText.requestFocus();
+            licenseNum.requestFocus();
             return;
         }
 
-        if (adress.isEmpty()) {
-            adressText.setError("Age is required!");
-            adressText.requestFocus();
+        if (license.isEmpty()) {
+            licenseNum.setError("Age is required!");
+            licenseNum.requestFocus();
             return;
         }
         if (email.isEmpty()) {
@@ -137,7 +137,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("After task new user");
                             if (task.isSuccessful()) {
-                                User user = new User(fullName, adress, email, permission);
+                                User user = new User(fullName, license, email, permission);
                                 System.out.println("After builder new user");
                                 FirebaseDatabase.getInstance().getReference("users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

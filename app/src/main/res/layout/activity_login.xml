@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/mainbck"
     tools:context=".Login">
 
 
@@ -11,54 +12,89 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN PAGE"
+        android:fontFamily="@font/audiowide"
+        android:rotationX="8"
+        android:shadowColor="@color/black"
+        android:shadowDx="15"
+        android:shadowDy="15"
+        android:shadowRadius="20"
+        android:text="Welcome To NAMA"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.187" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/aldrich"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/teal_700"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.396" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/aldrich"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/teal_700"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
-
+        app:layout_constraintVertical_bias="0.469" />
 
     <Button
         android:id="@+id/login"
-        android:onClick="loginFunc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:backgroundTint="#E41B6E9A"
+        android:fontFamily="@font/audiowide"
+        android:onClick="loginFunc"
+        android:text="login"
+        android:textSize="20dp"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintVertical_bias="0.318" />
 
-<!--    <TextView-->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All rights reserved©"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="693dp" />
+
+    <!--    <TextView-->
 <!--        android:id="@+id/textView2"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

@@ -4,20 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bckgrd"
     tools:context=".Register">
+
 
     <TextView
         android:id="@+id/banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:shadowColor="@color/black"
+        android:shadowDx="15"
+        android:shadowDy="15"
+        android:shadowRadius="15"
         android:text="Registration Page"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.068" />
 
     <TextView
         android:id="@+id/please"
@@ -28,10 +36,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.286" />
 
     <EditText
         android:id="@+id/fulLName"
@@ -45,10 +53,10 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.323" />
 
     <EditText
         android:id="@+id/email"
@@ -59,24 +67,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
-
-    <!--    <EditText-->
-<!--        android:id="@+id/permission"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Permission"-->
-<!--        android:inputType="text"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/registerUser"-->
-<!--        app:layout_constraintVertical_bias="0.39" />-->
-
+        app:layout_constraintVertical_bias="0.399" />
 
     <EditText
         android:id="@+id/password"
@@ -87,31 +81,33 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <EditText
-        android:id="@+id/adressText"
+        android:id="@+id/licenseNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Address"
+        android:hint="Number of License"
         android:inputType="text"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
     <RadioGroup
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="88dp"
+        android:layout_width="152dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="92dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/loginButton"
-        app:layout_constraintTop_toTopOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.028">
+        app:layout_constraintTop_toTopOf="@+id/loginButton">
 
 
         <RadioButton
@@ -153,13 +149,16 @@
         android:id="@+id/registerUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E41B6E9A"
+        android:fontFamily="@font/aldrich"
         android:text="REGISTER"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.951" />
+        app:layout_constraintVertical_bias="0.871" />
 
     <TextView
         android:id="@+id/loginButton"
@@ -169,19 +168,20 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605" />
 
 
     <!--        <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        style="?android:attr/progressBarStyleHorizontal"-->
-<!--        android:layout_width="368dp"-->
-<!--        android:layout_height="14dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/registerUser" />-->
+    <!--        android:id="@+id/progressBar"-->
+    <!--        style="?android:attr/progressBarStyleHorizontal"-->
+    <!--        android:layout_width="368dp"-->
+    <!--        android:layout_height="14dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/registerUser" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
