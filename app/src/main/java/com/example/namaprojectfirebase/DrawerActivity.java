@@ -62,7 +62,9 @@ public class DrawerActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView activeUserEmail = (TextView) headerView.findViewById(R.id.activeUserEmail);
+        TextView activeUserName = (TextView) headerView.findViewById(R.id.activeUserName);
         activeUserEmail.setText(Login.mAuth.getCurrentUser().getEmail());
+        activeUserName.setText(Login.nameFromDB);
 
 
 

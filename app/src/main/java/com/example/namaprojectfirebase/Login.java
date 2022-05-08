@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
     public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
-    public String nameFromDB;
+    public static String nameFromDB;
     public Query currentUser;
     DatabaseReference databaseReference;
 
@@ -83,24 +83,24 @@ public class Login extends AppCompatActivity {
 
 
 //        //pull the current user
-//        currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
-//                if(dataSnapshot.exists()){
-//                    System.out.println("Data snap shoot work" );
-//                    System.out.println("Password is " +  nameFromDB);
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        System.out.println("IM in LOGIN");
-//
-//
+        currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
+                if(dataSnapshot.exists()){
+                    System.out.println("Data snap shoot work" );
+                    System.out.println("Password is " +  nameFromDB);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        System.out.println("IM in LOGIN");
+
+
     }
 
 
