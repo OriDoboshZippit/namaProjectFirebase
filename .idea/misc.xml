@@ -8,7 +8,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.583043924967448" />
+        <entry key="app/src/main/res/layout/activity_table.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33458048502604165" />
         <entry key="app/src/main/res/layout/menu_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_drawer.xml" value="0.22708333333333333" />
       </map>

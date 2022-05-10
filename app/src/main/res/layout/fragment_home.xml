@@ -104,7 +104,7 @@
         android:layout_width="108dp"
         android:layout_height="26dp"
         android:fontFamily="@font/aldrich"
-        android:text=""
+        android:text="user name"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
