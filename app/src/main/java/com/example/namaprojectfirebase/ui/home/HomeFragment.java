@@ -10,22 +10,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.namaprojectfirebase.Login;
+import com.example.namaprojectfirebase.R;
 import com.example.namaprojectfirebase.databinding.FragmentHomeBinding;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    public TextView activeUserNameHomeFragment;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+//        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        System.out.println("Home Fragment name " + Login.nameFromDB);
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        activeUserNameHomeFragment = root.findViewById(R.id.activeUserNameHomeFragment);
+        activeUserNameHomeFragment.setText(Login.nameFromDB);
+
         return root;
     }
 

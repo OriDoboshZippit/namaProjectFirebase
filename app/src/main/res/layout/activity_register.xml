@@ -17,7 +17,7 @@
         android:shadowDx="15"
         android:shadowDy="15"
         android:shadowRadius="15"
-        android:text="Registration Page"
+        android:text="User Registration Page"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
