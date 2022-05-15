@@ -6,25 +6,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.namaprojectfirebase.Login;
+import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.R;
 import com.example.namaprojectfirebase.Register;
 import com.example.namaprojectfirebase.databinding.FragmentHomeBinding;
-import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
-    public ImageButton btnPLus;
+    public ImageButton btnPLus,btnTable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,22 +32,32 @@ public class HomeFragment extends Fragment {
 //        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         System.out.println("Home Fragment name " + Login.nameFromDB);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
+        btnTable = (ImageButton) root.findViewById(R.id.tableButton);
+
 
         btnPLus.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-              System.out.println("HEYYY");
+              System.out.println("Going to Register");
         Intent i = new Intent(getActivity(), Register.class);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
         });
 
-
-
-
+        btnTable.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("Going to Table");
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
         activeUserNameHomeFragment = root.findViewById(R.id.activeUserNameHomeFragment);
         activeUserNameHomeFragment.setText(Login.nameFromDB);
 
