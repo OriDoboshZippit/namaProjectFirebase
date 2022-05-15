@@ -3,6 +3,8 @@ package com.example.namaprojectfirebase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -20,9 +22,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class DrawerActivity extends AppCompatActivity {
 
+
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityDrawerBinding binding;
     public TextView activeUserEmail;
+    private ImageButton btnPLus;
+
 
 
 
@@ -32,12 +38,11 @@ public class DrawerActivity extends AppCompatActivity {
 
         binding = ActivityDrawerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
-
-
         setSupportActionBar(binding.appBarDrawer.toolbar);
+
+
+
+
         binding.appBarDrawer.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +50,8 @@ public class DrawerActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -66,11 +73,10 @@ public class DrawerActivity extends AppCompatActivity {
         activeUserEmail.setText("You are logged with " + Login.mAuth.getCurrentUser().getEmail());
         activeUserName.setText("Welcome, " + Login.nameFromDB);
 
-
-
-
-
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
