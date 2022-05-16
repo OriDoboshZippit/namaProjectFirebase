@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById (R.id.listview);
         ArrayList <String> arrayList=new ArrayList<> ();
-        arrayList.add ("android");
+        arrayList.add ("| android |");
         arrayList.add ("is");
         arrayList.add ("great");
         arrayList.add ("andIlove it");
@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add ("operating system. ");
         arrayList.add ("operating system. ");
         arrayList.add ("operating system. ");
-
-
         ArrayAdapter arrayAdapter = new ArrayAdapter (this, android.R.layout.simple_expandable_list_item_1, arrayList);
         listView.setAdapter(arrayAdapter);
     }
