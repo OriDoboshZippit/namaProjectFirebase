@@ -8,7 +8,9 @@ public class Product {
     public double BuyPr, CellPr;
     public long AddingDate, BestBefore;
 
-    public Product (String ID, String Name,double BuyPr, double CellPr, long AddingDate, long BestBefore, int Type, String Description){
+
+
+    public Product (String ID, String Name, double BuyPr, double CellPr, long AddingDate, long BestBefore, int Type, String Description){
         this.ID = ID;
         this.Name = Name;
         this.CellPr = CellPr;
@@ -17,5 +19,41 @@ public class Product {
         this.BestBefore = BestBefore;
         this.Type = Type;
         this.Description = Description;
+
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public int getType() {
+        return Type;
+    }
+
+    public double getBuyPr() {
+        return BuyPr;
+    }
+
+    public double getCellPr() {
+        return CellPr;
+    }
+
+    public long getAddingDate() {
+        return AddingDate;
+    }
+
+    public long getBestBefore() {
+        return BestBefore;
+    }
+
 }
+
+

@@ -7,35 +7,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    ListView listView;
+
+    List <Product> productList;
+        ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById (R.id.listview);
-        ArrayList <String> arrayList=new ArrayList<> ();
-        arrayList.add ("| android |");
-        arrayList.add ("is");
-        arrayList.add ("great");
-        arrayList.add ("andIlove it");
-        arrayList.add ("It");
-        arrayList.add ("is");
-        arrayList.add ("better");
-        arrayList.add ("then");
-        arrayList.add ("many");
-        arrayList.add ("other");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        arrayList.add ("operating system. ");
-        ArrayAdapter arrayAdapter = new ArrayAdapter (this, android.R.layout.simple_expandable_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
+        productList = new ArrayList<>();
+        productList.add(new Product("12", "The Name Is Working", 1231, 311, 1414223565, 321434234,1,"lsdk"));
+        listView = (ListView) findViewById(R.id.listview);
+        MyCustomListAdapter adapter = new MyCustomListAdapter(this, R.layout.my_list_item, productList);
+        listView.setAdapter(adapter);
+
     }
 }
