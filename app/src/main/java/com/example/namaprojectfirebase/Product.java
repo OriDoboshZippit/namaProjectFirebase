@@ -3,14 +3,12 @@ package com.example.namaprojectfirebase;
 import android.app.DatePickerDialog;
 
 public class Product {
-    public String ID, Name, Description;
+    public String ID, Name, Description, imageUrl;
     public int Type;
     public double BuyPr, CellPr;
     public long AddingDate, BestBefore;
 
-
-
-    public Product (String ID, String Name, double BuyPr, double CellPr, long AddingDate, long BestBefore, int Type, String Description){
+    public Product (String ID, String Name, double BuyPr, double CellPr, long AddingDate, long BestBefore, int Type, String Description, String imageUrl){
         this.ID = ID;
         this.Name = Name;
         this.CellPr = CellPr;
@@ -19,6 +17,8 @@ public class Product {
         this.BestBefore = BestBefore;
         this.Type = Type;
         this.Description = Description;
+        this.imageUrl = imageUrl;
+
 
     }
 
@@ -53,6 +53,8 @@ public class Product {
     public long getBestBefore() {
         return BestBefore;
     }
+
+    public String getImageUrl() { return  imageUrl; }
 
 }
 

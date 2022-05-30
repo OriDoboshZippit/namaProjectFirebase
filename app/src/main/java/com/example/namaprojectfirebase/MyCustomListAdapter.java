@@ -36,12 +36,15 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
 
 
         TextView nameOfProduct = view.findViewById(R.id.nameOfProduct);
+        ImageView imageOfProduct = view.findViewById(R.id.imageProduct);
 //        TextView categoryOfProduct = view.findViewById(R.id.categoryOfProduct);
 //        ImageView productImage = view.findViewById(R.id.imageProduct);
 
 
         Product product = productList.get(position);
         nameOfProduct.setText(product.getName());
+//        imageOfProduct.setImageResource();
+
         System.out.println("name of product " + nameOfProduct);
 //        categoryOfProduct.setText(product.getType());
 //        productImage.setImageDrawable(mCtx.getResources().getDrawable(product.getImage), null);

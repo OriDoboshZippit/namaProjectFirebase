@@ -19,25 +19,46 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.526" />-->
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageProduct"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.102"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.343"-->
-<!--        tools:srcCompat="@tools:sample/avatars" />-->
+    <ImageView
+        android:id="@+id/imageProduct"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+
+       android:src="@drawable/user" />
 
     <Button
         android:id="@+id/addToCart"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-152dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+
         android:layout_toEndOf="@+id/nameOfProduct"
-        android:text="addToCart"
+        android:text="+"
+
+        ></Button>
+    <Button
+        android:id="@+id/option1"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/addToCart"
+        android:text="+"
+
+        ></Button>
+
+    <Button
+        android:id="@+id/option2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/option1"
+        android:text="+"
 
         ></Button>
 
@@ -45,8 +66,24 @@
         android:id="@+id/nameOfProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="200dp"
-        android:text="PRODUCT NAME"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="50dp"
+        android:text=""
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.487" />
+    <!--        android:layout_marginRight="200dp"-->
+    <TextView
+        android:id="@+id/qntyOfProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="60dp"
+        android:text="10 items "
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
