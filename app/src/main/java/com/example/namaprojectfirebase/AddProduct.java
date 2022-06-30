@@ -16,13 +16,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class AddProduct extends AppCompatActivity implements View.OnClickListener {
     public TextView addProduct, DateAdding, BestBefore;
     private EditText editID, editName, editBuyPrice, editCellPrice, editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
+    public static String uniqueOfProducID;
 
 
     @Override
@@ -32,6 +40,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 
         DateAdding = (TextView) findViewById(R.id.editDateAdd);
         BestBefore = (TextView) findViewById(R.id.editBestBefore);
+
         DateAdding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,14 +112,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         editDescription = (EditText) findViewById(R.id.editDescription);
     }
 
-    /*public static boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch(NumberFormatException e){
-            return false;
-        }
-    }*/
     public static double StoNum (@NonNull String s) throws ParsingException {
         try {
             double num = Double.parseDouble(s.trim());
@@ -119,7 +120,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         }
         catch (NumberFormatException nfe) {
             throw new ParsingException("NumberFormatException: " + nfe.getMessage());
-           // return 0.0;
         }
     }
 
@@ -139,8 +139,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         Type = 4;
         System.out.println("Fruits and Vegetables");
     }
-    
-    
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -161,86 +160,79 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
-        String BuyPrice = editBuyPrice.getText().toString().trim();
-        String CellPrice = editCellPrice.getText().toString().trim();
+//        String BuyPrice = editBuyPrice.getText().toString().trim();
+//        String CellPrice = editCellPrice.getText().toString().trim();
         String Description = editDescription.getText().toString().trim();
-        try {
-            double buyPr = StoNum(BuyPrice);
-            double cellPr = StoNum(CellPrice);
-        } catch (ParsingException e) {
-            System.out.println(e.getMessage());
-        }
+
+//        try {
+//            double buyPr = StoNum(BuyPrice);
+//            double cellPr = StoNum(CellPrice);
+//        } catch (ParsingException e) {
+//            System.out.println(e.getMessage());
+//        }
 
 
+//        if (ID.isEmpty()) {
+//            editID.setError("ID is required!");
+//            editID.requestFocus();
+//            return;
+//        }
+//
+//        if (Name.isEmpty()) {
+//            editName.setError("Name is required!");
+//            editName.requestFocus();
+//            return;
+//        }
+//        if(BuyPrice.isEmpty()){
+//            editCellPrice.setError("Purchase Price is required!");
+//            editCellPrice.requestFocus ();
+//            return;
+//        }
+//        if(CellPrice.isEmpty()){
+//            editCellPrice.setError("Cell Price is required!");
+//            editCellPrice.requestFocus ();
+//            return;
+//        }
+//       if(BestBefore.getText().toString().isEmpty()){
+//            editCellPrice.setError("Best Before is required!");
+//            editCellPrice.requestFocus ();
+//            return;
+//        }
+//        if(DateAdding.getText().toString().isEmpty()){
+//            editCellPrice.setError("Date of Adding is required!");
+//            editCellPrice.requestFocus ();
+//            return;
+//        }
+//        if(Description.isEmpty()){
+//            editCellPrice.setError("Description is required!");
+//            editCellPrice.requestFocus ();
+//            return;
+//        }
 
-        if (ID.isEmpty()) {
-            editID.setError("ID is required!");
-            editID.requestFocus();
-            return;
-        }
 
-        if (Name.isEmpty()) {
-            editName.setError("Name is required!");
-            editName.requestFocus();
-            return;
-        }
-        if(BuyPrice.isEmpty()){
-            editCellPrice.setError("Purchase Price is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
-        if(CellPrice.isEmpty()){
-            editCellPrice.setError("Cell Price is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
-       if(BestBefore.getText().toString().isEmpty()){
-            editCellPrice.setError("Best Before is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
-        if(DateAdding.getText().toString().isEmpty()){
-            editCellPrice.setError("Date of Adding is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
-        if(Description.isEmpty()){
-            editCellPrice.setError("Description is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
+         Product product = new Product("2341322222214","1",1342545.4,131331.3,1391320420,1397320420,2,"ksdjk", "okdoskdo");
+//         HashMap hashMapForProduct = new HashMap();
+//         hashMapForProduct.put("ID","dl232kadl");
+//         hashMapForProduct.put("woow","12223131");
 
-            /*    Product product = new Product(ID, Name, B  ) ;
-                System.out.println("After builder new user");*/
-
-              /*  FirebaseDatabase.getInstance().getReference("products")
-                        .child(FirebaseAuth.getInstance().getCurrentProduct().getUid())
+                System.out.println("After builder new product");
+                uniqueOfProducID = UUID.randomUUID().toString();
+                FirebaseDatabase.getInstance().getReference("products")
+                        .child(uniqueOfProducID)
                         .setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
-*//*
-
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
 
 
                         } else {
-                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 
                         }
                     }
                 });
 
             }
-            else{
-                Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
-            }
-        }
 
-    });*/
 }
 
-
-
-    
-    
-}

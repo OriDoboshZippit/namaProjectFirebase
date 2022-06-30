@@ -42,7 +42,7 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
 
 
         Product product = productList.get(position);
-        nameOfProduct.setText(product.getName());
+//        nameOfProduct.setText(product.getName());
 //        imageOfProduct.setImageResource();
 
         System.out.println("name of product " + nameOfProduct);
