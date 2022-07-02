@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
 //take picture from URL function (don't checked);
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
