@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-
-    <!--    <TextView-->
+<!--    <TextView-->
 <!--        android:id="@+id/categoryOfProduct"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -24,51 +22,54 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-
-       android:src="@drawable/user" />
+        android:layout_marginRight="15dp"
+        android:src="@drawable/user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/addToCart"
+        android:id="@+id/quantityPlus"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="60dp"
+        android:layout_toStartOf="@+id/quantityMinus"
+        android:text="+">
 
-        android:layout_toEndOf="@+id/nameOfProduct"
-        android:text="+"
+    </Button>
 
-        ></Button>
-    <Button
-        android:id="@+id/option1"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/addToCart"
-        android:text="+"
-
-        ></Button>
 
     <Button
-        android:id="@+id/option2"
+        android:id="@+id/quantityMinus"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/option1"
-        android:text="+"
+        android:layout_marginEnd="10dp"
+        android:text="-">
 
-        ></Button>
+    </Button>
+
+    <ImageButton
+        android:id="@+id/addToCard"
+        android:layout_width="42dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="6dp"
+        android:layout_toStartOf="@+id/quantityPlus"
+        android:scaleType="fitCenter"
+        android:src="@drawable/add_to_cart"
+        android:text="+"></ImageButton>
 
     <TextView
         android:id="@+id/nameOfProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
         android:layout_marginLeft="50dp"
-        android:text=""
+        android:layout_marginTop="26dp"
+        android:text="Name of product"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="60dp"
-        android:text="10 items "
+        android:text=""
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

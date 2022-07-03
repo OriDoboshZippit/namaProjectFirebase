@@ -49,10 +49,10 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
 //        categoryOfProduct.setText(product.getType());
 //        productImage.setImageDrawable(mCtx.getResources().getDrawable(product.getImage), null);
 
-        view.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.addToCard).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("ADD TO CARD !!!");
             }
         });
         return view;
