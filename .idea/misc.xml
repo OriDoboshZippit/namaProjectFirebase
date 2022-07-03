@@ -14,9 +14,11 @@
         <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/12/app/src/main/res/menu/activity_main_drawer.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
+        <entry key="app/src/main/res/layout/activity_product.xml" value="0.34198760986328125" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recyclerlist.xml" value="0.5575195312500001" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.12083333333333333" />
       </map>
     </option>
   </component>

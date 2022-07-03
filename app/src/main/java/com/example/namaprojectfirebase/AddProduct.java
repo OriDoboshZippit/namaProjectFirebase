@@ -4,28 +4,20 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaParser;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -34,11 +26,11 @@ import java.util.UUID;
 
 public class AddProduct extends AppCompatActivity implements View.OnClickListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
-    private EditText editID, editName, editBuyPrice, editCellPrice, editDescription;
+    private EditText editID, editName, editBuyPrice, addQuantity, editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
     public static String uniqueOfProducID;
-    public double buyPr, cellPr;
+    public double buyPr, quantity;
 
     private DatabaseReference rootDataBase;
 
@@ -121,12 +113,14 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         addProduct = (Button) findViewById(R.id.addProductButton);
         addProduct.setOnClickListener(this);
 
+       // getProduct = (Button) findViewById(R.id.getProducts);
+//        getProduct.setOnClickListener(this);
 
 
         editID = (EditText) findViewById(R.id.editID);
         editName = (EditText) findViewById(R.id.editName);
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
-        editCellPrice = (EditText) findViewById(R.id.editCellPrice);
+//        editCellPrice = (EditText) findViewById(R.id.editCellPrice);
         editDescription = (EditText) findViewById(R.id.editDescription);
     }
 
@@ -180,7 +174,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
         String BuyPrice = editBuyPrice.getText().toString().trim();
-        String CellPrice = editCellPrice.getText().toString().trim();
+//        double quantity = addQuantity.getText().toString().trim();
         String addingDate = DateAdding.getText().toString().trim();
         String bestBefore = BestBefore.getText().toString().trim();
 
@@ -206,14 +200,14 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             editBuyPrice.requestFocus ();
             return;
         }
-        if(CellPrice.isEmpty()){
-            editCellPrice.setError("Cell Price is required!");
-            editCellPrice.requestFocus ();
-            return;
-        }
+//        if(quantity.isEmpty()){
+//            addQuantity.setError("Quantity Price is required!");
+//            addQuantity.requestFocus ();
+//            return;
+//        }
         try {
          buyPr = StoNum(BuyPrice);
-         cellPr = StoNum(CellPrice);
+//         quantity = StoNum(quantity);
         } catch (ParsingException e) {
             System.out.println(e.getMessage());
         }
@@ -243,7 +237,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("id", ID);
         dataOfProduct.put("nameOfProduct", Name);
         dataOfProduct.put("buyPrice", buyPr);
-        dataOfProduct.put("sellPrice", cellPr);
+        dataOfProduct.put("quantity", quantity);
         dataOfProduct.put("dataOfAdding", addingDate);
         dataOfProduct.put("bestBefore", bestBefore);
         dataOfProduct.put("typeOfProduct", Type);
