@@ -155,7 +155,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All rights reserved©"
+        android:text="All rights are never reserved©"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="14sp"

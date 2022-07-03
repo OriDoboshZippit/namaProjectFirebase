@@ -42,6 +42,21 @@
         tools:ignore="MissingConstraints" />
 
     <ImageButton
+        android:id="@+id/addUser"
+        android:layout_width="95sp"
+        android:layout_height="95sp"
+        android:padding="0px"
+        android:soundEffectsEnabled="true"
+        android:src="@drawable/user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
         android:id="@+id/orderButton"
         android:layout_width="95sp"
         android:layout_height="95sp"
