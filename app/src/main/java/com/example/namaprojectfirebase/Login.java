@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity {
     private TextView register;
     private EditText editTextEmail, editTextPassword;
-    private Button signIn;
+    private Button signIn, Register;
     private String users,email,password;
     public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         signIn = (Button) findViewById(R.id.login);
+        Register = (Button) findViewById(R.id.registerBtn);
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = (EditText) findViewById (R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById (R.id.editTextTextPassword);
@@ -101,6 +102,10 @@ public class Login extends AppCompatActivity {
         System.out.println("IM in LOGIN");
 
 
+    }
+    public void RegisterFunc (View view){
+        Intent i = new Intent(Login.this, Register.class);
+        startActivity(i);
     }
 
 

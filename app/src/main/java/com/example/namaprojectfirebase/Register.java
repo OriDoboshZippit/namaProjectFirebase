@@ -40,9 +40,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         registeruser.setOnClickListener(this);
 
 
-        loginBtn = (TextView) findViewById(R.id.loginButton);
-        loginBtn.setOnClickListener(this);
-
         editTextFullName = (EditText) findViewById(R.id.fulLName);
         licenseNum = (EditText) findViewById(R.id.licenseNum);
         editTextEmail = (EditText) findViewById(R.id.email);
