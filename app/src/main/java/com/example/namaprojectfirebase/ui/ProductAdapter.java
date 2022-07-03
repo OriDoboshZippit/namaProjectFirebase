@@ -11,15 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.Product;
 import com.example.namaprojectfirebase.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     ImageView imageView;
-    private Context mCtx;
+    public Context mCtx;
     private List<Product> productList;
+
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -43,11 +46,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
         System.out.println(product.getQuantity());
         holder.textViewRating.setText("QUANTITY: "+ String.valueOf(product.getQuantity()));
+//        Picasso.with(mCtx).load(product.getImageUrl()).into(holder.imageView);
+//        imageView = imageView.findViewById(R.id.imageView);
 
-        imageView = imageView.findViewById(R.id.imageView);
+//        Glide.with(this).load("").into(imageView);
+        System.out.println( "IMAGE " +product.getImageUrl());
+//        Glide.with(mCtx).load("https://www.ou.org/holidays/files/Work-768x512.jpg").into(imageView);
 
-//        Glide.with().load("").into(imageView);
-//        Glide.with(this)
+//        holder.imageView.setImageResource();
 
     }
 
@@ -66,6 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
+
         }
     }
 

@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         dbProducts = FirebaseDatabase.getInstance().getReference("products");
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
+
+
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
