@@ -11,19 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.Product;
+import com.example.namaprojectfirebase.AddCart;
 import com.example.namaprojectfirebase.R;
-import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     ImageView imageView;
     public Context mCtx;
-    private List<Product> productList;
+    public List <Product> productList;
 
 
 
@@ -41,11 +38,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         View view = inflater.inflate(R.layout.recyclerlist, null);
         ProductViewHolder holder = new ProductViewHolder(view);
         return holder;
+
+
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+
         Product product = productList.get(position);
+
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
@@ -61,6 +63,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //        Glide.with(mCtx).load("https://www.ou.org/holidays/files/Work-768x512.jpg").into(imageView);
 
 //        holder.imageView.setImageResource();
+
+
+
 
     }
 
@@ -90,7 +95,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("HEYYY I CLICKABLE");
+                    int position = getAdapterPosition();
+
+                    Product product = productList.get(position);
+                    System.out.println("HEYYY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
 
@@ -98,10 +106,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("HEYY" );
+                    int position = getAdapterPosition();
 
+                    Product product = productList.get(position);
+                    System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
+                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice());
                 }
             });
+
+
 
         }
     }
