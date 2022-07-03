@@ -15,7 +15,7 @@
         android:shadowDx="15"
         android:shadowDy="15"
         android:shadowRadius="15"
-        android:text="Магазин Пёс да лис"
+        android:text="The Ugliest Place"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -24,64 +24,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068" />
-    <ImageButton
-        android:id="@+id/recycleButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/recycle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718"
-        tools:ignore="MissingConstraints" />
 
-    <ImageButton
-        android:id="@+id/searchButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348"
-        tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/tableButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
+        android:layout_width="95sp"
+        android:layout_height="95sp"
         android:padding="0px"
         android:soundEffectsEnabled="true"
         android:src="@drawable/table"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348"
+        app:layout_constraintVertical_bias="0.954"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/orderButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
+        android:layout_width="95sp"
+        android:layout_height="95sp"
         android:padding="0px"
         android:soundEffectsEnabled="true"
         android:src="@drawable/order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.651"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533"
+        app:layout_constraintVertical_bias="0.954"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -90,10 +62,11 @@
         android:layout_height="23dp"
         android:fontFamily="@font/aldrich"
         android:text="Welcome,"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.196"
@@ -106,6 +79,7 @@
         android:fontFamily="@font/aldrich"
         android:text="user name"
         android:textSize="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.429"
@@ -120,6 +94,7 @@
         android:layout_height="20dp"
         android:fontFamily="@font/aldrich"
         android:text="For starting, choose the option"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
@@ -128,79 +103,21 @@
         app:layout_constraintVertical_bias="0.232"
         tools:ignore="MissingConstraints" />
 
+
     <ImageButton
         android:id="@+id/plusButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:onClick="addProduct"
+        android:padding="0px"
         android:soundEffectsEnabled="true"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348"
+        app:layout_constraintVertical_bias="0.954"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/statisticButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/statistics"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/expiredButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/expired"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/mailButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/mail"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/deliveryButton"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:padding="0px"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/delivery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718"
-        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

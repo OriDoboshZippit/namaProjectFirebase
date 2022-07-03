@@ -121,7 +121,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         addProduct = (Button) findViewById(R.id.addProductButton);
         addProduct.setOnClickListener(this);
 
-        getProduct = (Button) findViewById(R.id.getProducts);
+       // getProduct = (Button) findViewById(R.id.getProducts);
         getProduct.setOnClickListener(this);
 
 
@@ -169,31 +169,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.backButton:
                 startActivity(new Intent(this, MainActivity.class));
-                break;
-            case R.id.getProducts:
-                System.out.println("HEYYYYY IM WANT PRODUCTS");
-
-                getProduct.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        rootDataBase.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists())
-                                {
-                                    String data = snapshot.getValue().toString();
-                                    System.out.println(data);
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                });
                 break;
 
         }
