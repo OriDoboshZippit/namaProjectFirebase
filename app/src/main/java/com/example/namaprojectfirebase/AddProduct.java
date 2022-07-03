@@ -2,28 +2,42 @@ package com.example.namaprojectfirebase;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.net.URI;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@SuppressWarnings("deprecation")
 public class AddProduct extends AppCompatActivity implements View.OnClickListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
     public EditText editID, editName, editBuyPrice, editQuantity , editDescription;
@@ -32,6 +46,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
     public static String uniqueOfProducID;
     public double buyPr;
     private DatabaseReference rootDataBase;
+    private StorageReference mStorageRef;
+    private ImageView imImage;
+    public Uri uploadUri;
 
 
     @Override
@@ -40,7 +57,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_product);
         rootDataBase = FirebaseDatabase.getInstance().getReference().child("products");
 //        rootDataBase.addListenerForSingleValueEvent(rootDataBase.addValueEventListener());
-
+        mStorageRef = FirebaseStorage.getInstance().getReference("ImageDB");
 
         DateAdding = (TextView) findViewById(R.id.editDateAdd);
         BestBefore = (TextView) findViewById(R.id.editBestBefore);
@@ -121,6 +138,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
         editQuantity = (EditText) findViewById(R.id.quantity);
         editDescription = (EditText) findViewById(R.id.editDescription);
+        imImage = (ImageView) findViewById(R.id.imageView);
     }
 
 
@@ -165,10 +183,50 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 break;
 
         }
+    }
+    //Getting image for uploading from internal storage
+    public void onClickChooseImage(View view){
+        getImage();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && data != null && data.getData() != null){
+            if (resultCode == RESULT_OK){
+                Log.d("My log", "image URI: " + data.getData());
+                imImage.setImageURI(data.getData());
+                uploadImage();
+            }
+        }
+    }
+    private void uploadImage (){
+        Bitmap bitmap = ((BitmapDrawable) imImage.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos );
+        byte [] byteArray = baos.toByteArray();
 
+        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis()+ "my_image");
+        UploadTask up = mRef.putBytes(byteArray);
+        Task<Uri> task = up.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                return mRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                uploadUri = task.getResult(); //tyt hranitsa ssilka
+                System.out.println("Heyy, the pic is uploaded  " + uploadUri);
+            }
+        });
+    }
 
-
+    private void getImage(){
+        Intent intentChooser = new Intent();
+        intentChooser.setType("image/*");
+        intentChooser.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intentChooser,1);
     }
 
     private void addProduct() {
@@ -242,6 +300,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         Map<String, Object> dataOfProduct = new HashMap<>();
         dataOfProduct.put("id", ID);
         dataOfProduct.put("nameOfProduct", Name);
+        dataOfProduct.put("URL", "uploadUri.toString()" );
         dataOfProduct.put("buyPrice", buyPr);
         dataOfProduct.put("quantity", quantity);
         dataOfProduct.put("dataOfAdding", addingDate);
