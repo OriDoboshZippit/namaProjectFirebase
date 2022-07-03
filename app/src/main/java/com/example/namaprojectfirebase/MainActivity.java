@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     List<Product> productList;
     RecyclerView recyclerView;
     ProductAdapter adapter;
-    ImageView imageView;
+
 
     DatabaseReference dbProducts;
 
@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
 //        imageView = findViewById(R.id.imageView);
 //        Glide.with(this).load("").into(imageView);
 
-//
-//
 
         adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);
@@ -56,16 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         //SELECT * FROM Products
         dbProducts = FirebaseDatabase.getInstance().getReference("products");
-
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
-        System.out.println("HEYYYY" + dbProducts.toString());
-
-
-//        productList.add(new Product("12", "The Name of Product", 1231, 311, 1414223565, 321434234,1,"lsdk", "https://firebasestorage.googleapis.com/v0/b/namaprojectfirebase.appspot.com/o/pictures%2Fuser.png?alt=media&token=d176744a-d456-4e76-b134-9a5c73949f89"));
-//        listView = (ListView) findViewById(R.id.listview);
-//        MyCustomListAdapter adapter = new MyCustomListAdapter(this, R.layout.my_list_item, productList);
-//        listView.setAdapter(adapter);
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {

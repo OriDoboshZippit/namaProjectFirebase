@@ -128,14 +128,14 @@
         app:layout_constraintVertical_bias="0.371" />
 
     <EditText
-        android:id="@+id/editCellPrice"
+        android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Quantity"
+        android:inputType="number"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.149"

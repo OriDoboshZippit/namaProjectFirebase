@@ -26,12 +26,11 @@ import java.util.UUID;
 
 public class AddProduct extends AppCompatActivity implements View.OnClickListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
-    private EditText editID, editName, editBuyPrice, addQuantity, editDescription;
+    public EditText editID, editName, editBuyPrice, editQuantity , editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
     public static String uniqueOfProducID;
-    public double buyPr, quantity;
-
+    public double buyPr;
     private DatabaseReference rootDataBase;
 
 
@@ -120,9 +119,11 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         editID = (EditText) findViewById(R.id.editID);
         editName = (EditText) findViewById(R.id.editName);
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
-//        editCellPrice = (EditText) findViewById(R.id.editCellPrice);
+        editQuantity = (EditText) findViewById(R.id.quantity);
         editDescription = (EditText) findViewById(R.id.editDescription);
     }
+
+
 
     public static double StoNum (@NonNull String s) throws ParsingException {
         try {
@@ -171,10 +172,15 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
     }
 
     private void addProduct() {
+
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
         String BuyPrice = editBuyPrice.getText().toString().trim();
-//        double quantity = addQuantity.getText().toString().trim();
+//        String quantity = editQuantity.getText().toString().trim();
+        String quantityString= editQuantity.getText().toString();
+        double quantity = Integer.parseInt(quantityString);
+        System.out.println("QUANTITY" + quantity);
+//        int Quantity = 2;
         String addingDate = DateAdding.getText().toString().trim();
         String bestBefore = BestBefore.getText().toString().trim();
 

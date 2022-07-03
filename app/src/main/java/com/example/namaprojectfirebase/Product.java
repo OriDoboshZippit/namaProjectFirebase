@@ -2,15 +2,17 @@ package com.example.namaprojectfirebase;
 
 import android.app.DatePickerDialog;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
 
 public class Product {
     public String id, nameOfProduct, description;
-    private int type;
-    public double buyPrice, sellPrice;
+    public int type;
+    public double buyPrice, sellPrice, quantity;
     private long AddingDate, BestBefore;
+    ImageView imageView;
 
 
 //    public Product(String id, String nameOfProduct, String description, int type, double buyPrice, double sellPrice, long addingDate, long bestBefore) {
@@ -44,10 +46,16 @@ public class Product {
         return buyPrice;
     }
 
-    public Product (String nameOfProduct, String description, double buyPrice){
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public Product (String nameOfProduct, String description, double buyPrice, double quantity){
         this.nameOfProduct = nameOfProduct;
         this.description = description;
         this.buyPrice = buyPrice;
+        this.quantity = quantity;
 
     }
 

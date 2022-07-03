@@ -10,13 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.namaprojectfirebase.Product;
 import com.example.namaprojectfirebase.R;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-
+    ImageView imageView;
     private Context mCtx;
     private List<Product> productList;
 
@@ -37,12 +38,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
-        holder.textViewRating.setText("QNTY "+ String.valueOf(1312));
+        System.out.println(product.getQuantity());
+        holder.textViewRating.setText("QUANTITY: "+ String.valueOf(product.getQuantity()));
 
+        imageView = imageView.findViewById(R.id.imageView);
+
+//        Glide.with().load("").into(imageView);
+//        Glide.with(this)
 
     }
 
