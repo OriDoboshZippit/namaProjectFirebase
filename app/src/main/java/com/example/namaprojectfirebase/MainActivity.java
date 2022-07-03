@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -22,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -30,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
     List<Product> productList;
     RecyclerView recyclerView;
     ProductAdapter adapter;
+    public ImageButton addToCart;
 
 
-    DatabaseReference dbProducts;
+    DatabaseReference dbProducts,addToCartDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +49,36 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
 //        imageView = findViewById(R.id.imageView);
 //        Glide.with(this).load("").into(imageView);
 
-
         adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);
-
 
         //SELECT * FROM Products
         dbProducts = FirebaseDatabase.getInstance().getReference("products");
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
+
+
+
+
+//        addToCart = (ImageButton) findViewById(R.id.addToCardRecycle);
+//        String ID_Cart = addToCartDb.push().getKey();
+
+
+
+//        addToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("HEYYY");
+////                HashMap<String, String> parameters = new HashMap<>();
+////                parameters.put("product_name","apple");
+////                parameters.put("price", "20");
+////                addToCartDb.child(ID_Cart).setValue(parameters);
+//
+//            }
+//        });
 
 
     }

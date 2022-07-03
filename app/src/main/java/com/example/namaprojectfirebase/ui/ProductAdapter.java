@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.Product;
 import com.example.namaprojectfirebase.R;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     ImageView imageView;
     public Context mCtx;
     private List<Product> productList;
+
+
+
 
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
@@ -44,8 +49,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
-        System.out.println(product.getQuantity());
-        holder.textViewRating.setText("QUANTITY: "+ String.valueOf(product.getQuantity()));
+        holder.textViewRating.setText(String.valueOf(product.getQuantity()));
+
+
 
 //        Picasso.with(mCtx).load(product.getImageUrl()).into(holder.imageView);
 //        imageView = imageView.findViewById(R.id.imageView);
@@ -58,6 +64,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     }
 
+
+//    //ADD TO CART * Product
+//    addToCartDb = FirebaseDatabase.getInstance().getReference("cart");
+
     @Override
     public int getItemCount() {
         return productList.size();
@@ -66,6 +76,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     class ProductViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView textViewTitle, textViewDesc, textViewRating, textViewPrice;
+        ImageButton addToCardRecycle;
+
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
@@ -73,6 +85,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
+            addToCardRecycle = itemView.findViewById(R.id.addToCardRecycle);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("HEYYY I CLICKABLE");
+                }
+            });
+
+
+            itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("HEYY" );
+
+                }
+            });
 
         }
     }
