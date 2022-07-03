@@ -11,9 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.Product;
 import com.example.namaprojectfirebase.AddCart;
 import com.example.namaprojectfirebase.R;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,6 +25,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     ImageView imageView;
     public Context mCtx;
     public List <Product> productList;
+    public  ImageView imageDB;
 
 
 
@@ -38,16 +43,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         View view = inflater.inflate(R.layout.recyclerlist, null);
         ProductViewHolder holder = new ProductViewHolder(view);
         return holder;
-
-
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-
         Product product = productList.get(position);
-
+        Picasso.get().load(product.getImageUrl()).into(imageDB);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
@@ -63,9 +64,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //        Glide.with(mCtx).load("https://www.ou.org/holidays/files/Work-768x512.jpg").into(imageView);
 
 //        holder.imageView.setImageResource();
-
-
-
 
     }
 
@@ -85,7 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
+            imageDB = itemView.findViewById(R.id.imageDB);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewRating = itemView.findViewById(R.id.textViewRating);
@@ -113,8 +111,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice());
                 }
             });
-
-
 
         }
     }

@@ -12,7 +12,8 @@ public class Product {
     public int type;
     public double buyPrice, sellPrice, quantity;
     private long AddingDate, BestBefore;
-    public String imageUrl;
+    public String URL;
+    public String imageID;
     ImageView imageView;
 
 
@@ -52,17 +53,19 @@ public class Product {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return URL;
     }
 
-    public Product (String nameOfProduct, String description, double buyPrice, double quantity, String imageUrl){
+    public String getImageID() { return imageID; }
+
+ /*   public Product (String nameOfProduct, String description, double buyPrice, double quantity, String imageUrl){
         this.nameOfProduct = nameOfProduct;
         this.description = description;
         this.buyPrice = buyPrice;
         this.quantity = quantity;
         this.imageUrl = imageUrl;
 
-    }
+    }*/
 
     public Product (){
 
