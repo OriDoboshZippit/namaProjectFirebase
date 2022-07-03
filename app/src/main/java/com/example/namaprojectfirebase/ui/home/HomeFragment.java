@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.namaprojectfirebase.AddProduct;
 import com.example.namaprojectfirebase.Login;
 import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.R;
@@ -23,7 +24,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
-    public ImageButton btnPLus,btnTable;
+    public ImageButton btnPLus,btnTable, btnAdd;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -35,19 +36,32 @@ public class HomeFragment extends Fragment {
 
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
+        btnAdd = (ImageButton) root.findViewById(R.id.addUser);
 
-        if (currentUser.matches(admin)){
+        if (!currentUser.matches(admin)){
             btnPLus.setVisibility(View.INVISIBLE);
+            btnAdd.setVisibility(View.INVISIBLE);
         }
 
 
-        btnPLus.setOnClickListener(new View.OnClickListener()
+        btnAdd.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 System.out.println("Going to Register");
                 Intent i = new Intent(getActivity(), Register.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+        btnPLus.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("Going to new Product");
+                Intent i = new Intent(getActivity(), AddProduct.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
             }

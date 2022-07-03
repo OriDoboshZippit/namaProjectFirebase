@@ -121,8 +121,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         addProduct = (Button) findViewById(R.id.addProductButton);
         addProduct.setOnClickListener(this);
 
-       // getProduct = (Button) findViewById(R.id.getProducts);
-        getProduct.setOnClickListener(this);
 
 
         editID = (EditText) findViewById(R.id.editID);
