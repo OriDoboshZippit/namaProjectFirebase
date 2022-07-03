@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.example.namaprojectfirebase.ui.ProductAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     List<Product> productList;
     RecyclerView recyclerView;
     ProductAdapter adapter;
+    ImageView imageView;
 
     DatabaseReference dbProducts;
 
@@ -40,30 +43,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        productList.add(
-//                new Product(
-//                        "1",
-//                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-//                        12,
-//                        "sjhf"
+
+//        imageView = findViewById(R.id.imageView);
+//        Glide.with(this).load("").into(imageView);
+
 //
-//                ));
 //
-//        productList.add(
-//                new Product(
-//                        "1",
-//                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-//                        12,
-//                        "sjhf"
-//                ));
-//
-//        productList.add(
-//                new Product(
-//                        "1",
-//                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-//                        12,
-//                        "sjhf"
-//                ));
 
         adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);

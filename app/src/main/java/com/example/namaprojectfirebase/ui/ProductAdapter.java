@@ -38,10 +38,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
 
-        holder.textViewTitle.setText(product.getName());
+        holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
-        holder.textViewRating.setText(String.valueOf(4));
-        holder.textViewPrice.setText(String.valueOf(product.getBuyPr()));
+        holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
+        holder.textViewRating.setText("QNTY "+ String.valueOf(1312));
+
+
     }
 
     @Override
