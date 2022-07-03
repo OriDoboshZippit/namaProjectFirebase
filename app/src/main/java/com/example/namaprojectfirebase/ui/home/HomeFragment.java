@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -23,16 +24,21 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
     public ImageButton btnPLus,btnTable;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-
+        final String admin = "a@a.com";
+        final String currentUser = Login.mAuth.getCurrentUser().getEmail();
         View root = binding.getRoot();
 //        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         System.out.println("Home Fragment name " + Login.nameFromDB);
-        btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
+
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
+        btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
+
+        if (currentUser.matches(admin)){
+            btnPLus.setVisibility(View.INVISIBLE);
+        }
 
 
         btnPLus.setOnClickListener(new View.OnClickListener()
@@ -40,10 +46,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-              System.out.println("Going to Register");
-        Intent i = new Intent(getActivity(), Register.class);
-        startActivity(i);
-        ((Activity) getActivity()).overridePendingTransition(0, 0);
+                System.out.println("Going to Register");
+                Intent i = new Intent(getActivity(), Register.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
         });
 
