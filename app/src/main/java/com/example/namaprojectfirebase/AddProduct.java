@@ -49,6 +49,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
     private StorageReference mStorageRef;
     private ImageView imImage;
     public Uri uploadUri;
+    public String UriStr;
 
 
     @Override
@@ -171,6 +172,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         System.out.println("Fruits and Vegetables");
     }
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -196,7 +198,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             if (resultCode == RESULT_OK){
                 Log.d("My log", "image URI: " + data.getData());
                 imImage.setImageURI(data.getData());
-                uploadImage();
+
             }
         }
     }
@@ -217,6 +219,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 uploadUri = task.getResult(); //tyt hranitsa ssilka
+                SaveProduct();
                 System.out.println("Heyy, the pic is uploaded  " + uploadUri);
             }
         });
@@ -229,25 +232,23 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         startActivityForResult(intentChooser,1);
     }
 
-    private void addProduct() {
+
+
+
+    private void SaveProduct () {
 
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
         String BuyPrice = editBuyPrice.getText().toString().trim();
-//        String quantity = editQuantity.getText().toString().trim();
+
         String quantityString= editQuantity.getText().toString();
         double quantity = Integer.parseInt(quantityString);
         System.out.println("QUANTITY" + quantity);
-//        int Quantity = 2;
+
         String addingDate = DateAdding.getText().toString().trim();
         String bestBefore = BestBefore.getText().toString().trim();
-
+        String URL = uploadUri.toString();
         String description = editDescription.getText().toString().trim();
-
-
-//      String Description = editDescription.getText().toString().trim();
-
-
 
         if (ID.isEmpty()) {
             editID.setError("ID is required!");
@@ -270,37 +271,19 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 //            return;
 //        }
         try {
-         buyPr = StoNum(BuyPrice);
+            buyPr = StoNum(BuyPrice);
 //         quantity = StoNum(quantity);
         } catch (ParsingException e) {
             System.out.println(e.getMessage());
         }
-//
-//       if(BestBefore.getText().toString().isEmpty()){
-//           BestBefore.setError("Best Before is required!");
-//           BestBefore.requestFocus ();
-//            return;
-//        }
-//        if(DateAdding.getText().toString().isEmpty()){
-//            editCellPrice.setError("Date of Adding is required!");
-//            editCellPrice.requestFocus ();
-//            return;
-//        }
-//        if(Description.isEmpty()){
-//            editCellPrice.setError("Description is required!");
-//            editCellPrice.requestFocus ();
-//            return;
-//        }
 
 
-//         Product product = new Product("2341322222214","1",1342545.4,131331.3,1391320420,1397320420,2,"ksdjk", "okdoskdo");
-
-
+        System.out.println("tytytyty     " + UriStr);
         uniqueOfProducID = UUID.randomUUID().toString();
         Map<String, Object> dataOfProduct = new HashMap<>();
         dataOfProduct.put("id", ID);
         dataOfProduct.put("nameOfProduct", Name);
-        dataOfProduct.put("URL", "uploadUri.toString()" );
+        dataOfProduct.put("URL", URL);
         dataOfProduct.put("buyPrice", buyPr);
         dataOfProduct.put("quantity", quantity);
         dataOfProduct.put("dataOfAdding", addingDate);
@@ -308,24 +291,24 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("typeOfProduct", Type);
         dataOfProduct.put("description", description);
 
+        System.out.println("After builder new product");
 
-
-                System.out.println("After builder new product");
-
-                FirebaseDatabase.getInstance().getReference("products")
-                        .child(uniqueOfProducID)
-                        .setValue(dataOfProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            System.out.println("The product has been added with UNIQUE ID " + uniqueOfProducID);
-                        } else {
+        FirebaseDatabase.getInstance().getReference("products")
+                .child(uniqueOfProducID)
+                .setValue(dataOfProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    System.out.println("The product has been added with UNIQUE ID " + uniqueOfProducID);
+                } else {
 //                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 
-                        }
-                    }
-                });
-
+                }
             }
+        });
+    }
+    private void addProduct() {
+        uploadImage();
+    }
 
 }
 

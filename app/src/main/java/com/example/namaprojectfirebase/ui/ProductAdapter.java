@@ -24,6 +24,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     ImageView imageView;
     public Context mCtx;
     private List<Product> productList;
+    public  ImageView imageDB;
 
 
 
@@ -45,22 +46,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+
         Product product = productList.get(position);
+        Picasso.get().load(product.getImageUrl()).into(imageDB);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
         holder.textViewRating.setText(String.valueOf(product.getQuantity()));
 
 
-
-//        Picasso.with(mCtx).load(product.getImageUrl()).into(holder.imageView);
-//        imageView = imageView.findViewById(R.id.imageView);
-
-//        Glide.with(this).load("").into(imageView);
-        System.out.println( "IMAGE " + product.getImageUrl());
-//        Glide.with(mCtx).load("https://www.ou.org/holidays/files/Work-768x512.jpg").into(imageView);
-
-//        holder.imageView.setImageResource();
 
     }
 
@@ -74,13 +68,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
         TextView textViewTitle, textViewDesc, textViewRating, textViewPrice;
         ImageButton addToCardRecycle;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
+            imageDB = itemView.findViewById(R.id.imageDB);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewRating = itemView.findViewById(R.id.textViewRating);
