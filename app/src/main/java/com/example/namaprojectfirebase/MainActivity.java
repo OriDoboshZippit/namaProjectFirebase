@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        imageView = findViewById(R.id.imageView);
-//        Glide.with(this).load("").into(imageView);
 
         adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);
@@ -58,28 +56,6 @@ public class MainActivity extends AppCompatActivity {
         //SELECT * FROM Products
         dbProducts = FirebaseDatabase.getInstance().getReference("products");
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
-
-
-
-
-
-//        addToCart = (ImageButton) findViewById(R.id.addToCardRecycle);
-//        String ID_Cart = addToCartDb.push().getKey();
-
-
-
-//        addToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println("HEYYY");
-////                HashMap<String, String> parameters = new HashMap<>();
-////                parameters.put("product_name","apple");
-////                parameters.put("price", "20");
-////                addToCartDb.child(ID_Cart).setValue(parameters);
-//
-//            }
-//        });
-
 
     }
 
@@ -103,23 +79,3 @@ public class MainActivity extends AppCompatActivity {
     };
 }
 
-
-
-
-
-
-
-
-
-
-//take picture from URL function (don't checked);
-//    public static Drawable LoadImageFromWebOperations(String url) {
-//        try {
-//            InputStream is = (InputStream) new URL(url).getContent();
-//            Drawable d = Drawable.createFromStream(is, "src name");
-//            return d;
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
-//}

@@ -59,9 +59,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
-//    //ADD TO CART * Product
-//    addToCartDb = FirebaseDatabase.getInstance().getReference("cart");
-
     @Override
     public int getItemCount() {
         return productList.size();

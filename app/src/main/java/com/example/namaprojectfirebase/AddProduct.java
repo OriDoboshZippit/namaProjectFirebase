@@ -130,10 +130,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         addProduct = (Button) findViewById(R.id.addProductButton);
         addProduct.setOnClickListener(this);
 
-       // getProduct = (Button) findViewById(R.id.getProducts);
-//        getProduct.setOnClickListener(this);
-
-
         editID = (EditText) findViewById(R.id.editID);
         editName = (EditText) findViewById(R.id.editName);
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
@@ -265,14 +261,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             editBuyPrice.requestFocus ();
             return;
         }
-//        if(quantity.isEmpty()){
-//            addQuantity.setError("Quantity Price is required!");
-//            addQuantity.requestFocus ();
-//            return;
-//        }
+
         try {
             buyPr = StoNum(BuyPrice);
-//         quantity = StoNum(quantity);
         } catch (ParsingException e) {
             System.out.println(e.getMessage());
         }
