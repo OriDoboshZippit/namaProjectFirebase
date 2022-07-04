@@ -49,6 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         Picasso.get().load(product.getImageUrl()).into(imageDB);
+//        holder.counter.setText(productList.size());
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
@@ -77,11 +78,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView textViewTitle, textViewDesc, textViewRating, textViewPrice;
+        TextView textViewTitle, textViewDesc, textViewRating, textViewPrice, counter;
         ImageButton addToCardRecycle;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
+            counter = itemView.findViewById(R.id.counter);
             imageDB = itemView.findViewById(R.id.imageDB);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);

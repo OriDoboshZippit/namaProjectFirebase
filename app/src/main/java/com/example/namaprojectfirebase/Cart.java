@@ -92,6 +92,7 @@ public class Cart extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
                     productList.add(product);
+                    System.out.println(" NAME " + product.toString());
                 }
                 adapter.notifyDataSetChanged();
             }

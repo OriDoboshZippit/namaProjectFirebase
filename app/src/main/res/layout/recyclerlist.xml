@@ -59,7 +59,7 @@
                 android:layout_toEndOf="@+id/imageDB"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="4.7"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -71,7 +71,7 @@
                 android:layout_below="@+id/imageDB"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
-                android:text="INR 56990"
+                android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
                 android:textSize="25dp"

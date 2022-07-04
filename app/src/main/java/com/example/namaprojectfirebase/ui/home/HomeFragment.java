@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.namaprojectfirebase.AddProduct;
+import com.example.namaprojectfirebase.Cart;
 import com.example.namaprojectfirebase.Login;
 import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.R;
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
-    public ImageButton btnPLus,btnTable, btnAdd;
+    public ImageButton btnPLus,btnTable, btnAdd,  ordrButton;
     public TextView iRemember;
     public EditText iForget;
     public Button rememberMe, rememberYou;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment {
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
+        ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
 
         //sharedPreferences
         iRemember = (TextView) root.findViewById(R.id.iRemember);
@@ -95,6 +97,18 @@ public class HomeFragment extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
         });
+        ordrButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("Going to Register");
+                Intent i = new Intent(getActivity(), Cart.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+
         btnPLus.setOnClickListener(new View.OnClickListener()
         {
             @Override

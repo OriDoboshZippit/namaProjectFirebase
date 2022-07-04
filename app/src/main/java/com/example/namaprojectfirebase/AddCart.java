@@ -51,10 +51,12 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
 
    public static void purchaseFunc (String productName, double price){
         Map<String, Object> dataOfCart = new HashMap<>();
-        dataOfCart.put("buyer", buyerEmail);
-        dataOfCart.put("productName", productName);
-        dataOfCart.put("price", price);
-       System.out.println("Buyer emeail isss " +buyerEmail);
+        dataOfCart.put("URL", "hey");
+        dataOfCart.put("id", "444");
+        dataOfCart.put("nameOfProduct", productName);
+        dataOfCart.put("buyPrice", price);
+//        dataOfCart.put("quantity", quantity);
+
 
        FirebaseDatabase.getInstance().getReference("carts")
                .child(Login.uniqueOfCartID)
