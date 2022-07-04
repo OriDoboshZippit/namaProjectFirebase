@@ -135,4 +135,66 @@
         app:layout_constraintVertical_bias="0.954"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
+    <TextView
+        android:id="@+id/iRemember"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="300dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/iForget"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/rememberMe"
+        android:layout_width="154dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="340dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/aldrich"
+        android:text="Please, Remember me"
+        app:layout_constraintEnd_toStartOf="@+id/rememberYou"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="67dp"
+        android:layout_height="35dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <Button
+        android:id="@+id/rememberYou"
+        android:layout_width="158dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="52dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/aldrich"
+        android:text="I am remembering to you"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
