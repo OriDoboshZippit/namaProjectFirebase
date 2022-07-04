@@ -35,8 +35,8 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
         View view = inflater.inflate(R.layout.my_list_item, null);
 
 
-        TextView nameOfProduct = view.findViewById(R.id.nameOfProduct);
-        ImageView imageOfProduct = view.findViewById(R.id.imageProduct);
+        TextView nameOfProduct = view.findViewById(R.id.nameOfProductCart);
+
 //        TextView categoryOfProduct = view.findViewById(R.id.categoryOfProduct);
 //        ImageView productImage = view.findViewById(R.id.imageProduct);
 
@@ -49,12 +49,12 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
 //        categoryOfProduct.setText(product.getType());
 //        productImage.setImageDrawable(mCtx.getResources().getDrawable(product.getImage), null);
 
-        view.findViewById(R.id.addToCard).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("ADD TO CARD !!!");
-            }
-        });
+//        view.findViewById(R.id.addToCard).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("ADD TO CARD !!!");
+//            }
+//        });
         return view;
         }
     }

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.namaprojectfirebase.AddProduct;
+import com.example.namaprojectfirebase.Cart;
 import com.example.namaprojectfirebase.Login;
 import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.R;
@@ -24,7 +25,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
-    public ImageButton btnPLus,btnTable, btnAdd;
+    public ImageButton btnPLus,btnTable, btnAdd,btnCart;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
+        btnCart = (ImageButton) root.findViewById(R.id.orderButton);
 
         if (!currentUser.matches(admin)){
             btnPLus.setVisibility(View.INVISIBLE);
@@ -74,6 +76,18 @@ public class HomeFragment extends Fragment {
             {
                 System.out.println("Going to Table");
                 Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+
+        btnCart.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("Going to Table");
+                Intent i = new Intent(getActivity(), Cart.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
             }

@@ -30,14 +30,14 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
     public EditText editID, editName, editBuyPrice, editQuantity, editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
-    public static String uniqueOfCartID, buyerEmail;
+    public static String buyerEmail;
     public double buyPr;
     private DatabaseReference rootDataBase;
     private StorageReference mStorageRef;
     private ImageView imImage;
     public Uri uploadUri;
 
-
+    DatabaseReference dbCarts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +45,11 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         buyerEmail = user.getEmail();
 
+        dbCarts = FirebaseDatabase.getInstance().getReference("carts");
+
     }
 
    public static void purchaseFunc (String productName, double price){
-
-        uniqueOfCartID = UUID.randomUUID().toString();
         Map<String, Object> dataOfCart = new HashMap<>();
         dataOfCart.put("buyer", buyerEmail);
         dataOfCart.put("productName", productName);
@@ -57,11 +57,11 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
        System.out.println("Buyer emeail isss " +buyerEmail);
 
        FirebaseDatabase.getInstance().getReference("carts")
-               .child(uniqueOfCartID)
-               .setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
+               .child(Login.uniqueOfCartID)
+               .push().setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    System.out.println("The cart has been added " + uniqueOfCartID);
+                    System.out.println("The cart has been added " + Login.uniqueOfCartID);
                 } else {
 //                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 

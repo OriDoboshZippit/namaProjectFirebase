@@ -36,6 +36,13 @@
 <!--        android:layout_height="match_parent"></ListView>-->
 
 
+<!--    <Button-->
+<!--        android:id="@+id/showCard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Show Card">-->
+
+<!--    </Button>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allItemsRecyclerView"
         android:layout_width="match_parent"

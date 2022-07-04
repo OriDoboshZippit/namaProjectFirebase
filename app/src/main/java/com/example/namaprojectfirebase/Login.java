@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
 public class Login extends AppCompatActivity {
     private TextView register;
     private EditText editTextEmail, editTextPassword;
@@ -35,7 +37,7 @@ public class Login extends AppCompatActivity {
     public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
-    public static String nameFromDB;
+    public static String uniqueOfCartID, nameFromDB;
     public Query currentUser;
     DatabaseReference databaseReference;
 
@@ -43,6 +45,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        uniqueOfCartID = UUID.randomUUID().toString();
         signIn = (Button) findViewById(R.id.login);
         Register = (Button) findViewById(R.id.registerBtn);
         mAuth = FirebaseAuth.getInstance();

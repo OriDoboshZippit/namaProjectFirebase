@@ -56,6 +56,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
 
+
+
 //        Picasso.with(mCtx).load(product.getImageUrl()).into(holder.imageView);
 //        imageView = imageView.findViewById(R.id.imageView);
 
@@ -96,7 +98,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     int position = getAdapterPosition();
 
                     Product product = productList.get(position);
-                    System.out.println("HEYYY I CLICKABLE TOO " + product.getNameOfProduct());
+                    System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
 
