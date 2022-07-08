@@ -57,28 +57,29 @@ public class HomeFragment extends Fragment {
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
 
+
         //sharedPreferences
-        iRemember = (TextView) root.findViewById(R.id.iRemember);
-        iForget = (EditText) root.findViewById(R.id.iForget);
-        rememberMe = (Button) root.findViewById(R.id.rememberMe);
-        rememberYou = (Button) root.findViewById(R.id.rememberYou);
-        switch1 = (Switch) root.findViewById(R.id.switch1);
+//        iRemember = (TextView) root.findViewById(R.id.iRemember);
+//        iForget = (EditText) root.findViewById(R.id.iForget);
+//        rememberMe = (Button) root.findViewById(R.id.rememberMe);
+//        rememberYou = (Button) root.findViewById(R.id.rememberYou);
+//        switch1 = (Switch) root.findViewById(R.id.switch1);
 
-        rememberMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iRemember.setText(iForget.getText().toString());
-            }
-        });
-
-        rememberYou.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rememberData();
-            }
-        });
-        uploadData();
-        updateViews();
+//        rememberMe.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                iRemember.setText(iForget.getText().toString());
+//            }
+//        });
+//
+//        rememberYou.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                rememberData();
+//            }
+//        });
+//        uploadData();
+//        updateViews();
 
         if (!currentUser.matches(admin)){
             btnPLus.setVisibility(View.INVISIBLE);
@@ -132,8 +133,8 @@ public class HomeFragment extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
         });
-        activeUserNameHomeFragment = root.findViewById(R.id.activeUserNameHomeFragment);
-        activeUserNameHomeFragment.setText(Login.nameFromDB);
+//        activeUserNameHomeFragment = root.findViewById(R.id.activeUserNameHomeFragment);
+//        activeUserNameHomeFragment.setText(Login.nameFromDB);
 
         return root;
     }

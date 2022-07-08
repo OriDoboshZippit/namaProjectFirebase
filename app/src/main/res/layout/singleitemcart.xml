@@ -15,7 +15,6 @@
             android:padding="8dp">
 
 
-
             <TextView
                 android:id="@+id/textViewTitleCart"
                 android:layout_width="wrap_content"
@@ -44,8 +43,6 @@
                 android:layout_below="@id/textViewShortDescCart"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-
-
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="4.7"
@@ -59,7 +56,6 @@
                 android:layout_below="@id/textViewRatingCart"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-
                 android:text="INR 56990"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />

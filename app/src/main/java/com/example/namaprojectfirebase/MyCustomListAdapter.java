@@ -26,35 +26,35 @@ public class MyCustomListAdapter extends ArrayAdapter <Product> {
         this.resource = resource;
         this.productList = productList;
     }
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        return super.getView(position, convertView, parent);
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.my_list_item, null);
-
-
-        TextView nameOfProduct = view.findViewById(R.id.nameOfProductCart);
-
-//        TextView categoryOfProduct = view.findViewById(R.id.categoryOfProduct);
-//        ImageView productImage = view.findViewById(R.id.imageProduct);
-
-
-        Product product = productList.get(position);
-//        nameOfProduct.setText(product.getName());
-//        imageOfProduct.setImageResource();
-
-        System.out.println("name of product " + nameOfProduct);
-//        categoryOfProduct.setText(product.getType());
-//        productImage.setImageDrawable(mCtx.getResources().getDrawable(product.getImage), null);
-
-//        view.findViewById(R.id.addToCard).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println("ADD TO CARD !!!");
-//            }
-//        });
-        return view;
-        }
-    }
+}
+//    @NonNull
+//    @Override
+//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+////        return super.getView(position, convertView, parent);
+//        LayoutInflater inflater = LayoutInflater.from(mCtx);
+//        View view = inflater.inflate(R.layout.my_list_item, null);
+//
+//
+//        TextView nameOfProduct = view.findViewById(R.id.nameOfProductCart);
+//
+////        TextView categoryOfProduct = view.findViewById(R.id.categoryOfProduct);
+////        ImageView productImage = view.findViewById(R.id.imageProduct);
+//
+//
+//        Product product = productList.get(position);
+////        nameOfProduct.setText(product.getName());
+////        imageOfProduct.setImageResource();
+//
+//        System.out.println("name of product " + nameOfProduct);
+////        categoryOfProduct.setText(product.getType());
+////        productImage.setImageDrawable(mCtx.getResources().getDrawable(product.getImage), null);
+//
+////        view.findViewById(R.id.addToCard).setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View view) {
+////                System.out.println("ADD TO CARD !!!");
+////            }
+////        });
+//        return view;
+//        }
+//    }

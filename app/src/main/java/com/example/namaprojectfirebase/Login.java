@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         uniqueOfCartID = UUID.randomUUID().toString();
         signIn = (Button) findViewById(R.id.login);
-        Register = (Button) findViewById(R.id.registerBtn);
+//        Register = (Button) findViewById(R.id.registerBtn);
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = (EditText) findViewById (R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById (R.id.editTextTextPassword);
@@ -106,10 +106,10 @@ public class Login extends AppCompatActivity {
 
 
     }
-    public void RegisterFunc (View view){
-        Intent i = new Intent(Login.this, Register.class);
-        startActivity(i);
-    }
+//    public void RegisterFunc (View view){
+//        Intent i = new Intent(Login.this, Register.class);
+//        startActivity(i);
+//    }
 
 
 

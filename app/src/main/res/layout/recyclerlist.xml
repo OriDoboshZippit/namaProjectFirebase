@@ -12,6 +12,7 @@
         android:layout_margin="5dp">
 
         <RelativeLayout
+            android:id="@+id/my_list_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bckrgd"
@@ -19,19 +20,19 @@
 
             <ImageView
                 android:id="@+id/imageDB"
-                android:layout_width="78dp"
-                android:layout_height="73dp"
-
+                android:layout_width="88dp"
+                android:layout_height="88dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="82dp"
-                android:padding="4dp" />
+                android:layout_marginTop="0dp"
+                android:padding="4dp"
+                android:src="@drawable/settings" />
 
             <TextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)"
+                android:layout_marginLeft="100dp"
+                android:text="Title"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
@@ -41,11 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewTitle"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/white"
-                android:text="13.3 Inch, 256 GB"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="0dp"
+                android:text="coments"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/white" />
 
 
             <TextView
@@ -55,13 +56,13 @@
                 android:layout_below="@id/textViewShortDesc"
                 android:layout_marginStart="106dp"
                 android:layout_marginLeft="160dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="-50dp"
                 android:layout_toEndOf="@+id/imageDB"
-                android:paddingLeft="15dp"
+                android:paddingLeft="65dp"
                 android:paddingRight="10dp"
-                android:text=""
+                android:text="110.00 (QNTY)"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -69,9 +70,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageDB"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="1dp"
-                android:text=""
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="-33dp"
+                android:text="110.00 price"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
                 android:textSize="25dp"
@@ -81,11 +82,11 @@
                 android:id="@+id/quantityPlus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="60dp"
                 android:layout_toStartOf="@+id/quantityMinus"
-                android:text="+">
+                android:text="+"
+                android:visibility="invisible">
 
             </Button>
 

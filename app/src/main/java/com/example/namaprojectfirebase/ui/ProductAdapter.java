@@ -53,7 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
-        holder.textViewRating.setText(String.valueOf(product.getQuantity()));
+        holder.textViewRating.setText("Quantity: " + String.valueOf((int)product.getQuantity()));
 
 
 
@@ -83,7 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            counter = itemView.findViewById(R.id.counter);
+//            counter = itemView.findViewById(R.id.counter);
             imageDB = itemView.findViewById(R.id.imageDB);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
@@ -109,7 +109,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                     Product product = productList.get(position);
                     System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
-                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice());
+                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });
 

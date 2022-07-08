@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
     private StorageReference mStorageRef;
     private ImageView imImage;
     public Uri uploadUri;
-
+    public static double sum = 0;
     DatabaseReference dbCarts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +47,20 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         buyerEmail = user.getEmail();
 
         dbCarts = FirebaseDatabase.getInstance().getReference("carts");
-
+        Toast.makeText(AddCart.this, "Your summary is "+ sum, Toast.LENGTH_LONG).show();
     }
 
-   public static void purchaseFunc (String productName, double price){
+   public static void purchaseFunc (String productName, double price, double quantity){
         Map<String, Object> dataOfCart = new HashMap<>();
+        sum += Double.valueOf(price);
         dataOfCart.put("URL", "hey");
         dataOfCart.put("id", "444");
         dataOfCart.put("nameOfProduct", productName);
         dataOfCart.put("buyPrice", price);
-//        dataOfCart.put("quantity", quantity);
+        dataOfCart.put("quantity", quantity);
+        dataOfCart.put("sum", sum);
+
+
 
 
        FirebaseDatabase.getInstance().getReference("carts")
