@@ -25,6 +25,14 @@ import com.example.namaprojectfirebase.MainActivity;
 import com.example.namaprojectfirebase.R;
 import com.example.namaprojectfirebase.Register;
 import com.example.namaprojectfirebase.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class HomeFragment extends Fragment {
 
@@ -35,7 +43,7 @@ public class HomeFragment extends Fragment {
     public EditText iForget;
     public Button rememberMe, rememberYou;
     public Switch switch1;
-
+    public static String uniqueOfCartID;
     public String text;
     private boolean switchOnOff;
 
@@ -43,20 +51,37 @@ public class HomeFragment extends Fragment {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
     public static final String SWITCH1 = "switch1";
+
+    DatabaseReference dbCarts;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
+        boolean try1 = dbCarts.equals("a@a.com");
+        System.out.println("BOOLEAN" + try1);
+
+
+        System.out.println("DB CARTS"  + dbCarts);
+        uniqueOfCartID = UUID.randomUUID().toString();
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         final String admin = "a@a.com";
         final String currentUser = Login.mAuth.getCurrentUser().getEmail();
+        System.out.println("THE USER IS " + currentUser);
+
+
+        createCartFunc(currentUser);
         View root = binding.getRoot();
 //        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         System.out.println("Home Fragment name " + Login.nameFromDB);
-
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
-
+//    @Override
+//    public void onClick(View view) {
+//
+//    }
 
         //sharedPreferences
 //        iRemember = (TextView) root.findViewById(R.id.iRemember);
@@ -141,7 +166,6 @@ public class HomeFragment extends Fragment {
     public void rememberData() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString(TEXT, iRemember.getText().toString());
         editor.putBoolean(SWITCH1, switch1.isChecked());
 
@@ -165,5 +189,26 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    public static void createCartFunc (String currentUser){
+        Map<String, Object> dataOfCart = new HashMap<>();
+        dataOfCart.put("curentUserEmail", currentUser);
+        dataOfCart.put("orderPlaced", 0);
+        FirebaseDatabase.getInstance().getReference("carts")
+                .child(HomeFragment.uniqueOfCartID)
+                .setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
+                } else {
+//                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
+
+
+                }
+            }
+        });
+
     }
 }

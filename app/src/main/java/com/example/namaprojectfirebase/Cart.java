@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.example.namaprojectfirebase.ui.ProductAdapter;
+import com.example.namaprojectfirebase.ui.home.HomeFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +58,7 @@ public class Cart extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         //SELECT * FROM Products
-        dbProducts = FirebaseDatabase.getInstance().getReference("carts").child(Login.uniqueOfCartID);
+        dbProducts = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
 
@@ -104,14 +105,6 @@ public class Cart extends AppCompatActivity {
         }
     };
 }
-
-
-
-
-
-
-
-
 
 
 //take picture from URL function (don't checked);

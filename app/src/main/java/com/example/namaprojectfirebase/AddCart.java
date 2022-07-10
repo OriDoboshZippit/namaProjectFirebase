@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.namaprojectfirebase.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,15 +61,12 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         dataOfCart.put("quantity", quantity);
         dataOfCart.put("sum", sum);
 
-
-
-
        FirebaseDatabase.getInstance().getReference("carts")
-               .child(Login.uniqueOfCartID)
+               .child(HomeFragment.uniqueOfCartID)
                .push().setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    System.out.println("The cart has been added " + Login.uniqueOfCartID);
+                    System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
                 } else {
 //                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 

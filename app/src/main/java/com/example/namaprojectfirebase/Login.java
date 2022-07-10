@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
     public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private ProgressBar progressBar;
-    public static String uniqueOfCartID, nameFromDB;
+    public static String nameFromDB;
     public Query currentUser;
     DatabaseReference databaseReference;
 
@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        uniqueOfCartID = UUID.randomUUID().toString();
+
         signIn = (Button) findViewById(R.id.login);
 //        Register = (Button) findViewById(R.id.registerBtn);
         mAuth = FirebaseAuth.getInstance();
