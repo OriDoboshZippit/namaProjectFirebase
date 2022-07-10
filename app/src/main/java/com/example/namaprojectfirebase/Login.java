@@ -90,7 +90,9 @@ public class Login extends AppCompatActivity {
         currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
+
                 if(dataSnapshot.exists()){
                     System.out.println("Data snap shoot work" );
                     System.out.println("Password is " +  nameFromDB);

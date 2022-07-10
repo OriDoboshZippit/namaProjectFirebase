@@ -1,5 +1,7 @@
 package com.example.namaprojectfirebase.ui.home;
 
+import static com.example.namaprojectfirebase.Login.mAuth;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,14 +29,18 @@ import com.example.namaprojectfirebase.Register;
 import com.example.namaprojectfirebase.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment<puiblic> extends Fragment {
 
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
@@ -47,30 +53,47 @@ public class HomeFragment extends Fragment {
     public String text;
     private boolean switchOnOff;
 
-
+    public String nameFromDB;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
     public static final String SWITCH1 = "switch1";
+    public static int cartFlag = 0;
 
     DatabaseReference dbCarts;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        uniqueOfCartID = UUID.randomUUID().toString();
 
         dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
-        boolean try1 = dbCarts.equals("a@a.com");
-        System.out.println("BOOLEAN" + try1);
+        dbCarts.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                    String ma = datasnapshot.getValue().toString();
+                    System.out.println("THE DATA" +ma);
+                    for (DataSnapshot snapshot : datasnapshot.getChildren()){
+                        String ma1 = snapshot.child("curentUserEmail").getValue().toString();
+                        String ma2 = snapshot.child("orderPlaced").getValue().toString();
+                        System.out.println(ma1);
+                        System.out.println(ma2);
+                    }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         System.out.println("DB CARTS"  + dbCarts);
-        uniqueOfCartID = UUID.randomUUID().toString();
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         final String admin = "a@a.com";
-        final String currentUser = Login.mAuth.getCurrentUser().getEmail();
+        final String currentUser = mAuth.getCurrentUser().getEmail();
         System.out.println("THE USER IS " + currentUser);
 
 
-        createCartFunc(currentUser);
+
         View root = binding.getRoot();
 //        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         System.out.println("Home Fragment name " + Login.nameFromDB);
@@ -209,6 +232,16 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+
+//        FirebaseDatabase.getInstance().getReference("users")
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .child("usercards").push().setValue(uniqueOfCartID).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                System.out.println("It is wok");
+//            }
+//        });
 
     }
 }

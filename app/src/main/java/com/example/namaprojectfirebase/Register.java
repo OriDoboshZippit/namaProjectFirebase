@@ -127,9 +127,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 //        if(permission > 0 && permission <5) {
             mAuth.createUserWithEmailAndPassword(email, password)
-
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("After task new user");
@@ -143,8 +141,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
-
-
                                         } else {
                                             Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 
