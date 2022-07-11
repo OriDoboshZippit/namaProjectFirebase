@@ -63,32 +63,55 @@ public class HomeFragment<puiblic> extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        uniqueOfCartID = UUID.randomUUID().toString();
 
-        dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
+        if(dbCarts != null) {
+            dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
         dbCarts.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                     String ma = datasnapshot.getValue().toString();
-                    System.out.println("THE DATA" +ma);
-                    for (DataSnapshot snapshot : datasnapshot.getChildren()){
-                        String ma1 = snapshot.child("curentUserEmail").getValue().toString();
+                    System.out.println("THE DATA" + ma);
+                    for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                        String ma1 = snapshot.child("currentUserEmail").getValue().toString();
                         String ma2 = snapshot.child("orderPlaced").getValue().toString();
                         System.out.println(ma1);
                         System.out.println(ma2);
+                        if (ma1.equals(mAuth.getCurrentUser().getEmail())) {
+                            System.out.println("This is the same user ");
+                            if (ma2.equals("0")) {
+                                System.out.println("PUT THE OPENED CARD");
+                                System.out.println(snapshot.getKey());
+                                uniqueOfCartID = snapshot.getKey();
+                                cartFlag = 1;
+                                break;
+                            } else {
+                                System.out.println("Entering ELSE");
+                                if (cartFlag == 0) {
+                                    System.out.println("Creating CART with FUNC");
+                                    uniqueOfCartID = UUID.randomUUID().toString();
+                                    createCartFunc(mAuth.getCurrentUser().getEmail());
+                                }
+
+
+                            }
+                        }
                     }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
+        }
+        else{
+            uniqueOfCartID = UUID.randomUUID().toString();
+        }
 
         System.out.println("DB CARTS"  + dbCarts);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        final String admin = "a@a.com";
+        final String admin = "a1@a.com";
         final String currentUser = mAuth.getCurrentUser().getEmail();
         System.out.println("THE USER IS " + currentUser);
 
@@ -101,6 +124,8 @@ public class HomeFragment<puiblic> extends Fragment {
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
+
+
 //    @Override
 //    public void onClick(View view) {
 //
@@ -191,9 +216,7 @@ public class HomeFragment<puiblic> extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(TEXT, iRemember.getText().toString());
         editor.putBoolean(SWITCH1, switch1.isChecked());
-
         editor.apply();
-       // Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
     public void uploadData(){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -217,7 +240,7 @@ public class HomeFragment<puiblic> extends Fragment {
 
     public static void createCartFunc (String currentUser){
         Map<String, Object> dataOfCart = new HashMap<>();
-        dataOfCart.put("curentUserEmail", currentUser);
+        dataOfCart.put("currentUserEmail", currentUser);
         dataOfCart.put("orderPlaced", 0);
         FirebaseDatabase.getInstance().getReference("carts")
                 .child(HomeFragment.uniqueOfCartID)
@@ -226,22 +249,9 @@ public class HomeFragment<puiblic> extends Fragment {
                 if (task.isSuccessful()) {
                     System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
                 } else {
-//                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
-
 
                 }
             }
         });
-
-
-//        FirebaseDatabase.getInstance().getReference("users")
-//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .child("usercards").push().setValue(uniqueOfCartID).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                System.out.println("It is wok");
-//            }
-//        });
-
     }
 }

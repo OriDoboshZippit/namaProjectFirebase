@@ -46,7 +46,6 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.cart);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         buyerEmail = user.getEmail();
-
         dbCarts = FirebaseDatabase.getInstance().getReference("carts");
         Toast.makeText(AddCart.this, "Your summary is "+ sum, Toast.LENGTH_LONG).show();
     }
@@ -66,7 +65,7 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
                .push().setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
+                    System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
                 } else {
 //                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 

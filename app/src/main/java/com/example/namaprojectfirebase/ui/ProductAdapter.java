@@ -106,7 +106,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-
                     Product product = productList.get(position);
                     System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
                     AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
