@@ -71,7 +71,6 @@ public class HomeFragment<puiblic> extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                     String ma = datasnapshot.getValue().toString();
                     System.out.println("THE ALL DATA OF CARTS" + ma);
-//                    createCartFunc(mAuth.getCurrentUser().getEmail());
                     for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                         String ma1 = snapshot.child("currentUserEmail").getValue().toString();
                         String ma2 = snapshot.child("orderPlaced").getValue().toString();
@@ -87,24 +86,6 @@ public class HomeFragment<puiblic> extends Fragment {
                                 break;
                             }
                         }
-//                            System.out.println("This is the same user ");
-//                            if (ma2.equals("0")) {
-//                                System.out.println("PUT THE OPENED CARD");
-//                                System.out.println(snapshot.getKey());
-//                                uniqueOfCartID = snapshot.getKey();
-//                                cartFlag = 1;
-//                                break;
-//                            } else {
-//                                System.out.println("Entering ELSE");
-//                                if (cartFlag == 0) {
-//                                    System.out.println("Creating CART with FUNC");
-//                                    uniqueOfCartID = UUID.randomUUID().toString();
-//                                    createCartFunc(mAuth.getCurrentUser().getEmail());
-//                                }
-//
-//
-//                            }
-//                        }
                     }
 
                     if(cartFlag==0){
@@ -130,7 +111,6 @@ public class HomeFragment<puiblic> extends Fragment {
         final String admin = "a1@a.com";
         final String currentUser = mAuth.getCurrentUser().getEmail();
         System.out.println("THE USER IS " + currentUser);
-
 
 
         View root = binding.getRoot();
