@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
 
-//        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         mAuth = FirebaseAuth.getInstance();
 
     }

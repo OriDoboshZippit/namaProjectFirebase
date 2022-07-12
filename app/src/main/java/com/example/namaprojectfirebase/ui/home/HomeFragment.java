@@ -63,38 +63,54 @@ public class HomeFragment<puiblic> extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
         if(dbCarts != null) {
             dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
-        dbCarts.addValueEventListener(new ValueEventListener() {
+            dbCarts.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                     String ma = datasnapshot.getValue().toString();
-                    System.out.println("THE DATA" + ma);
+                    System.out.println("THE ALL DATA OF CARTS" + ma);
+//                    createCartFunc(mAuth.getCurrentUser().getEmail());
                     for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                         String ma1 = snapshot.child("currentUserEmail").getValue().toString();
                         String ma2 = snapshot.child("orderPlaced").getValue().toString();
                         System.out.println(ma1);
                         System.out.println(ma2);
+//                        NEW TRY
                         if (ma1.equals(mAuth.getCurrentUser().getEmail())) {
-                            System.out.println("This is the same user ");
-                            if (ma2.equals("0")) {
-                                System.out.println("PUT THE OPENED CARD");
-                                System.out.println(snapshot.getKey());
+                            System.out.println("IT IS THE SAME USER");
+                            if(ma2.equals("0")){
+                                System.out.println("OPEN EXIST CARD");
                                 uniqueOfCartID = snapshot.getKey();
                                 cartFlag = 1;
                                 break;
-                            } else {
-                                System.out.println("Entering ELSE");
-                                if (cartFlag == 0) {
-                                    System.out.println("Creating CART with FUNC");
-                                    uniqueOfCartID = UUID.randomUUID().toString();
-                                    createCartFunc(mAuth.getCurrentUser().getEmail());
-                                }
-
-
                             }
                         }
+//                            System.out.println("This is the same user ");
+//                            if (ma2.equals("0")) {
+//                                System.out.println("PUT THE OPENED CARD");
+//                                System.out.println(snapshot.getKey());
+//                                uniqueOfCartID = snapshot.getKey();
+//                                cartFlag = 1;
+//                                break;
+//                            } else {
+//                                System.out.println("Entering ELSE");
+//                                if (cartFlag == 0) {
+//                                    System.out.println("Creating CART with FUNC");
+//                                    uniqueOfCartID = UUID.randomUUID().toString();
+//                                    createCartFunc(mAuth.getCurrentUser().getEmail());
+//                                }
+//
+//
+//                            }
+//                        }
+                    }
+
+                    if(cartFlag==0){
+                        System.out.println("Creating CART with FUNC");
+                        uniqueOfCartID = UUID.randomUUID().toString();
+                        createCartFunc(mAuth.getCurrentUser().getEmail());
                     }
 
                 }
@@ -106,7 +122,7 @@ public class HomeFragment<puiblic> extends Fragment {
             });
         }
         else{
-            uniqueOfCartID = UUID.randomUUID().toString();
+//            uniqueOfCartID = UUID.randomUUID().toString();
         }
 
         System.out.println("DB CARTS"  + dbCarts);
@@ -118,41 +134,12 @@ public class HomeFragment<puiblic> extends Fragment {
 
 
         View root = binding.getRoot();
-//        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         System.out.println("Home Fragment name " + Login.nameFromDB);
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
 
-
-//    @Override
-//    public void onClick(View view) {
-//
-//    }
-
-        //sharedPreferences
-//        iRemember = (TextView) root.findViewById(R.id.iRemember);
-//        iForget = (EditText) root.findViewById(R.id.iForget);
-//        rememberMe = (Button) root.findViewById(R.id.rememberMe);
-//        rememberYou = (Button) root.findViewById(R.id.rememberYou);
-//        switch1 = (Switch) root.findViewById(R.id.switch1);
-
-//        rememberMe.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                iRemember.setText(iForget.getText().toString());
-//            }
-//        });
-//
-//        rememberYou.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                rememberData();
-//            }
-//        });
-//        uploadData();
-//        updateViews();
 
         if (!currentUser.matches(admin)){
             btnPLus.setVisibility(View.INVISIBLE);
@@ -236,7 +223,6 @@ public class HomeFragment<puiblic> extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
     public static void createCartFunc (String currentUser){
         Map<String, Object> dataOfCart = new HashMap<>();
