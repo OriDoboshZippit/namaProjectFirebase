@@ -111,17 +111,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             });
 
-            itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    quantityArr[position] = 1;
-
-//                  Product product = productList.get(position);
-                    System.out.println("TRY TO CATCH QUANTITY " + quantityArr.toString());
-//                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
-                }
-            });
+//            itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = getAdapterPosition();
+//                    quantityArr[position] = 1;
+//
+////                  Product product = productList.get(position);
+//                    System.out.println("TRY TO CATCH QUANTITY " + quantityArr.toString());
+////                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
+//                }
+//            });
 
 
         }
