@@ -57,12 +57,14 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         dataOfCart.put("id", "444");
         dataOfCart.put("nameOfProduct", productName);
         dataOfCart.put("buyPrice", price);
-        dataOfCart.put("quantity", quantity);
+        dataOfCart.put("quantity", 1);
         dataOfCart.put("sum", sum);
 
-       FirebaseDatabase.getInstance().getReference("carts")
+       FirebaseDatabase.getInstance()
+               .getReference("carts")
                .child(HomeFragment.uniqueOfCartID)
-               .push().setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
+               .push().setValue(dataOfCart)
+               .addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
