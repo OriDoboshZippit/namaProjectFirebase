@@ -48,16 +48,18 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         buyerEmail = user.getEmail();
         dbCarts = FirebaseDatabase.getInstance().getReference("carts");
         Toast.makeText(AddCart.this, "Your summary is "+ sum, Toast.LENGTH_LONG).show();
+
     }
 
    public static void purchaseFunc (String productName, double price, double quantity){
+
         Map<String, Object> dataOfCart = new HashMap<>();
         sum += Double.valueOf(price);
         dataOfCart.put("URL", "hey");
         dataOfCart.put("id", "444");
         dataOfCart.put("nameOfProduct", productName);
         dataOfCart.put("buyPrice", price);
-        dataOfCart.put("quantity", 1);
+        dataOfCart.put("quantity", quantity);
         dataOfCart.put("sum", sum);
 
        FirebaseDatabase.getInstance()

@@ -50,10 +50,10 @@
 
             <TextView
                 android:id="@+id/textViewRating"
-                android:layout_width="143dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
                 android:layout_below="@id/textViewShortDesc"
-                android:layout_marginStart="128dp"
+                android:layout_marginStart="108dp"
                 android:layout_marginLeft="160dp"
                 android:layout_marginTop="-43dp"
                 android:layout_toEndOf="@+id/imageDB"
@@ -64,6 +64,7 @@
                 android:textSize="13dp"
                 android:textStyle="bold" />
 
+
             <TextView
                 android:id="@+id/textViewPrice"
                 android:layout_width="wrap_content"
@@ -71,7 +72,20 @@
                 android:layout_below="@+id/imageDB"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="-33dp"
-                android:text="110.00 price"
+                android:text="110.00"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageDB"
+                android:layout_marginLeft="236dp"
+                android:layout_marginTop="-33dp"
+                android:text="0"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/black"
                 android:textSize="20dp"
@@ -82,7 +96,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="47dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="38dp"
                 android:layout_toStartOf="@+id/quantityMinus"
                 android:backgroundTint="@color/white"
                 android:text="+"
@@ -91,14 +105,13 @@
 
             </Button>
 
-
             <Button
                 android:id="@+id/quantityMinus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="47dp"
-                android:layout_marginEnd="0dp"
+                android:layout_marginEnd="65dp"
                 android:backgroundTint="@color/white"
                 android:text="-"
                 android:textColor="@color/black"
@@ -108,12 +121,12 @@
 
             <ImageButton
                 android:id="@+id/addToCardRecycle"
-                android:layout_width="30dp"
+                android:layout_width="39dp"
                 android:layout_height="48dp"
                 android:layout_below="@+id/quantityMinus"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="-50dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginTop="-48dp"
+                android:layout_marginEnd="1dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/add_to_cart"

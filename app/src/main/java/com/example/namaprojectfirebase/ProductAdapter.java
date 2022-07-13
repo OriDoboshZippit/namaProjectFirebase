@@ -20,7 +20,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public Context mCtx;
     public List <Product> productList;
     public  ImageView imageDB;
-
+    public int quantityCounter = 0;
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -40,11 +40,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         Picasso.get().load(product.getImageUrl()).into(imageDB);
-//        holder.counter.setText(productList.size());
+//        holder.counter.setText(quantityCounter);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
-        holder.textViewRating.setText("Quantity: " + String.valueOf((int)product.getQuantity()));
+        holder.textViewRating.setText("Available Quantity: " + String.valueOf((int)product.getQuantity()));
 
 
 
@@ -86,13 +86,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-
                     Product product = productList.get(position);
                     System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
 
 
+// ADD CARD WITH QUALITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
