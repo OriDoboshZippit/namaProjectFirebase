@@ -78,55 +78,52 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageDB"
-                android:layout_marginLeft="236dp"
-                android:layout_marginTop="-33dp"
-                android:text="0"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+<!--            <EditText-->
+<!--                android:id="@+id/textViewQuantity"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/imageDB"-->
+<!--                android:layout_marginLeft="236dp"-->
+<!--                android:layout_marginTop="-43dp"-->
+<!--                android:inputType="number"-->
+<!--                android:text="0"-->
+<!--                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textStyle="bold" />-->
 
             <Button
                 android:id="@+id/quantityPlus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="47dp"
-                android:layout_marginEnd="38dp"
-                android:layout_toStartOf="@+id/quantityMinus"
+                android:layout_marginEnd="20dp"
                 android:backgroundTint="@color/white"
                 android:text="+"
                 android:textColor="@color/black"
-                android:visibility="visible">
+                android:visibility="gone">
 
             </Button>
 
-            <Button
-                android:id="@+id/quantityMinus"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="47dp"
-                android:layout_marginEnd="65dp"
-                android:backgroundTint="@color/white"
-                android:text="-"
-                android:textColor="@color/black"
-                android:visibility="visible">
-
-            </Button>
+<!--            <Button-->
+<!--                android:id="@+id/quantityMinus"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginTop="47dp"-->
+<!--                android:layout_marginEnd="65dp"-->
+<!--                android:backgroundTint="@color/white"-->
+<!--                android:text="-"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:visibility="visible"></Button>-->
 
             <ImageButton
                 android:id="@+id/addToCardRecycle"
                 android:layout_width="39dp"
                 android:layout_height="48dp"
-                android:layout_below="@+id/quantityMinus"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="-48dp"
-                android:layout_marginEnd="1dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="51dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/add_to_cart"

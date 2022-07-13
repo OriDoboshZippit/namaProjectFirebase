@@ -40,6 +40,7 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
     public Uri uploadUri;
     public static double sum = 0;
     DatabaseReference dbCarts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,18 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
         dbCarts = FirebaseDatabase.getInstance().getReference("carts");
         Toast.makeText(AddCart.this, "Your summary is "+ sum, Toast.LENGTH_LONG).show();
 
+
+
     }
 
-   public static void purchaseFunc (String productName, double price, double quantity){
+
+
+
+
+
+
+
+    public static void purchaseFunc (String productName, double price, double quantity){
 
         Map<String, Object> dataOfCart = new HashMap<>();
         sum += Double.valueOf(price);

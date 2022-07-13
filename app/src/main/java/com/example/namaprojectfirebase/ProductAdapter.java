@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.BreakIterator;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
@@ -20,8 +21,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public Context mCtx;
     public List <Product> productList;
     public  ImageView imageDB;
-    public int quantityCounter = 0;
-
+    public int quantityCounter;
+    public int quantityArr [] = new int [100];
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
@@ -40,6 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         Picasso.get().load(product.getImageUrl()).into(imageDB);
+
 //        holder.counter.setText(quantityCounter);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
@@ -82,6 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
             addToCardRecycle = itemView.findViewById(R.id.addToCardRecycle);
 
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,16 +95,34 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             });
 
 
-// ADD CARD WITH QUALITY
+            // ADD CARD WITH QUANTITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     int position = getAdapterPosition();
+
+//                    String content = textViewQuantity.getText().toString(); //gets you the contents of edit text
+
+
                     Product product = productList.get(position);
                     System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
                     AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });
+
+            itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    quantityArr[position] = 1;
+
+//                  Product product = productList.get(position);
+                    System.out.println("TRY TO CATCH QUANTITY " + quantityArr.toString());
+//                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
+                }
+            });
+
 
         }
     }

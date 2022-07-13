@@ -34,7 +34,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
     @Override
     public void onBindViewHolder(@NonNull CartProductAdapterViewHolder holder, int position) {
          Product product = productList.get(position);
-
+         System.out.println("QNTY" + holder.textViewQuantity.getText());
          holder.textViewTitle.setText(product.getNameOfProduct());
          holder.textViewQuantity.setText(String.valueOf(product.getQuantity()));
          holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
