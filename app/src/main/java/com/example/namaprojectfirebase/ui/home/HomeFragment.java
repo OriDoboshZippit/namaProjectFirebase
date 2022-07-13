@@ -76,7 +76,7 @@ public class HomeFragment<puiblic> extends Fragment {
                         String ma2 = snapshot.child("orderPlaced").getValue().toString();
                         System.out.println(ma1);
                         System.out.println(ma2);
-//                        NEW TRY
+///                        NEW TRY
                         if (ma1.equals(mAuth.getCurrentUser().getEmail())) {
                             System.out.println("IT IS THE SAME USER");
                             if(ma2.equals("0")){

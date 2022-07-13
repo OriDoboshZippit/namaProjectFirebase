@@ -1,4 +1,4 @@
-package com.example.namaprojectfirebase.ui;
+package com.example.namaprojectfirebase;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.namaprojectfirebase.MainActivity;
-import com.example.namaprojectfirebase.Product;
-import com.example.namaprojectfirebase.AddCart;
-import com.example.namaprojectfirebase.R;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
