@@ -1,5 +1,6 @@
 package com.example.namaprojectfirebase;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,7 +104,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     EditText text = (EditText)itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     int valueQnty = Integer.parseInt(value);
-                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
+                    if(valueQnty > 0) {
+                        AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
+                        builder.setCancelable(true);
+                        builder.setTitle("You added to cart " + valueQnty + " of " + product.getNameOfProduct() + " units");
+                        builder.setMessage("For any help you can talk to the supervisor.");
+                        builder.show();
+                    }
+                    else
+                    {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
+                        builder.setCancelable(true);
+                        builder.setTitle("You need to add more than 0 items to cart");
+                        builder.setMessage("For any help you can talk to the supervisor.");
+                        builder.show();
+                    }
                 }
             });
 
@@ -116,6 +132,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     EditText text = (EditText)itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     System.out.println("TRY TO CATCH QUANTITY " + value);
+
+
 
 //                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
