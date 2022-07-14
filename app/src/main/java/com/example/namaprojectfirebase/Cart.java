@@ -125,7 +125,7 @@ public class Cart extends AppCompatActivity {
                     }
 
                     productList.add(product);
-                    System.out.println(productList.get(0).getNameOfProduct());
+//                    System.out.println(productList.get(0).getNameOfProduct());
                     System.out.println(" PRODUCTS LIST " + product.getNameOfProduct());
                     }
 //
