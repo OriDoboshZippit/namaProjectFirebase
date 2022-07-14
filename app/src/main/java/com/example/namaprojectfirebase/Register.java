@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public TextView banner, registeruser,loginBtn;
 
-    private EditText editTextFullName, licenseNum, editTextEmail, editTextPassword;
+    private EditText editTextFullName, licenseNum, editTextEmail, editTextPassword, editTextPhoneNum, editTextAddress, editTextSalary;
 //    private ProgressBar progressBar;
     public int permission;
 
@@ -43,6 +43,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextFullName = (EditText) findViewById(R.id.fulLName);
         licenseNum = (EditText) findViewById(R.id.licenseNum);
         editTextEmail = (EditText) findViewById(R.id.email);
+        editTextPhoneNum = (EditText) findViewById(R.id.phoneBtn);
+        editTextAddress = (EditText) findViewById(R.id.adressBtn);
+        editTextSalary = (EditText) findViewById(R.id.salaryBtn);
         editTextPassword = (EditText) findViewById(R.id.password);
 
 
@@ -84,17 +87,38 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         System.out.println("Accountant");
     }
 
+
     private void registeruser() {
 
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
         String license = licenseNum.getText().toString().trim();
-
+        String phoneNum = editTextPhoneNum.getText().toString().trim();
+        String address = editTextAddress.getText().toString().trim();
+        String Salary = editTextSalary.getText().toString().trim();
+        int salary = Integer.parseInt(Salary);
+        System.out.println("salary is   " + salary);
+        int dataPermission = permission;
 
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required!");
-            licenseNum.requestFocus();
+            editTextFullName.requestFocus();
+            return;
+        }
+        if (phoneNum.isEmpty()){
+            editTextPhoneNum.setError("Phone number is required!");
+            editTextPhoneNum.requestFocus();
+            return;
+        }
+        if (address.isEmpty()){
+            editTextAddress.setError("Address is required!");
+            editTextAddress.requestFocus();
+            return;
+        }
+        if (Salary.isEmpty()){
+            editTextSalary.setError("Salary is required");
+            editTextSalary.requestFocus();
             return;
         }
 
@@ -124,15 +148,21 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
 
+//        User user = new User(fullName, license, email,phoneNum, address, salary, dataPermission);
 
+
+        System.out.println("After builder new user");
 //        if(permission > 0 && permission <5) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("After task new user");
+                            System.out.println("Name " + fullName + " license " + license + " email " + email + " phoneNum " + phoneNum +
+                                            " address " + address + " salary " + salary + " permission" + dataPermission);
                             if (task.isSuccessful()) {
-                                User user = new User(fullName, license, email, permission);
+                                System.out.println("popaopa");
+                                User user = new User(fullName, license, email,phoneNum, address, salary, dataPermission);
                                 System.out.println("After builder new user");
                                 FirebaseDatabase.getInstance().getReference("users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
