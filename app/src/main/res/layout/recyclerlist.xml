@@ -78,19 +78,19 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/textViewQuantity"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/imageDB"-->
-<!--                android:layout_marginLeft="236dp"-->
-<!--                android:layout_marginTop="-43dp"-->
-<!--                android:inputType="number"-->
-<!--                android:text="0"-->
-<!--                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20dp"-->
-<!--                android:textStyle="bold" />-->
+            <EditText
+                android:id="@+id/textViewQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageDB"
+                android:layout_marginLeft="236dp"
+                android:layout_marginTop="-43dp"
+                android:inputType="number"
+                android:text="0"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/quantityPlus"

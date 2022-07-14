@@ -101,9 +101,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
-
 //                    String content = textViewQuantity.getText().toString(); //gets you the contents of edit text
-
 
                     Product product = productList.get(position);
                     System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
