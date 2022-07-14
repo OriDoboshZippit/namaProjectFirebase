@@ -94,7 +94,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required!");
-            licenseNum.requestFocus();
+            editTextFullName.requestFocus();
             return;
         }
 

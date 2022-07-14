@@ -100,7 +100,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     Product product = productList.get(position);
 //                    EditText qtyTxt = v.findViewById(R.id.textViewQuantity);
 //                    System.out.println("HEYYY ADD TO CARD THIS " + qtyTxt.getText());
-                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
+                    EditText text = (EditText)itemView.findViewById(R.id.textViewQuantity);
+                    String value = text.getText().toString();
+                    int valueQnty = Integer.parseInt(value);
+                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
                 }
             });
 
