@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -88,7 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
-
+            String qty ="Not Available";
 
             // ADD CARD WITH QUANTITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
@@ -97,7 +98,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     int position = getAdapterPosition();
 //                    String content = textViewQuantity.getText().toString(); //gets you the contents of edit text
                     Product product = productList.get(position);
-                    System.out.println("HEYYY ADD TO CARD THIS " + product.getQuantity());
+//                    EditText qtyTxt = v.findViewById(R.id.textViewQuantity);
+//                    System.out.println("HEYYY ADD TO CARD THIS " + qtyTxt.getText());
                     AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });
@@ -105,10 +107,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
+//                    int position = getAdapterPosition();
 //                    quantityArr[position] = 1;
 //                  Product product = productList.get(position);
-                    System.out.println("TRY TO CATCH QUANTITY " + quantityArr.toString());
+                    EditText text = (EditText)itemView.findViewById(R.id.textViewQuantity);
+                    String value = text.getText().toString();
+                    System.out.println("TRY TO CATCH QUANTITY " + value);
+
 //                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });

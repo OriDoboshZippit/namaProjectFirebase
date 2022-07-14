@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
                     productList.add(product);
+
                 }
                 adapter.notifyDataSetChanged();
             }

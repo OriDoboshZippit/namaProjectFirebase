@@ -73,10 +73,12 @@ public class Cart extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("HEYYY REMOVE");
                 System.out.println("TRY TO REMOVE" + dbProducts.child("orderPlaced").setValue(2));
+
                 // create cart
                 HomeFragment.createCartFunc(mAuth.getCurrentUser().getEmail());
                 finish();
                 startActivity(getIntent());
+
 //                HashMap<String, String> parameters = new HashMap<>();
 //                parameters.put("product_name","apple");
 //                parameters.put("price", "20");
