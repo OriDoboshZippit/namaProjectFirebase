@@ -82,6 +82,10 @@ public class Cart extends AppCompatActivity {
             }
         });
 
+
+
+
+
         placeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,36 +98,6 @@ public class Cart extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-//        addToCart = (ImageButton) findViewById(R.id.addToCardRecycle);
-//        String ID_Cart = addToCartDb.push().getKey();
-
-
-
-//        addToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println("HEYYY");
-////                HashMap<String, String> parameters = new HashMap<>();
-////                parameters.put("product_name","apple");
-////                parameters.put("price", "20");
-////                addToCartDb.child(ID_Cart).setValue(parameters);
-//
-//            }
-//        });
-
-
     }
 
 
@@ -137,13 +111,22 @@ public class Cart extends AppCompatActivity {
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     System.out.println("THE PRODUCTS" + snapshot);
-                    if (snapshot.getKey().equals("currentUserEmail") ||snapshot.getKey().equals("orderPlaced")){
-                        System.out.println("IT IS THE WRON KEY");
+                    if (snapshot.getKey().equals("currentUserEmail") || snapshot.getKey().equals("orderPlaced")){
+                        System.out.println("IT IS THE WRONG KEY");
                     }
                     else{
                     Product product = snapshot.getValue(Product.class);
+//STOP HERE
+                    for(int i = 0; i < productList.size(); i ++){
+                        System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
+                        if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
+                            System.out.println("THE NAME IS SAME ");
+                        }
+                    }
+
                     productList.add(product);
-                    System.out.println(" NAME " + product.toString());
+                    System.out.println(productList.get(0).getNameOfProduct());
+                    System.out.println(" PRODUCTS LIST " + product.getNameOfProduct());
                     }
 //
                 }
@@ -158,15 +141,3 @@ public class Cart extends AppCompatActivity {
     };
 }
 
-
-//take picture from URL function (don't checked);
-//    public static Drawable LoadImageFromWebOperations(String url) {
-//        try {
-//            InputStream is = (InputStream) new URL(url).getContent();
-//            Drawable d = Drawable.createFromStream(is, "src name");
-//            return d;
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
-//}
