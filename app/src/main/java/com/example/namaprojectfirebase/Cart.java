@@ -1,21 +1,30 @@
 package com.example.namaprojectfirebase;
 
+import static com.example.namaprojectfirebase.Login.mAuth;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.namaprojectfirebase.ui.home.HomeFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -26,6 +35,8 @@ public class Cart extends AppCompatActivity {
     CartProductAdapter adapter;
     List<Product> productList;
     DatabaseReference dbProducts;
+    private FirebaseDatabase db = FirebaseDatabase.getInstance();
+    Button removeOrderBtn;
 
 
     @Override
@@ -48,9 +59,31 @@ public class Cart extends AppCompatActivity {
         dbProducts = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
+        //DELETE CART * From Carts
+
+
+
         System.out.println("THE CARD IS NUM" + HomeFragment.uniqueOfCartID);
 
+        removeOrderBtn = (Button) findViewById(R.id.removeOrderBtn);
 
+
+        removeOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("HEYYY REMOVE");
+                System.out.println("TRY TO REMOVE" + dbProducts.child("orderPlaced").setValue(2));
+                // create cart
+                HomeFragment.createCartFunc(mAuth.getCurrentUser().getEmail());
+                finish();
+                startActivity(getIntent());
+//                HashMap<String, String> parameters = new HashMap<>();
+//                parameters.put("product_name","apple");
+//                parameters.put("price", "20");
+//                addToCartDb.child(ID_Cart).setValue(parameters);
+
+            }
+        });
 
 //        addToCart = (ImageButton) findViewById(R.id.addToCardRecycle);
 //        String ID_Cart = addToCartDb.push().getKey();
