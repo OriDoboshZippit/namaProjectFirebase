@@ -221,4 +221,22 @@ public class HomeFragment<puiblic> extends Fragment {
             }
         });
     }
+
+    public static void createCartFuncUnique (String currentUser){
+        Map<String, Object> dataOfCart = new HashMap<>();
+        dataOfCart.put("currentUserEmail", currentUser);
+        dataOfCart.put("orderPlaced", 0);
+        uniqueOfCartID = UUID.randomUUID().toString();
+        FirebaseDatabase.getInstance().getReference("carts")
+                .child(HomeFragment.uniqueOfCartID)
+                .setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
+                        } else {
+
+                        }
+                    }
+                });
+    }
 }

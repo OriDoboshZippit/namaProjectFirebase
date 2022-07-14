@@ -36,7 +36,7 @@ public class Cart extends AppCompatActivity {
     List<Product> productList;
     DatabaseReference dbProducts;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
-    Button removeOrderBtn;
+    Button removeOrderBtn,placeOrderBtn;
 
 
     @Override
@@ -66,6 +66,7 @@ public class Cart extends AppCompatActivity {
         System.out.println("THE CARD IS NUM" + HomeFragment.uniqueOfCartID);
 
         removeOrderBtn = (Button) findViewById(R.id.removeOrderBtn);
+        placeOrderBtn = (Button) findViewById(R.id.placeOrderBtn);
 
 
         removeOrderBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,17 +76,35 @@ public class Cart extends AppCompatActivity {
                 System.out.println("TRY TO REMOVE" + dbProducts.child("orderPlaced").setValue(2));
 
                 // create cart
-                HomeFragment.createCartFunc(mAuth.getCurrentUser().getEmail());
+                HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
                 finish();
                 startActivity(getIntent());
-
-//                HashMap<String, String> parameters = new HashMap<>();
-//                parameters.put("product_name","apple");
-//                parameters.put("price", "20");
-//                addToCartDb.child(ID_Cart).setValue(parameters);
-
             }
         });
+
+        placeOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("HEYYY I PLACE THE ORDER");
+                System.out.println("TRY TO PLACE" + dbProducts.child("orderPlaced").setValue(1));
+
+                // create cart
+                HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
+                finish();
+                startActivity(getIntent());
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
 
 //        addToCart = (ImageButton) findViewById(R.id.addToCardRecycle);
 //        String ID_Cart = addToCartDb.push().getKey();
@@ -106,6 +125,10 @@ public class Cart extends AppCompatActivity {
 
 
     }
+
+
+
+
 
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
