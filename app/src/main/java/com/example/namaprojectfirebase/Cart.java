@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.namaprojectfirebase.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +39,7 @@ public class Cart extends AppCompatActivity {
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     Button removeOrderBtn,placeOrderBtn;
     public static int sum;
+    public TextView sumTotal;
 
 
     @Override
@@ -70,6 +72,7 @@ public class Cart extends AppCompatActivity {
 
         removeOrderBtn = (Button) findViewById(R.id.removeOrderBtn);
         placeOrderBtn = (Button) findViewById(R.id.placeOrderBtn);
+        sumTotal = findViewById(R.id.sumTotal);
 
 
         removeOrderBtn.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +147,8 @@ public class Cart extends AppCompatActivity {
                     System.out.println("Product name: " + productList.get(i).getNameOfProduct() + " The sum price of this product " + productList.get(i).getQuantity()*productList.get(i).getBuyPrice());
                     sum += productList.get(i).getQuantity()*productList.get(i).getBuyPrice();
                     System.out.println(sum + "the sum");
+
+                    sumTotal.setText("TOTAL FOR THIS ORDER: " + sum);
                 }
                 adapter.notifyDataSetChanged();
             }

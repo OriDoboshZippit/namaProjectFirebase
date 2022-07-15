@@ -43,10 +43,11 @@
 
     />
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sumTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TOTAL: 100.23"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/allItemsRecyclerViewCart"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-3dp">
@@ -57,9 +58,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="REVENUE: 70.23"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/sumTotal"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-3dp">
+        tools:layout_editor_absoluteY="-3dp"
+        android:visibility="invisible">
+
     </TextView>
 
     <Button
