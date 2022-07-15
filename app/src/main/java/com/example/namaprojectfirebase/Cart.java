@@ -37,6 +37,7 @@ public class Cart extends AppCompatActivity {
     DatabaseReference dbProducts;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     Button removeOrderBtn,placeOrderBtn;
+    public static int sum;
 
 
     @Override
@@ -44,6 +45,8 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
         productList = new ArrayList<>();
+
+
         recyclerView = (RecyclerView) findViewById(R.id.allItemsRecyclerViewCart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -135,9 +138,18 @@ public class Cart extends AppCompatActivity {
                     }
 //
                 }
+// THE TOTAL
+                sum = 0;
+                for(int i = 0; i < productList.size(); i ++){
+                    System.out.println("Product name: " + productList.get(i).getNameOfProduct() + " The sum price of this product " + productList.get(i).getQuantity()*productList.get(i).getBuyPrice());
+                    sum += productList.get(i).getQuantity()*productList.get(i).getBuyPrice();
+                    System.out.println(sum + "the sum");
+                }
                 adapter.notifyDataSetChanged();
             }
+
         }
+
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
