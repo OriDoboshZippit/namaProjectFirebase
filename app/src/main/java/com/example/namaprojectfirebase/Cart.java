@@ -118,7 +118,7 @@ public class Cart extends AppCompatActivity {
                     for(int i = 0; i < productList.size(); i ++){
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
                         if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
-                            productList.get(i).setQuantity(productList.get(i).getQuantity() + 10);
+                            productList.get(i).setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
                             System.out.println("THE NAME IS SAME ");
                             inCartFlag = 1;
                         }
@@ -127,7 +127,7 @@ public class Cart extends AppCompatActivity {
                         productList.add(product);
                     }
                     else {
-                        System.out.println("Quantity Updated");
+                        System.out.println("Quantity Updated " + ProductAdapter.valueQnty);
                     }
 
 //                    System.out.println(productList.get(0).getNameOfProduct());

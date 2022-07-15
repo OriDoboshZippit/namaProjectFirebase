@@ -24,6 +24,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public List <Product> productList;
     public  ImageView imageDB;
     public int quantityCounter;
+    public static int valueQnty;
     public int quantityArr [] = new int [100];
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -103,7 +104,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //                    System.out.println("HEYYY ADD TO CARD THIS " + qtyTxt.getText());
                     EditText text = (EditText)itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
-                    int valueQnty = Integer.parseInt(value);
+                    valueQnty = Integer.parseInt(value);
                     if(valueQnty > 0) {
                         AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
                         AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
