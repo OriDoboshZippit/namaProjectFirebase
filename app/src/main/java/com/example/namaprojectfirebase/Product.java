@@ -36,6 +36,12 @@ public class Product {
 //
 //    }
 
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+
     public String getNameOfProduct() {
         return nameOfProduct;
     }
@@ -57,6 +63,10 @@ public class Product {
     }
 
     public String getImageID() { return imageID; }
+
+
+
+
 
  /*   public Product (String nameOfProduct, String description, double buyPrice, double quantity, String imageUrl){
         this.nameOfProduct = nameOfProduct;

@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp">
+
             <TextView
                 android:id="@+id/textViewTitleCart"
                 android:layout_width="wrap_content"
@@ -24,24 +25,25 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
 //
+
             <TextView
                 android:id="@+id/textViewPriceCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="35dp"
-                android:text="INR 56990"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_marginTop="20dp"
+                android:text="Price per unit: 100"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewQuantityCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginLeft="247dp"
+                android:layout_marginTop="10dp"
                 android:text="100"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
 
@@ -49,8 +51,8 @@
                 android:id="@+id/quantityPlus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="58dp"
                 android:layout_toStartOf="@+id/quantityMinus"
                 android:text="+">
 
@@ -62,7 +64,6 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 android:text="-" />
 

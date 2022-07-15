@@ -100,31 +100,36 @@ public class Cart extends AppCompatActivity {
         });
     }
 
-
-
-
-
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             productList.clear();
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    int inCartFlag = 0;
                     System.out.println("THE PRODUCTS" + snapshot);
                     if (snapshot.getKey().equals("currentUserEmail") || snapshot.getKey().equals("orderPlaced")){
                         System.out.println("IT IS THE WRONG KEY");
                     }
                     else{
+
                     Product product = snapshot.getValue(Product.class);
-//STOP HERE
+//UPDATE QUANTITY
                     for(int i = 0; i < productList.size(); i ++){
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
                         if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
+                            productList.get(i).setQuantity(productList.get(i).getQuantity() + 10);
                             System.out.println("THE NAME IS SAME ");
+                            inCartFlag = 1;
                         }
                     }
+                    if(inCartFlag == 0){
+                        productList.add(product);
+                    }
+                    else {
+                        System.out.println("Quantity Updated");
+                    }
 
-                    productList.add(product);
 //                    System.out.println(productList.get(0).getNameOfProduct());
                     System.out.println(" PRODUCTS LIST " + product.getNameOfProduct());
                     }
