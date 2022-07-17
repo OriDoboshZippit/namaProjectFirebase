@@ -8,7 +8,7 @@
     tools:context=".AddProduct"
     tools:layout_editor_absoluteX="-92dp"
     tools:layout_editor_absoluteY="146dp">
-
+//
 
     <TextView
         android:id="@+id/banner"
@@ -18,7 +18,6 @@
         android:shadowColor="@color/black"
         android:shadowDx="15"
         android:shadowDy="15"
-
         android:shadowRadius="15"
         android:text="New Product"
         android:textColor="@color/white"
