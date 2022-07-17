@@ -10,11 +10,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,7 +43,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @SuppressWarnings("deprecation")
-public class AddProduct extends AppCompatActivity implements View.OnClickListener {
+public class AddProduct extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
     public EditText editID, editName, editBuyPrice, editQuantity , editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
@@ -62,6 +67,14 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 
         DateAdding = (TextView) findViewById(R.id.editDateAdd);
         BestBefore = (TextView) findViewById(R.id.editBestBefore);
+
+        Spinner spinner = findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typeProduct, android.R.layout.simple_spinner_item );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
 
         DateAdding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,24 +164,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    public void onRadioButtonClickedDrink(View view) {
-        Type = 1;
-        System.out.println("Drink");
-    }
-    public void onRadioButtonClickedFood(View view) {
-        Type = 2;
-        System.out.println("Food");
-    }
-    public void onRadioButtonClickedGrocery(View view) {
-        Type = 3;
-        System.out.println("Grocery");
-    }
-    public void onRadioButtonClickedFruitsVegetables(View view) {
-        Type = 4;
-        System.out.println("Fruits and Vegetables");
-    }
-
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -176,10 +171,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 System.out.println("Product is added");
                 addProduct();
                 break;
-            case R.id.backButton:
-                startActivity(new Intent(this, MainActivity.class));
-                break;
-
         }
     }
     //Getting image for uploading from internal storage
@@ -228,7 +219,37 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         startActivityForResult(intentChooser,1);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+        String text = parent.getItemAtPosition(position).toString();
+        if (text.equals("Food")) {
+            Type = 1;
+            System.out.println("The type is " + Type);
+        }
+        if (text.equals("Drink")) {
+            Type = 2;
+            System.out.println("The type is " + Type);
+        }
+        if (text.equals("Meat")) {
+            Type = 3;
+            System.out.println("The type is " + Type);
+        }
+        if (text.equals("Grain")) {
+            Type = 4;
+            System.out.println("The type is " + Type);
+        }
+        if (text.equals("Dairy")) {
+            Type = 5;
+            System.out.println("The type is " + Type);
+        }
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 
 
     private void SaveProduct () {
@@ -300,6 +321,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
     private void addProduct() {
         uploadImage();
     }
+
 
 }
 
