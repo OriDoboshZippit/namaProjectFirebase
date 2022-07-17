@@ -35,10 +35,10 @@ public class Cart extends AppCompatActivity {
     RecyclerView recyclerView;
     CartProductAdapter adapter;
     List<Product> productList;
-    DatabaseReference dbProducts;
+    static DatabaseReference dbProducts;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     Button removeOrderBtn,placeOrderBtn;
-    public static int sum;
+    public static int sum, inCartFlag;
     public TextView sumTotal;
 
 
@@ -60,21 +60,16 @@ public class Cart extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        //SELECT * FROM Products
+        //SELECT * FROM Carts
         dbProducts = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
-        //DELETE CART * From Carts
-
-
+        //DELETE CART * From Products
 
         System.out.println("THE CARD IS NUM" + HomeFragment.uniqueOfCartID);
-
         removeOrderBtn = (Button) findViewById(R.id.removeOrderBtn);
         placeOrderBtn = (Button) findViewById(R.id.placeOrderBtn);
         sumTotal = findViewById(R.id.sumTotal);
-
-
         removeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,10 +82,6 @@ public class Cart extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
-
-
-
-
 
         placeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,34 +103,35 @@ public class Cart extends AppCompatActivity {
             productList.clear();
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    int inCartFlag = 0;
+                    inCartFlag = 0;
                     System.out.println("THE PRODUCTS" + snapshot);
                     if (snapshot.getKey().equals("currentUserEmail") || snapshot.getKey().equals("orderPlaced")){
                         System.out.println("IT IS THE WRONG KEY");
                     }
                     else{
-
                     Product product = snapshot.getValue(Product.class);
 //UPDATE QUANTITY
                     for(int i = 0; i < productList.size(); i ++){
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
                         if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
-                            productList.get(i).setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
-                            System.out.println("THE NAME IS SAME ");
+                                productList.get(i).setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
+                                System.out.println("THE NAME IS SAME ");
+//                                product.setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
                             inCartFlag = 1;
                         }
                     }
                     if(inCartFlag == 0){
+                        System.out.println("I add product to list!!!");
                         productList.add(product);
                     }
                     else {
+//                        product.setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
                         System.out.println("Quantity Updated " + ProductAdapter.valueQnty);
                     }
-
 //                    System.out.println(productList.get(0).getNameOfProduct());
+
                     System.out.println(" PRODUCTS LIST " + product.getNameOfProduct());
                     }
-//
                 }
 // THE TOTAL
                 sum = 0;
@@ -154,7 +146,6 @@ public class Cart extends AppCompatActivity {
             }
 
         }
-
 
         @Override
         public void onCancelled(DatabaseError databaseError) {

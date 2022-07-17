@@ -56,6 +56,26 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             textViewPrice = itemView.findViewById(R.id.textViewPriceCart);
             textViewQuantity = itemView.findViewById(R.id.textViewQuantityCart);
 
+
+            itemView.findViewById(R.id.quantityPlus).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  int position = getAdapterPosition();
+//                    Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").setValue(15);
+//                    System.out.println("PLUSS" + " To the product "+ Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").get());
+
+                }
+            });
+
+            itemView.findViewById(R.id.quantityMinus).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("MINUSS");
+                }
+            });
+
+
+
         }
     }
 }
