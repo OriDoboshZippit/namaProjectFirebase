@@ -65,7 +65,6 @@ public class Cart extends AppCompatActivity {
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
         //DELETE CART * From Products
-
         System.out.println("THE CARD IS NUM" + HomeFragment.uniqueOfCartID);
         removeOrderBtn = (Button) findViewById(R.id.removeOrderBtn);
         placeOrderBtn = (Button) findViewById(R.id.placeOrderBtn);
@@ -79,7 +78,9 @@ public class Cart extends AppCompatActivity {
                 // create cart
                 HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
                 finish();
+                overridePendingTransition(0, 0);
                 startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -92,7 +93,9 @@ public class Cart extends AppCompatActivity {
                 // create cart
                 HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
                 finish();
+                overridePendingTransition(0, 0);
                 startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
     }
@@ -115,7 +118,8 @@ public class Cart extends AppCompatActivity {
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
                         if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
                                 productList.get(i).setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
-                                System.out.println("THE NAME IS SAME ");
+
+                                System.out.println("THE NAME IS SAME " +  dataSnapshot.getValue());
 //                                product.setQuantity(productList.get(i).getQuantity() + ProductAdapter.valueQnty);
                             inCartFlag = 1;
                         }

@@ -88,7 +88,6 @@ public class HomeFragment<puiblic> extends Fragment {
                             }
                         }
                     }
-
                     if(cartFlag==0){
                         System.out.println("Creating CART with FUNC");
                         uniqueOfCartID = UUID.randomUUID().toString();

@@ -16,10 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.namaprojectfirebase.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.BreakIterator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +32,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public Context mCtx;
     public List<Product> productList;
     public ImageView imageDB;
-    public int quantityCounter;
     public static int valueQnty;
+    public static int flagFound;
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -78,6 +81,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ImageView imageView;
         TextView textViewTitle, textViewDesc, textViewRating, textViewPrice, counter;
         ImageButton addToCardRecycle;
+        DatabaseReference dbCarts;
+        String keyOfProductInThisCart;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +103,25 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             });
             String qty = "Not Available";
+
+
+
+            dbCarts = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
+            dbCarts.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    System.out.println("I RUN SNAPSHOT");
+                    showData(snapshot);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+
 
             // ADD CARD WITH QUANTITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
@@ -141,37 +165,60 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });
-
-
         }
 
-        public void purchaseFunc(String productName, double price, double quantity) {
-            Map<String, Object> dataOfCart = new HashMap<>();
-            dataOfCart.put("URL", "hey");
-            dataOfCart.put("id", "444");
-            dataOfCart.put("nameOfProduct", productName);
-            dataOfCart.put("buyPrice", price);
-            dataOfCart.put("quantity", quantity);
-            dataOfCart.put("sum", "sokf");
-            FirebaseDatabase.getInstance()
-                    .getReference("carts")
-                    .child(HomeFragment.uniqueOfCartID)
-                    .push().setValue(dataOfCart)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
+        public void showData(DataSnapshot snapshot) {
+            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                flagFound = 0;
+                System.out.println("RUN ON CARTS " + dataSnapshot.child("nameOfProduct").getValue());
+                for(int i = 0; i < productList.size(); i++){
+                    if(productList.get(i).getNameOfProduct().equals(dataSnapshot.child("nameOfProduct").getValue())){
+                        flagFound = 1;
+                        keyOfProductInThisCart = dataSnapshot.getKey();
+                        System.out.println("FOUND THE SAME NAME" + flagFound + " KEY OF PRODUCT IN THIS CART " + keyOfProductInThisCart);
+                    }
+                    break;
+                }
+                break;
+            }
+        }
 
-                            } else {
+
+
+        public void purchaseFunc(String productName, double price, double quantity) {
+            if (flagFound == 0) {
+                System.out.println(" PUSHH NEW PRODUCT BECAUSE FLAG IS : " + flagFound);
+                Map<String, Object> dataOfCart = new HashMap<>();
+                dataOfCart.put("URL", "hey");
+                dataOfCart.put("id", "444");
+                dataOfCart.put("nameOfProduct", productName);
+                dataOfCart.put("buyPrice", price);
+                dataOfCart.put("sellPrice", 222);
+                dataOfCart.put("quantity", quantity);
+                dataOfCart.put("orderId", "default");
+
+                FirebaseDatabase.getInstance()
+                        .getReference("carts")
+                        .child(HomeFragment.uniqueOfCartID)
+                        .push().setValue(dataOfCart)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
+
+                                } else {
+
+                                }
 
                             }
 
-                        }
 
+                        });
 
-                    });
-
+            }
         }
+
+
 
     }
 }
