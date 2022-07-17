@@ -46,17 +46,17 @@ public class HomeFragment<puiblic> extends Fragment {
     public TextView activeUserNameHomeFragment;
     public ImageButton btnPLus,btnTable, btnAdd,  ordrButton;
     public TextView iRemember;
-    public EditText iForget;
-    public Button rememberMe, rememberYou;
+/*    public EditText iForget;
+    public Button rememberMe, rememberYou;*/
     public Switch switch1;
     public static String uniqueOfCartID;
     public String text;
     private boolean switchOnOff;
 
     public String nameFromDB;
-    public static final String SHARED_PREFS = "sharedPrefs";
+/*    public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
-    public static final String SWITCH1 = "switch1";
+    public static final String SWITCH1 = "switch1";*/
     public static int cartFlag = 0;
 
     DatabaseReference dbCarts;
@@ -109,7 +109,8 @@ public class HomeFragment<puiblic> extends Fragment {
 
         System.out.println("DB CARTS"  + dbCarts);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        final String admin = "a1@a.com";
+        final String admin = "f@f.com";
+        final String chief = "chief@nama.com";
         final String currentUser = mAuth.getCurrentUser().getEmail();
         System.out.println("THE USER IS " + currentUser);
 
@@ -122,7 +123,7 @@ public class HomeFragment<puiblic> extends Fragment {
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
 
 
-        if (!currentUser.matches(admin)){
+        if (!currentUser.matches(admin) && !currentUser.matches(chief)){
             btnPLus.setVisibility(View.INVISIBLE);
             btnAdd.setVisibility(View.INVISIBLE);
         }
@@ -179,6 +180,7 @@ public class HomeFragment<puiblic> extends Fragment {
 
         return root;
     }
+/*
     public void rememberData() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -192,6 +194,7 @@ public class HomeFragment<puiblic> extends Fragment {
         switchOnOff = sharedPreferences.getBoolean(SWITCH1, false);
 
     }
+*/
 
     public void updateViews(){
         iRemember.setText(text);

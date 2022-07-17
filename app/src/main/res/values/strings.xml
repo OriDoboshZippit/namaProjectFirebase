@@ -11,4 +11,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string-array name = "typeProduct">
+        <item>Food</item>
+        <item>Drink</item>
+        <item>Fruits and Vegetables</item>
+        <item>Meat</item>
+        <item>Grain</item>
+        <item>Dairy</item>
+    </string-array>
 </resources>
