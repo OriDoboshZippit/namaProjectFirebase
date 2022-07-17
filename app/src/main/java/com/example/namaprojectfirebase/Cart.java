@@ -99,7 +99,7 @@ public class Cart extends AppCompatActivity {
             }
         });
     }
-
+//
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
