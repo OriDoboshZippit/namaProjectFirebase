@@ -101,7 +101,7 @@ public class AddCart extends AppCompatActivity implements View.OnClickListener {
 //        }
 //    };
 
-//STOP HERE
+//STOP HERE //
 
     public static void purchaseFunc (String productName, double price, double quantity){
         Map<String, Object> dataOfCart = new HashMap<>();
