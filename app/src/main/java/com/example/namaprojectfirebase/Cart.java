@@ -133,13 +133,12 @@ public class Cart extends AppCompatActivity {
                     System.out.println(" PRODUCTS LIST " + product.getNameOfProduct());
                     }
                 }
-// THE TOTAL
+            // THE TOTAL
                 sum = 0;
                 for(int i = 0; i < productList.size(); i ++){
                     System.out.println("Product name: " + productList.get(i).getNameOfProduct() + " The sum price of this product " + productList.get(i).getQuantity()*productList.get(i).getBuyPrice());
                     sum += productList.get(i).getQuantity()*productList.get(i).getBuyPrice();
                     System.out.println(sum + "the sum");
-
                     sumTotal.setText("TOTAL FOR THIS ORDER: " + sum);
                 }
                 adapter.notifyDataSetChanged();
