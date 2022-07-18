@@ -37,8 +37,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public Context mCtx;
     public List<Product> productList;
     public ImageView imageDB;
-    public int foundedProductFlag;
+    public int foundedProductFlag,finishedSnapRun = 0 ;
     public static int valueQnty;
+    DatabaseReference cartDb;
+    Query cartQuery;
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -51,7 +53,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.recyclerlist, null);
         ProductViewHolder holder = new ProductViewHolder(view);
-
+        cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
+        cartQuery = cartDb.orderByKey();
+        System.out.println("CART" + cartQuery.get());
         return holder;
     }
 
@@ -104,7 +108,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
-            String qty = "Not Available";
 
             // ADD CARD BUTTON WITH QUANTITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
@@ -112,37 +115,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
                     foundedProductFlag = 0;
                     int position = getAdapterPosition();
+
+                    dataReadFunc(position);
+                    System.out.println("DATA READ FUNC RUN" );
                     Product product = productList.get(position);
                     EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
-
-                    System.out.println("QUERY PATTERN");
-
-                    DatabaseReference cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
-                    Query cartQuery = cartDb.orderByKey();
-                    cartQuery.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            List<String> products = new ArrayList<String>();
-                            System.out.println("BEFORE ADDING SNAPSHOT RUN  ");
-                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
-                                if(postSnapshot.child("nameOfProduct").getValue() == productList.get(position).getNameOfProduct()){
-                                    System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
-                                    System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey()  );
-                                    foundedProductFlag = 1;
-                                    break;
-                                }
-                                products.add(postSnapshot.getValue().toString());
-                                System.out.println(products);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
 
                     if (valueQnty > 0) {
@@ -180,27 +159,41 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                             });
                             builder.show();
                         }
-
-
-
-
-
-                }
-
-            });
-
-            itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
-                    String value = text.getText().toString();
-                    System.out.println("TRY TO CATCH QUANTITY " + value);
-
-//                    AddCart.purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), product.getQuantity());
                 }
             });
         }
 
+
+        public void dataReadFunc(int position) {
+            cartQuery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    List<String> products = new ArrayList<String>();
+                    System.out.println("BEFORE ADDING SNAPSHOT RUN  ");
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
+                        if(postSnapshot.child("nameOfProduct").getValue() == productList.get(position).getNameOfProduct()){
+                            System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
+                            System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey()  );
+                            foundedProductFlag = 1;
+                        }
+                        products.add(postSnapshot.getValue().toString());
+                        System.out.println(products);
+                        if(foundedProductFlag == 1){
+                            break;
+                        }
+                    }
+
+                    finishedSnapRun = 1;
+                    System.out.println("AFTER RUNNING" + finishedSnapRun);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
         public void purchaseFunc(String productName, double price, double quantity) {
             System.out.println("I purchaseFunc NEW PRODUCT!!!!");
@@ -219,7 +212,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
-
                             } else {
 
                             }
