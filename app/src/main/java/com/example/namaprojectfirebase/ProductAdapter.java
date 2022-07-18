@@ -2,6 +2,7 @@ package com.example.namaprojectfirebase;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -104,25 +106,35 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-//                    String content = textViewQuantity.getText().toString(); //gets you the contents of edit text
                     Product product = productList.get(position);
-//                    EditText qtyTxt = v.findViewById(R.id.textViewQuantity);
-//                    System.out.println("HEYYY ADD TO CARD THIS " + qtyTxt.getText());
                     EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
+
                     if (valueQnty > 0) {
                         purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
                         AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
                         builder.setCancelable(true);
                         builder.setTitle("You added to cart " + valueQnty + " of " + product.getNameOfProduct() + " units");
                         builder.setMessage("For any help you can talk to the supervisor.");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+//                                Toast.makeText(ProductAdapter.ProductViewHolder.this, "You welcome", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         builder.show();
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
                         builder.setCancelable(true);
                         builder.setTitle("You need to add more than 0 items to cart");
                         builder.setMessage("For any help you can talk to the supervisor.");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+//                                Toast.makeText(ProductAdapter.ProductViewHolder.this, "You welcome", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         builder.show();
                     }
                 }
@@ -131,9 +143,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             itemView.findViewById(R.id.textViewQuantity).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    quantityArr[position] = 1;
-//                  Product product = productList.get(position);
                     EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     System.out.println("TRY TO CATCH QUANTITY " + value);
@@ -144,6 +153,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
         }
+
+
+
 
         public void purchaseFunc(String productName, double price, double quantity) {
             Map<String, Object> dataOfCart = new HashMap<>();
