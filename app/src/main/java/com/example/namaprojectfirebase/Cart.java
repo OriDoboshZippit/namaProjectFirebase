@@ -113,7 +113,7 @@ public class Cart extends AppCompatActivity {
                     }
                     else{
                     Product product = snapshot.getValue(Product.class);
-//UPDATE QUANTITY
+//UPDATE QUANTITY//
                     for(int i = 0; i < productList.size(); i ++){
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
                         if (productList.get(i).getNameOfProduct().equals(product.getNameOfProduct())){
