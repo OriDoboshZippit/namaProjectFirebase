@@ -40,7 +40,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public Context mCtx;
     public List<Product> productList;
     public ImageView imageDB;
-    public int foundedProductFlag,finishedSnapRun = 0 ;
+    public int foundedProductFlag,finishedSnapRun = 0,theFoundedQuantity=0 ;
+    public String theFoundedProductKey;
     public static int valueQnty;
     DatabaseReference cartDb;
     Query cartQuery;
@@ -51,10 +52,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.productList = productList;
     }
 
-    public interface onCheckProductExist {
-        void exist();
-        void notExist();
-    }
 
     @NonNull
     @Override
@@ -118,6 +115,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             });
 
+
             // ADD CARD BUTTON WITH QUANTITY
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,7 +145,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
                                 }
-                            }, 4000);
+                            }, 1000);
 
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
@@ -183,20 +181,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             cartQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    foundedProductFlag = 0;
                     List<String> products = new ArrayList<String>();
-                    System.out.println("BEFORE ADDING SNAPSHOT RUN  and SIZE " + cartDb);
-
+                    System.out.println("BEFORE ADDING SNAPSHOT RUN  and NAME THAT CAME IS  ");
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
                         if (postSnapshot.child("nameOfProduct").getValue() == null){
-                          System.out.println("IS NULLL");
+                           System.out.println("IS NULLL");
                             break;
                         }
-
                         if(postSnapshot.child("nameOfProduct").getValue().equals(productList.get(position).getNameOfProduct())){
                             foundedProductFlag = 1;
                             System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
                             System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey() + " AND FLAG IS " + foundedProductFlag);
+                            theFoundedProductKey = postSnapshot.getKey();
+                            theFoundedQuantity = (int) productList.get(position).getQuantity();
                             break;
 
                         }
@@ -258,12 +257,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             dataOfCart.put("id", "444");
             dataOfCart.put("nameOfProduct", productName);
             dataOfCart.put("buyPrice", price);
-            dataOfCart.put("quantity", 2323);
+            dataOfCart.put("quantity", theFoundedQuantity + valueQnty);
             dataOfCart.put("sum", "sokf");
             FirebaseDatabase.getInstance()
                     .getReference("carts")
-                    .child(HomeFragment.uniqueOfCartID)
-                    .push().setValue(dataOfCart)
+                    .child(HomeFragment.uniqueOfCartID).child(theFoundedProductKey)
+                    .setValue(dataOfCart)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {

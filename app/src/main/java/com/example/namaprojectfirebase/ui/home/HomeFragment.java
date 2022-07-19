@@ -144,7 +144,7 @@ public class HomeFragment<puiblic> extends Fragment {
             @Override
             public void onClick(View v)
             {
-                System.out.println("Going to Register");
+                System.out.println("Going to Cart");
                 Intent i = new Intent(getActivity(), Cart.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
