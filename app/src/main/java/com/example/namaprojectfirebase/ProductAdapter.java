@@ -128,14 +128,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
 
-
-
-
-
                     if (valueQnty > 0) {
                         System.out.println(position + " THE NAME IS " + product.getNameOfProduct());
                         dataReadFunc(position);
-
                         System.out.println("DATA READ FUNC RUN FLAG" + foundedProductFlag );
                             new Timer().schedule(new TimerTask() {
                                 @Override
@@ -189,9 +184,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     List<String> products = new ArrayList<String>();
-                    System.out.println("BEFORE ADDING SNAPSHOT RUN  ");
+                    System.out.println("BEFORE ADDING SNAPSHOT RUN  and SIZE " + cartDb);
+
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
+                        if (postSnapshot.child("nameOfProduct").getValue() == null){
+                          System.out.println("IS NULLL");
+                            break;
+                        }
+
                         if(postSnapshot.child("nameOfProduct").getValue().equals(productList.get(position).getNameOfProduct())){
                             foundedProductFlag = 1;
                             System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
@@ -209,15 +210,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     finishedSnapRun = 1;
                     System.out.println("AFTER RUNNING" + finishedSnapRun);
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+
             });
 
             return foundedProductFlag;
         }
+
+
+
 
         public void purchaseFunc(String productName, double price, double quantity ) {
             System.out.println("I purchaseFunc NEW PRODUCT!!!!");
@@ -248,12 +252,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void purchaseFuncUpdateQuantity(String productName, double price, double quantity) {
-
-//            FirebaseDatabase.getInstance()
-//                    .getReference("carts")
-//                    .child(HomeFragment.uniqueOfCartID).child()
-
-
             System.out.println("I purchaseFuncUpdateQuantity UPDATE QUANTITY!!!!");
             Map<String, Object> dataOfCart = new HashMap<>();
             dataOfCart.put("URL", "hey");
