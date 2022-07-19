@@ -31,6 +31,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     ImageView imageView;
@@ -41,10 +44,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public static int valueQnty;
     DatabaseReference cartDb;
     Query cartQuery;
+    Handler handlerDataBase;
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
+    }
+
+    public interface onCheckProductExist {
+        void exist();
+        void notExist();
     }
 
     @NonNull
@@ -55,6 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ProductViewHolder holder = new ProductViewHolder(view);
         cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         cartQuery = cartDb.orderByKey();
+
         System.out.println("CART" + cartQuery.get());
         return holder;
     }
@@ -79,7 +89,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //        holder.imageView.setImageResource();
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -113,27 +122,38 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             itemView.findViewById(R.id.addToCardRecycle).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    foundedProductFlag = 0;
                     int position = getAdapterPosition();
-
-                    dataReadFunc(position);
-                    System.out.println("DATA READ FUNC RUN" );
                     Product product = productList.get(position);
                     EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
 
 
+
+
+
                     if (valueQnty > 0) {
-                        if (foundedProductFlag == 0) {
-                            System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG !!!!" + foundedProductFlag );
-                            purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
-                        }
-                        else
-                        {
-                            System.out.println("I purchaseFuncUpdateQuantity UPDATE QUANTITY WITH FLAG !!!!" + foundedProductFlag );
-                            purchaseFuncUpdateQuantity(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
-                        }
+                        System.out.println(position + " THE NAME IS " + product.getNameOfProduct());
+                        dataReadFunc(position);
+
+                        System.out.println("DATA READ FUNC RUN FLAG" + foundedProductFlag );
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    // this code will be executed after 2 seconds
+                                    if(foundedProductFlag == 0){
+                                        purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
+                                        System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
+                                    }
+                                    else{
+                                        purchaseFuncUpdateQuantity(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
+                                        System.out.println("I purchaseFuncUpdateQuantity NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
+                                    }
+
+
+                                }
+                            }, 4000);
+
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
                             builder.setCancelable(true);
@@ -164,7 +184,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
 
-        public void dataReadFunc(int position) {
+        public int dataReadFunc(int position) {
             cartQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -172,10 +192,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     System.out.println("BEFORE ADDING SNAPSHOT RUN  ");
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
-                        if(postSnapshot.child("nameOfProduct").getValue() == productList.get(position).getNameOfProduct()){
-                            System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
-                            System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey()  );
+                        if(postSnapshot.child("nameOfProduct").getValue().equals(productList.get(position).getNameOfProduct())){
                             foundedProductFlag = 1;
+                            System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
+                            System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey() + " AND FLAG IS " + foundedProductFlag);
+                            break;
+
                         }
                         products.add(postSnapshot.getValue().toString());
                         System.out.println(products);
@@ -193,9 +215,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                 }
             });
+
+            return foundedProductFlag;
         }
 
-        public void purchaseFunc(String productName, double price, double quantity) {
+        public void purchaseFunc(String productName, double price, double quantity ) {
             System.out.println("I purchaseFunc NEW PRODUCT!!!!");
             Map<String, Object> dataOfCart = new HashMap<>();
             dataOfCart.put("URL", "hey");
