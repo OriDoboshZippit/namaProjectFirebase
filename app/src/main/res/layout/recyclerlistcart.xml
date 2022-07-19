@@ -36,6 +36,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
 
+
             <TextView
                 android:id="@+id/textViewQuantityCart"
                 android:layout_width="wrap_content"
@@ -46,25 +47,25 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-
             <Button
                 android:id="@+id/quantityPlus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="58dp"
+                android:layout_marginEnd="69dp"
                 android:layout_toStartOf="@+id/quantityMinus"
+                android:backgroundTint="#ACACAC"
                 android:text="+">
 
             </Button>
-
 
             <Button
                 android:id="@+id/quantityMinus"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="19dp"
+                android:backgroundTint="#ACACAC"
                 android:text="-" />
 
 

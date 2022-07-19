@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.type.DateTime;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -264,6 +265,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 
         String addingDate = DateAdding.getText().toString().trim();
         String bestBefore = BestBefore.getText().toString().trim();
+
+
+
         String URL = uploadUri.toString();
         String description = editDescription.getText().toString().trim();
 

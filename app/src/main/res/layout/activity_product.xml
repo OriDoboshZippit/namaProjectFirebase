@@ -68,9 +68,9 @@
         android:id="@+id/editBuyPrice"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:background="@color/white"
         android:ems="10"
-        android:layout_marginTop="10dp"
         android:hint=" Purchase Price"
         android:inputType="text"
         android:textColor="@color/black"
@@ -80,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <EditText
         android:id="@+id/editCellPrice"
@@ -89,7 +89,6 @@
         android:background="@color/white"
         android:ems="10"
         android:hint=" Cell Price"
-        android:layout_marginTop="10dp"
         android:inputType="text"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
@@ -104,9 +103,9 @@
         android:id="@+id/editName"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+
         android:background="@color/white"
         android:ems="10"
-        android:layout_marginTop="10dp"
         android:hint=" Product Name"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
@@ -116,7 +115,7 @@
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <EditText
         android:id="@+id/editDateAdd"
@@ -124,7 +123,6 @@
         android:layout_height="40dp"
         android:background="@color/white"
         android:ems="10"
-        android:layout_marginTop="10dp"
         android:hint="Date Of Adding"
         android:inputType="text"
         android:textColor="@color/black"
@@ -160,7 +158,6 @@
         android:layout_height="40dp"
         android:background="@color/white"
         android:ems="10"
-        android:layout_marginTop="10dp"
         android:hint=" Quantity"
         android:inputType="number"
         android:textColor="@color/black"
@@ -178,7 +175,6 @@
         android:layout_height="40dp"
         android:background="@color/white"
         android:ems="10"
-        android:layout_marginTop="10dp"
         android:hint="Best Before"
         android:inputType="text"
         android:textColor="@color/black"
