@@ -302,8 +302,8 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("URL", URL);
         dataOfProduct.put("buyPrice", buyPr);
         dataOfProduct.put("quantity", quantity);
-        dataOfProduct.put("dataOfAdding", addingDate);
-        dataOfProduct.put("bestBefore", bestBefore);
+        dataOfProduct.put("dataOfAdding", DateAdding);
+        dataOfProduct.put("bestBefore", BestBefore);
         dataOfProduct.put("typeOfProduct", Type);
         dataOfProduct.put("description", description);
 
