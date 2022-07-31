@@ -168,7 +168,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         System.out.println("Fruits and Vegetables");
     }
 
-
+//
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
