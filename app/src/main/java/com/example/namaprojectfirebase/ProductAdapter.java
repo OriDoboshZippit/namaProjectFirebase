@@ -126,6 +126,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
 
+                    //Start running on exist card
                     if (valueQnty > 0) {
                         System.out.println(position + " THE NAME IS " + product.getNameOfProduct());
                         dataReadFunc(position);
@@ -133,7 +134,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                             new Timer().schedule(new TimerTask() {
                                 @Override
                                 public void run() {
-                                    // this code will be executed after 2 seconds
+                                    // this code will be executed after 1 seconds
                                     if(foundedProductFlag == 0){
                                         purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
                                         System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
@@ -194,8 +195,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                             foundedProductFlag = 1;
                             System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
                             System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey() + " AND FLAG IS " + foundedProductFlag);
+
                             theFoundedProductKey = postSnapshot.getKey();
-                            theFoundedQuantity = (int) productList.get(position).getQuantity();
+
+                            System.out.println("@@@@" + "The key is of product: " + theFoundedProductKey + " " + postSnapshot.child("quantity").getValue().getClass());
+                            Long k = (Long) postSnapshot.child("quantity").getValue();
+                            theFoundedQuantity = Math.toIntExact(k);
+
+                            System.out.println("The quantity is : " + theFoundedQuantity);
+
                             break;
 
                         }
