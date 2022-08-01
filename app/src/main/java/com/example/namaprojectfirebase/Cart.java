@@ -2,31 +2,28 @@ package com.example.namaprojectfirebase;
 
 import static com.example.namaprojectfirebase.Login.mAuth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.namaprojectfirebase.ui.home.HomeFragment;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Handler;
 
 
 public class Cart extends AppCompatActivity {
@@ -35,10 +32,10 @@ public class Cart extends AppCompatActivity {
     RecyclerView recyclerView;
     CartProductAdapter adapter;
     List<Product> productList;
-    static DatabaseReference dbProducts;
+    static DatabaseReference dbProducts,dbProductsInCart;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     Button removeOrderBtn,placeOrderBtn;
-    public static int sum, inCartFlag;
+    public static int sum, inCartFlag, orderPlaced=0,createdNewCart=0;
     public TextView sumTotal;
 
 
@@ -47,7 +44,8 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
         productList = new ArrayList<>();
-
+        orderPlaced=0;
+        System.out.println("At the create orderPlaced flag " + orderPlaced);
 
         recyclerView = (RecyclerView) findViewById(R.id.allItemsRecyclerViewCart);
         recyclerView.setHasFixedSize(true);
@@ -63,6 +61,12 @@ public class Cart extends AppCompatActivity {
         //SELECT * FROM Carts
         dbProducts = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
+
+
+
+        dbProductsInCart = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
+        dbProductsInCart.addValueEventListener(valueEventListenerForUpdateGlobalQuantity);
+
 
         //DELETE CART * From Products
 
@@ -80,6 +84,7 @@ public class Cart extends AppCompatActivity {
                 HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
                 finish();
                 startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -89,10 +94,13 @@ public class Cart extends AppCompatActivity {
                 System.out.println("HEYYY I PLACE THE ORDER");
                 System.out.println("TRY TO PLACE" + dbProducts.child("orderPlaced").setValue(1));
 
-                // create cart
-                HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
-                finish();
-                startActivity(getIntent());
+                //TODO taking overall quantity from all DB
+                System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG BEFORE");
+                orderPlaced =1;
+                System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG AFTER");
+
+
+
             }
         });
     }
@@ -151,5 +159,54 @@ public class Cart extends AppCompatActivity {
 
         }
     };
+
+    public void createNewCart(){
+        System.out.println("Creating new CART FROM CART AFTER orderPlaced 1");
+        HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
+    }
+
+
+
+
+
+    ValueEventListener valueEventListenerForUpdateGlobalQuantity = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            if(orderPlaced==1) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot snapshotRun : snapshot.getChildren()) {
+
+                        if (snapshotRun.getKey().contains("currentUserEmail") || snapshotRun.getKey().contains("orderPlaced")) {
+                            System.out.println("THE PRODUCTS NEW SNAPSHOOT" + snapshotRun.getKey());
+                        } else {
+
+                            System.out.println("IM PRODUCT" + snapshotRun.child("nameOfProduct").getValue() + "THE QUANTITY " + snapshotRun.child("quantity").getValue());
+
+                        }
+                    }
+                    System.out.println("Before order placed FLAG" + orderPlaced);
+
+                    adapter.notifyDataSetChanged();
+                }
+                createNewCart();
+            }
+            }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+
+
+
+
+
+
 }
 
