@@ -74,7 +74,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 addDate.set(year,month,day);
                 Long dateInMillies = addDate.getTimeInMillis();
                 String date = Long.toString(dateInMillies);
-                System.out.println("date is dkjfkejf" + date);
+            //    System.out.println("date is dkjfkejf" + date);
                 DatePickerDialog dialog = new DatePickerDialog(
                         AddProduct.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth,
@@ -102,14 +102,14 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 );
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                System.out.println("date out");
+                //System.out.println("date out");
             }
         });
 
         AddingDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                System.out.println("the date is " + day + "/" + month + "/" + year + "/");
+               // System.out.println("the date is " + day + "/" + month + "/" + year + "/");
 
                 String date = day + "/" + month + "/" + year;
                 DateAdding.setText(date);
