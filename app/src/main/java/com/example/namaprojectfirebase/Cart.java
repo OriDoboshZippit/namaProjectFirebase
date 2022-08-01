@@ -37,6 +37,7 @@ public class Cart extends AppCompatActivity {
     Button removeOrderBtn,placeOrderBtn;
     public static int sum, inCartFlag, orderPlaced=0,createdNewCart=0;
     public TextView sumTotal;
+    public DataSnapshot snapshotAllProducts;
 
 
     @Override
@@ -110,14 +111,14 @@ public class Cart extends AppCompatActivity {
         public void onDataChange(DataSnapshot dataSnapshot) {
             productList.clear();
             if (dataSnapshot.exists()) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshotAllProducts : dataSnapshot.getChildren()) {
                     inCartFlag = 0;
-                    System.out.println("THE PRODUCTS" + snapshot);
-                    if (snapshot.getKey().equals("currentUserEmail") || snapshot.getKey().equals("orderPlaced")){
+                    System.out.println("THE PRODUCTS" + snapshotAllProducts);
+                    if (snapshotAllProducts.getKey().equals("currentUserEmail") || snapshotAllProducts.getKey().equals("orderPlaced")){
                         System.out.println("IT IS THE WRONG KEY");
                     }
                     else{
-                    Product product = snapshot.getValue(Product.class);
+                    Product product = snapshotAllProducts.getValue(Product.class);
 //UPDATE QUANTITY
                     for(int i = 0; i < productList.size(); i ++){
                         System.out.println("RUN ON " +   productList.get(i).getNameOfProduct());
@@ -163,6 +164,7 @@ public class Cart extends AppCompatActivity {
     public void createNewCart(){
         System.out.println("Creating new CART FROM CART AFTER orderPlaced 1");
         HomeFragment.createCartFuncUnique(mAuth.getCurrentUser().getEmail());
+        orderPlaced = 1;
         finish();
         startActivity(getIntent());
         overridePendingTransition(0, 0);
