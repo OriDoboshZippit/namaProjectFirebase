@@ -120,7 +120,7 @@
         app:layout_constraintVertical_bias="0.663" />
 
     <Button
-        android:id="@+id/addProductButton"
+        android:id="@+id/markOrderRecieved"
         android:layout_width="202dp"
         android:layout_height="55dp"
         android:layout_marginBottom="40dp"

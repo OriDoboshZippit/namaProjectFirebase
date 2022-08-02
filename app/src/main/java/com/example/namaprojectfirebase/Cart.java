@@ -38,7 +38,7 @@ public class Cart extends AppCompatActivity {
     public static int sum, inCartFlag, orderPlaced=0,createdNewCart=0;
     public TextView sumTotal;
     public DataSnapshot snapshotAllProducts;
-
+    DatabaseReference orderDbSnap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
