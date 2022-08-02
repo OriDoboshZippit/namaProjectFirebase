@@ -62,6 +62,10 @@ public class Product {
         return URL;
     }
 
+    public long getAddingDate() { return AddingDate; }
+
+    public long getBestBefore() { return BestBefore; }
+
     public String getImageID() { return imageID; }
 
 
