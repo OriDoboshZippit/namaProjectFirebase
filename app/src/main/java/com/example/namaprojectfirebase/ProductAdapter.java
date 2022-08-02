@@ -136,7 +136,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                                 public void run() {
                                     // this code will be executed after 1 seconds
                                     if(foundedProductFlag == 0){
-                                        purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
+                                        purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty, product.getNameOfProduct());
                                         System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
                                     }
                                     else{
@@ -230,7 +230,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
 
-        public void purchaseFunc(String productName, double price, double quantity ) {
+        public void purchaseFunc(String productName, double price, double quantity, String keyFromProducts ) {
             System.out.println("I purchaseFunc NEW PRODUCT!!!!");
             Map<String, Object> dataOfCart = new HashMap<>();
             dataOfCart.put("URL", "hey");
@@ -242,7 +242,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             FirebaseDatabase.getInstance()
                     .getReference("carts")
                     .child(HomeFragment.uniqueOfCartID)
-                    .push().setValue(dataOfCart)
+                    .child(keyFromProducts).setValue(dataOfCart)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
