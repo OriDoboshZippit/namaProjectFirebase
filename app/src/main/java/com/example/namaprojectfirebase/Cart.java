@@ -51,6 +51,7 @@ public class Cart extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.allItemsRecyclerViewCart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button b = (Button) findViewById(R.id.placeOrderBtn);
 
 //        imageView = findViewById(R.id.imageView);
 //        Glide.with(this).load("").into(imageView);
@@ -93,11 +94,14 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("HEYYY I PLACE THE ORDER");
-                System.out.println("TRY TO PLACE" + dbProducts.child("orderPlaced").setValue(1));
+//                System.out.println("TRY TO PLACE" + dbProducts.child("orderPlaced").setValue(1));
+
+
+                startActivity(new Intent(Cart.this, Order.class));
 
                 //TODO taking overall quantity from all DB
                 System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG BEFORE");
-                orderPlaced =1;
+                orderPlaced = 1;
                 System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG AFTER");
 
 

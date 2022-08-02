@@ -27,6 +27,10 @@
         <activity
             android:name=".Register"
             android:exported="false"/>
+        <activity
+            android:theme="@style/Theme.NamaProjectFirebase.CustomTheme"
+            android:name=".Order"
+            android:exported="false"/>
 
         <activity
             android:name=".Login"
