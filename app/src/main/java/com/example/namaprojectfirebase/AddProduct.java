@@ -190,9 +190,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 System.out.println("Product is added");
                 addProduct();
                 break;
-            case R.id.backButton:
-                startActivity(new Intent(this, MainActivity.class));
-                break;
+//            case R.id.backButton:
+//                startActivity(new Intent(this, MainActivity.class));
+//                break;
 
         }
     }
