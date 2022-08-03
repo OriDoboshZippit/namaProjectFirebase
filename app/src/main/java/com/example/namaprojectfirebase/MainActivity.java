@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
             productList.clear();
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    System.out.println("THE BEST BEFORE FROM DB " +snapshot.child("bestBefore").getValue());
                     Product product = snapshot.getValue(Product.class);
+
+                    System.out.println("The before sending to list " +product.getBestBefore());
                     productList.add(product);
 
                 }

@@ -78,6 +78,21 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/expDateInList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageDB"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="0dp"
+                android:text="EXP DATE"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="normal" />
+
+            expDateInList
+
             <EditText
                 android:id="@+id/textViewQuantity"
                 android:layout_width="wrap_content"

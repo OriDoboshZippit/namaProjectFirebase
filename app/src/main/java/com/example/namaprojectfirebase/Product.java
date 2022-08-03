@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 
 public class Product {
+
     public String id, nameOfProduct, description;
     public int type;
     public double buyPrice, sellPrice, quantity;
@@ -38,6 +39,7 @@ public class Product {
 
 
     public void setQuantity(double quantity) {
+        System.out.println("I SET QUANTITY");
         this.quantity = quantity;
     }
 

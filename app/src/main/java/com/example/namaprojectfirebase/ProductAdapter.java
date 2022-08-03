@@ -68,8 +68,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        System.out.println("Product before creation "+ productList.get(position).getBestBefore());
         Product product = productList.get(position);
         Picasso.get().load(product.getImageUrl()).into(imageDB);
+        holder.expDateInList.setText("Exp. date: " + String.valueOf((long) product.getBestBefore()));
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
@@ -94,7 +96,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView textViewTitle, textViewDesc, textViewRating, textViewPrice, counter;
+        TextView textViewTitle, textViewDesc, textViewRating, textViewPrice, expDateInList, counter;
         ImageButton addToCardRecycle;
 
         public ProductViewHolder(@NonNull View itemView) {
@@ -105,6 +107,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
             addToCardRecycle = itemView.findViewById(R.id.addToCardRecycle);
+            expDateInList = itemView.findViewById(R.id.expDateInList);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
