@@ -12,7 +12,7 @@ public class Product {
     public String id, nameOfProduct, description;
     public int type;
     public double buyPrice, sellPrice, quantity;
-    private long AddingDate, BestBefore;
+    public long addingDateList, bestBeforeList;
     public String URL;
     public String imageID;
     ImageView imageView;
@@ -38,6 +38,13 @@ public class Product {
 //    }
 
 
+    public void setAddingDate(long addingDate) {
+        addingDateList = addingDate;
+    }
+
+    public void setBestBefore(long bestBefore) {
+        bestBeforeList = bestBefore;
+    }
     public void setQuantity(double quantity) {
         System.out.println("I SET QUANTITY");
         this.quantity = quantity;
@@ -64,9 +71,9 @@ public class Product {
         return URL;
     }
 
-    public long getAddingDate() { return AddingDate; }
+    public long getAddingDate() { return addingDateList; }
 
-    public long getBestBefore() { return BestBefore; }
+    public long getBestBefore() { return bestBeforeList; }
 
     public String getImageID() { return imageID; }
 
