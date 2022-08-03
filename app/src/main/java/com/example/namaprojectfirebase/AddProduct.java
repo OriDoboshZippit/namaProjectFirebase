@@ -39,6 +39,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -56,7 +57,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
     private ImageView imImage;
     public Uri uploadUri;
     public String UriStr;
-
+    public  Calendar calendarExp, calendarAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
 
         DateAdding = (TextView) findViewById(R.id.editDateAdd);
         BestBefore = (TextView) findViewById(R.id.editBestBefore);
+
+
 
         Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typeProduct, android.R.layout.simple_spinner_item );
@@ -88,7 +91,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 addDate.set(year,month,day);
                 Long dateInMillies = addDate.getTimeInMillis();
                 String date = Long.toString(dateInMillies);
-                //System.out.println("date is dkjfkejf" + date);
+                System.out.println("date is DATE" + date);
                 DatePickerDialog dialog = new DatePickerDialog(
                         AddProduct.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth,
@@ -126,6 +129,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 //System.out.println("the date is " + day + "/" + month + "/" + year + "/");
 
                 String date = day + "/" + month + "/" + year;
+                calendarAdd = new GregorianCalendar(year, month, day);
+                calendarAdd.getTimeInMillis();
+                System.out.println(calendarAdd.getTimeInMillis());
                 DateAdding.setText(date);
             }
         };
@@ -136,6 +142,10 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 //System.out.println("the date is " + day + "/" + month + "/" + year + "/");
                 String date = day + "/" + month + "/" + year;
+
+                calendarExp = new GregorianCalendar(year, month, day);
+                calendarExp.getTimeInMillis();
+                System.out.println(calendarExp.getTimeInMillis());
                 BestBefore.setText(date);
 
             }
@@ -324,8 +334,8 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("URL", URL);
         dataOfProduct.put("buyPrice", buyPr);
         dataOfProduct.put("quantity", quantity);
-        dataOfProduct.put("dataOfAdding", DateAdding);
-        dataOfProduct.put("bestBefore", BestBefore);
+        dataOfProduct.put("dataOfAdding", calendarAdd.getTimeInMillis());
+        dataOfProduct.put("bestBefore", calendarExp.getTimeInMillis());
         dataOfProduct.put("typeOfProduct", Type);
         dataOfProduct.put("description", description);
 

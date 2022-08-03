@@ -106,19 +106,19 @@ public class Order extends Activity {
                         if(valueUpdated==0){
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                            System.out.println("Name from snap allProducts " + postSnapshot.child("nameOfProduct").getValue());
+//                            System.out.println("Name from snap allProducts " + postSnapshot.child("nameOfProduct").getValue());
                             for(int i = 0; i < productsInCartNameQuantity.size(); i++){
-                               System.out.println("Data in list on i place :" +i +" "+productsInCartNameQuantity.get(i).toString());
+//                               System.out.println("Data in list on i place :" +i +" "+productsInCartNameQuantity.get(i).toString());
                                if (postSnapshot.child("nameOfProduct").getValue().equals(productsInCartNameQuantity.get(i).toString())) {
-                                        System.out.println("the names the same in if");
+//                                        System.out.println("the names the same in if");
                                         int overallQnty = Integer.parseInt(postSnapshot.child("quantity").getValue().toString());
                                         int productQnty = Integer.parseInt(productsInCartNameQuantity.get(i+1).toString());
-                                            System.out.println("OVERAL QNTY FROM DATABASE INT CASTED " + overallQnty);
-                                            System.out.println("QNTY OF PRODUCT FROM LIST INT CASTED " + productQnty);
-                                            System.out.println("NAME IN LIST ON THIS I PLACE IN IF " + productsInCartNameQuantity.get(i).toString());
-                                            System.out.println("QUANTITY IN LIST ON THIS I+1 PLACE IN IF " + productsInCartNameQuantity.get(i+1).toString());
+//                                            System.out.println("OVERAL QNTY FROM DATABASE INT CASTED " + overallQnty);
+//                                            System.out.println("QNTY OF PRODUCT FROM LIST INT CASTED " + productQnty);
+//                                            System.out.println("NAME IN LIST ON THIS I PLACE IN IF " + productsInCartNameQuantity.get(i).toString());
+//                                            System.out.println("QUANTITY IN LIST ON THIS I+1 PLACE IN IF " + productsInCartNameQuantity.get(i+1).toString());
                                             int result = overallQnty -productQnty;
-                                            System.out.println("RESULT" + result);
+//                                            System.out.println("RESULT" + result);
 
 
                                             postSnapshot.getRef().child("quantity").setValue(result);
@@ -138,7 +138,7 @@ public class Order extends Activity {
                     }
                 });
 
-//COMMENT END NEEDED FUNC OF RUNNING OVERALL PRODUCTS
+
             }
         });
         DisplayMetrics dm = new DisplayMetrics();
