@@ -99,7 +99,7 @@ public class Cart extends AppCompatActivity {
 
                 startActivity(new Intent(Cart.this, Order.class));
 
-                //TODO taking overall quantity from all DB
+
                 //System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG BEFORE");
                 orderPlaced = 1;
                 //System.out.println(orderPlaced + " THIS IS ORDER PLACED FLAG AFTER");

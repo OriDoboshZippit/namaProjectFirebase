@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +25,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.BreakIterator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,8 +72,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         System.out.println("Product before creation "+ productList.get(position).getBestBefore());
         Product product = productList.get(position);
+        //EPOCH TO STRING
+        long myTimeAsLong = productList.get(position).getBestBefore();
+        Date date = new Date(myTimeAsLong);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        String text = format.format(date);
+
+        Date currentTime = Calendar.getInstance().getTime();
+        System.out.println(currentTime);
+        //TODO DATE COLOR EXP
+//        if(date.toString()-currentTime > 200)
+//        {
+//            System.out.println("HEYY");
+//        }
         Picasso.get().load(product.getImageUrl()).into(imageDB);
-        holder.expDateInList.setText("Exp. date: " + String.valueOf((long) product.getBestBefore()));
+        holder.expDateInList.setText("Exp. date: " +  text);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
