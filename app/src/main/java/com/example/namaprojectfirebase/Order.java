@@ -24,8 +24,8 @@ import java.util.List;
 
 
 public class Order extends Activity {
-    public static DatabaseReference orderDbSnap;
-    public int count = 0;
+    public static DatabaseReference orderDbSnap,allProducts;
+    public int count = 0,flagRunningCart =0,valueUpdated=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,39 +33,45 @@ public class Order extends Activity {
         setContentView(R.layout.activity_order_form);
         Button getOrder = (Button) findViewById(R.id.markOrderRecieved);
 
-        Query orderQueryCopyAllToOrders;
+        Query orderQueryCopyAllToOrders, updateQuantityFromGlobal;
 
         orderDbSnap = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         orderQueryCopyAllToOrders = orderDbSnap.orderByKey();
 
 
+        allProducts = FirebaseDatabase.getInstance().getReference("products");
+        updateQuantityFromGlobal = allProducts.orderByKey();
 
-
-
-
-
+        List productsInCartNameQuantity = new ArrayList();
 
         getOrder.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
 
                 count = 0;
+                productsInCartNameQuantity.clear();
+                flagRunningCart = 0;
                 orderQueryCopyAllToOrders.addValueEventListener(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        List<String> products = new ArrayList<String>();
+//                        System.out.println("CLICK BUTTON START RUNNING FUNC BEFORE FOR");
+                    if(flagRunningCart==0){
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            System.out.println("The values in cart is " + postSnapshot.getKey());
+                            //LIST FROM CART
+                            productsInCartNameQuantity.add(postSnapshot.getKey());
+                            productsInCartNameQuantity.add(String.valueOf(postSnapshot.child("quantity").getValue()));
+//                            System.out.println("The values in list" + productsInCartNameQuantity);
+//                            System.out.println("COUNT IS" + count);
                             count++;
+//                            System.out.println("COUNT IS : "+ count);
                         }
-
-
-
+                        flagRunningCart = 1;
                     }
-
-
+                    else{
+//                        System.out.println("the flagRunningCart is : " +flagRunningCart);
+                    }
+                    }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -74,37 +80,67 @@ public class Order extends Activity {
 
                 });
 
-
-                if(count > 2){
+//                if(count > 2){
                     Cart.dbProducts.child("orderPlaced").setValue(1);
-                }
-                else
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(Order.this).create();
-                    alertDialog.setTitle("Attention");
-                    alertDialog.setMessage("You need to add some products");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK, I WILL DO IT",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
+//                }
+//                else
+//                {
+//                    AlertDialog alertDialog = new AlertDialog.Builder(Order.this).create();
+//                    alertDialog.setTitle("Attention");
+//                    alertDialog.setMessage("You need to add some products");
+//                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK, I WILL DO IT",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                    alertDialog.show();
+//                }
 
-                System.out.println("Place order with all info of user that order it");
+//COMMENT START NEEDED FUNC OF RUNNING OVERALL PRODUCTS
+//RUNNING ON ALL PRODUCTS
+                valueUpdated = 0;
+                updateQuantityFromGlobal.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(valueUpdated==0){
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                            System.out.println("Name from snap allProducts " + postSnapshot.child("nameOfProduct").getValue());
+                            for(int i = 0; i < productsInCartNameQuantity.size(); i++){
+                               System.out.println("Data in list on i place :" +i +" "+productsInCartNameQuantity.get(i).toString());
+                               if (postSnapshot.child("nameOfProduct").getValue().equals(productsInCartNameQuantity.get(i).toString())) {
+                                        System.out.println("the names the same in if");
+                                        int overallQnty = Integer.parseInt(postSnapshot.child("quantity").getValue().toString());
+                                        int productQnty = Integer.parseInt(productsInCartNameQuantity.get(i+1).toString());
+                                            System.out.println("OVERAL QNTY FROM DATABASE INT CASTED " + overallQnty);
+                                            System.out.println("QNTY OF PRODUCT FROM LIST INT CASTED " + productQnty);
+                                            System.out.println("NAME IN LIST ON THIS I PLACE IN IF " + productsInCartNameQuantity.get(i).toString());
+                                            System.out.println("QUANTITY IN LIST ON THIS I+1 PLACE IN IF " + productsInCartNameQuantity.get(i+1).toString());
+                                            int result = overallQnty -productQnty;
+                                            System.out.println("RESULT" + result);
+
+
+                                            postSnapshot.getRef().child("quantity").setValue(result);
+
+
+                                }
+
+                            }
+                            }
+                        }
+                        valueUpdated = 1;
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+//COMMENT END NEEDED FUNC OF RUNNING OVERALL PRODUCTS
             }
         });
-
-
-
-
-
-
-
-
-
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

@@ -62,7 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         cartQuery = cartDb.orderByKey();
 
-        System.out.println("CART" + cartQuery.get());
+        //System.out.println("CART" + cartQuery.get());
         return holder;
     }
 
@@ -80,7 +80,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //        imageView = imageView.findViewById(R.id.imageView);
 
 //        Glide.with(this).load("").into(imageView);
-        System.out.println("IMAGE " + product.getImageUrl());
+        //System.out.println("IMAGE " + product.getImageUrl());
 //        Glide.with(mCtx).load("https://www.ou.org/holidays/files/Work-768x512.jpg").into(imageView);
 
 //        holder.imageView.setImageResource();
@@ -111,7 +111,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Product product = productList.get(position);
-                    System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
+                    //System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
                 }
             });
 
@@ -128,20 +128,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                     //Start running on exist card
                     if (valueQnty > 0) {
-                        System.out.println(position + " THE NAME IS " + product.getNameOfProduct());
+                        //System.out.println(position + " THE NAME IS " + product.getNameOfProduct());
                         dataReadFunc(position);
-                        System.out.println("DATA READ FUNC RUN FLAG" + foundedProductFlag );
+                        //System.out.println("DATA READ FUNC RUN FLAG" + foundedProductFlag );
                             new Timer().schedule(new TimerTask() {
                                 @Override
                                 public void run() {
                                     // this code will be executed after 1 seconds
                                     if(foundedProductFlag == 0){
                                         purchaseFunc(product.getNameOfProduct(), product.getBuyPrice(), valueQnty, product.getNameOfProduct());
-                                        System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
+                                        //System.out.println("I purchaseFunc NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
                                     }
                                     else{
                                         purchaseFuncUpdateQuantity(product.getNameOfProduct(), product.getBuyPrice(), valueQnty);
-                                        System.out.println("I purchaseFuncUpdateQuantity NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
+                                        //System.out.println("I purchaseFuncUpdateQuantity NEW PRODUCT START WITH FLAG  AND TIMER 2000!!!!" + foundedProductFlag );
                                     }
 
 
@@ -184,38 +184,38 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     foundedProductFlag = 0;
                     List<String> products = new ArrayList<String>();
-                    System.out.println("BEFORE ADDING SNAPSHOT RUN  and NAME THAT CAME IS  ");
+                    //System.out.println("BEFORE ADDING SNAPSHOT RUN  and NAME THAT CAME IS  ");
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
+                        //System.out.println("NAME OF PRODUCT " + postSnapshot.child("nameOfProduct").getValue());
                         if (postSnapshot.child("nameOfProduct").getValue() == null){
-                           System.out.println("IS NULLL");
+                           //System.out.println("IS NULLL");
                             break;
                         }
                         if(postSnapshot.child("nameOfProduct").getValue().equals(productList.get(position).getNameOfProduct())){
                             foundedProductFlag = 1;
-                            System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
-                            System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey() + " AND FLAG IS " + foundedProductFlag);
+                            //System.out.println("FOUNDED PRODUCT WITH SAME NAME NEED TO UPDATE HERE QUANTITY");
+                            //System.out.println("FOUNDED PRODUCT WITH KEY " + postSnapshot.getKey() + " AND FLAG IS " + foundedProductFlag);
 
                             theFoundedProductKey = postSnapshot.getKey();
 
-                            System.out.println("@@@@" + "The key is of product: " + theFoundedProductKey + " " + postSnapshot.child("quantity").getValue().getClass());
+                            //System.out.println("@@@@" + "The key is of product: " + theFoundedProductKey + " " + postSnapshot.child("quantity").getValue().getClass());
                             Long k = (Long) postSnapshot.child("quantity").getValue();
                             theFoundedQuantity = Math.toIntExact(k);
 
-                            System.out.println("The quantity is : " + theFoundedQuantity);
+                            //System.out.println("The quantity is : " + theFoundedQuantity);
 
                             break;
 
                         }
                         products.add(postSnapshot.getValue().toString());
-                        System.out.println(products);
+                        //System.out.println(products);
                         if(foundedProductFlag == 1){
                             break;
                         }
                     }
 
                     finishedSnapRun = 1;
-                    System.out.println("AFTER RUNNING" + finishedSnapRun);
+                    //System.out.println("AFTER RUNNING" + finishedSnapRun);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -231,7 +231,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
         public void purchaseFunc(String productName, double price, double quantity, String keyFromProducts ) {
-            System.out.println("I purchaseFunc NEW PRODUCT!!!!");
+            //System.out.println("I purchaseFunc NEW PRODUCT!!!!");
             Map<String, Object> dataOfCart = new HashMap<>();
             dataOfCart.put("URL", "hey");
             dataOfCart.put("id", "444");
@@ -246,7 +246,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
+                                //System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
                             } else {
 
                             }
@@ -259,7 +259,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void purchaseFuncUpdateQuantity(String productName, double price, double quantity) {
-            System.out.println("I purchaseFuncUpdateQuantity UPDATE QUANTITY!!!!");
+            //System.out.println("I purchaseFuncUpdateQuantity UPDATE QUANTITY!!!!");
             Map<String, Object> dataOfCart = new HashMap<>();
             dataOfCart.put("URL", "hey");
             dataOfCart.put("id", "444");
@@ -274,7 +274,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
+                                //System.out.println("The product added to cart " + HomeFragment.uniqueOfCartID);
 
                             } else {
 

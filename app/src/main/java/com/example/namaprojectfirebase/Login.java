@@ -60,24 +60,24 @@ public class Login extends AppCompatActivity {
     public void loginFunc(View view) {
         email = editTextEmail.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
-        System.out.println("The email is " + email + " and password " + password);
+        //System.out.println("The email is " + email + " and password " + password);
 
-//        System.out.println(mAuth.signInWithEmailAndPassword(email, password).isSuccessful());
+//        //System.out.println(mAuth.signInWithEmailAndPassword(email, password).isSuccessful());
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //redirect to the activity profile
-                    System.out.println("Yeeeeey we got in to the system with email !!!! " + mAuth.getCurrentUser().getEmail());
+                    //System.out.println("Yeeeeey we got in to the system with email !!!! " + mAuth.getCurrentUser().getEmail());
                     Intent i = new Intent(Login.this, DrawerActivity.class);
                     i.putExtra("id", nameFromDB);
-                    System.out.println(nameFromDB);
+                    //System.out.println(nameFromDB);
 //                    if(nameFromDB!=null) {
                         startActivity(i);
 //                    }
                 } else {
-                    System.out.println("Yeeeeey we DONT got in to the system with name because mAuth dont works" );
+                    //System.out.println("Yeeeeey we DONT got in to the system with name because mAuth dont works" );
                     Toast.makeText(Login.this, "You need to try again to login", Toast.LENGTH_LONG).show();
                 }
 
@@ -94,8 +94,8 @@ public class Login extends AppCompatActivity {
                 nameFromDB = dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("fullName").getValue(String.class);
 
                 if(dataSnapshot.exists()){
-                    System.out.println("Data snap shoot work" );
-                    System.out.println("Password is " +  nameFromDB);
+                    //System.out.println("Data snap shoot work" );
+                    //System.out.println("Password is " +  nameFromDB);
                 }
             }
             @Override
@@ -104,7 +104,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        System.out.println("IM in LOGIN");
+        //System.out.println("IM in LOGIN");
 
 
     }

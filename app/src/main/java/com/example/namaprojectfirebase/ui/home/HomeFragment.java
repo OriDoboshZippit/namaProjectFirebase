@@ -70,18 +70,18 @@ public class HomeFragment<puiblic> extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                     String ma = datasnapshot.getValue().toString();
-                    System.out.println("THE ALL DATA OF CARTS" + ma);
+                    //System.out.println("THE ALL DATA OF CARTS" + ma);
                     for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                         String ma1 = snapshot.child("currentUserEmail").getValue().toString();
                         String ma2 = snapshot.child("orderPlaced").getValue().toString();
-                        System.out.println(ma1);
-                        System.out.println(ma2);
+                        //System.out.println(ma1);
+                        //System.out.println(ma2);
 
 ///                        NEW TRY
                         if (ma1.equals(mAuth.getCurrentUser().getEmail())) {
-                            System.out.println("IT IS THE SAME USER");
+                            //System.out.println("IT IS THE SAME USER");
                             if(ma2.equals("0")){
-                                System.out.println("OPEN EXIST CARD");
+                                //System.out.println("OPEN EXIST CARD");
                                 uniqueOfCartID = snapshot.getKey();
                                 cartFlag = 1;
                                 break;
@@ -90,7 +90,7 @@ public class HomeFragment<puiblic> extends Fragment {
                     }
 
                     if(cartFlag==0){
-                        System.out.println("Creating CART with FUNC");
+                        //System.out.println("Creating CART with FUNC");
                         uniqueOfCartID = UUID.randomUUID().toString();
                         createCartFunc(mAuth.getCurrentUser().getEmail());
                     }
@@ -107,16 +107,16 @@ public class HomeFragment<puiblic> extends Fragment {
 //            uniqueOfCartID = UUID.randomUUID().toString();
         }
 
-        System.out.println("DB CARTS"  + dbCarts);
+        //System.out.println("DB CARTS"  + dbCarts);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         final String admin = "f@f.com";
         final String chief = "chief@nama.com";
         final String currentUser = mAuth.getCurrentUser().getEmail();
-        System.out.println("THE USER IS " + currentUser);
+        //System.out.println("THE USER IS " + currentUser);
 
 
         View root = binding.getRoot();
-        System.out.println("Home Fragment name " + Login.nameFromDB);
+        //System.out.println("Home Fragment name " + Login.nameFromDB);
         btnTable = (ImageButton) root.findViewById(R.id.tableButton);
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
@@ -134,7 +134,7 @@ public class HomeFragment<puiblic> extends Fragment {
             @Override
             public void onClick(View v)
             {
-                System.out.println("Going to Register");
+                //System.out.println("Going to Register");
                 Intent i = new Intent(getActivity(), Register.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
@@ -145,7 +145,7 @@ public class HomeFragment<puiblic> extends Fragment {
             @Override
             public void onClick(View v)
             {
-                System.out.println("Going to Cart");
+                //System.out.println("Going to Cart");
                 Intent i = new Intent(getActivity(), Cart.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
@@ -157,7 +157,7 @@ public class HomeFragment<puiblic> extends Fragment {
             @Override
             public void onClick(View v)
             {
-                System.out.println("Going to new Product");
+                //System.out.println("Going to new Product");
                 Intent i = new Intent(getActivity(), AddProduct.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
@@ -169,7 +169,7 @@ public class HomeFragment<puiblic> extends Fragment {
             @Override
             public void onClick(View v)
             {
-                System.out.println("Going to Table");
+                //System.out.println("Going to Table");
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
@@ -217,7 +217,7 @@ public class HomeFragment<puiblic> extends Fragment {
                 .setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
+                    //System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
                 } else {
 
                 }
@@ -235,7 +235,7 @@ public class HomeFragment<puiblic> extends Fragment {
                 .setValue(dataOfCart).addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
+                            //System.out.println("The cart has been added " + HomeFragment.uniqueOfCartID);
                         } else {
 
                         }

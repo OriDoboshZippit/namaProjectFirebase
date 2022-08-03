@@ -34,7 +34,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
     @Override
     public void onBindViewHolder(@NonNull CartProductAdapterViewHolder holder, int position) {
          Product product = productList.get(position);
-         System.out.println("QNTY" + holder.textViewQuantity.getText());
+         //System.out.println("QNTY" + holder.textViewQuantity.getText());
          holder.textViewTitle.setText(product.getNameOfProduct());
          holder.textViewQuantity.setText(String.valueOf(product.getQuantity()));
          holder.textViewPrice.setText(String.valueOf("Price per unit: " +product.getBuyPrice()));
@@ -62,7 +62,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
                 public void onClick(View v) {
                   int position = getAdapterPosition();
 //                    Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").setValue(15);
-//                    System.out.println("PLUSS" + " To the product "+ Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").get());
+//                    //System.out.println("PLUSS" + " To the product "+ Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").get());
 
                 }
             });
@@ -70,7 +70,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             itemView.findViewById(R.id.quantityMinus).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("MINUSS");
+                    //System.out.println("MINUSS");
                 }
             });
 
