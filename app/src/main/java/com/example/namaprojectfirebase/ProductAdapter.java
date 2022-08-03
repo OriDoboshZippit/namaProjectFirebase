@@ -3,6 +3,8 @@ package com.example.namaprojectfirebase;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,24 +74,39 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         System.out.println("Product before creation "+ productList.get(position).getBestBefore());
         Product product = productList.get(position);
+
+
         //EPOCH TO STRING
         long myTimeAsLong = productList.get(position).getBestBefore();
         Date date = new Date(myTimeAsLong);
+        long epochExp = date.getTime();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         String text = format.format(date);
 
         Date currentTime = Calendar.getInstance().getTime();
+        long epochCurrent = currentTime.getTime();
+
+
         System.out.println(currentTime);
-        //TODO DATE COLOR EXP
-//        if(date.toString()-currentTime > 200)
-//        {
-//            System.out.println("HEYY");
-//        }
+        long result = epochExp - epochCurrent;
+        long expBorder = 31461060883L;
+        System.out.println("EPOCH DIFF" + result + "for product " + productList.get(position).getNameOfProduct());
+        //TODO DATE COLOR EXP BUG
+        if(result < expBorder)
+        {
+
+            System.out.println("RESULT" + result);
+            System.out.println("EXP" + epochExp);
+            System.out.println("CURRENT " + epochCurrent);
+            holder.expDateInList.setTextColor(Color.parseColor("#FE0100"));
+            holder.expDateInList.setTypeface(holder.expDateInList.getTypeface(), Typeface.BOLD);
+        }
+
         Picasso.get().load(product.getImageUrl()).into(imageDB);
         holder.expDateInList.setText("Exp. date: " +  text);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
-        holder.textViewPrice.setText(String.valueOf(product.getBuyPrice()));
+        holder.textViewPrice.setText("Price: " + String.valueOf(product.getBuyPrice()));
         holder.textViewRating.setText("Available Quantity: " + String.valueOf((int) product.getQuantity()));
 
 
