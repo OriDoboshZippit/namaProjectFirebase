@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +40,23 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.allItemsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        EditText editTextSearch = findViewById(R.id.editTextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);
@@ -46,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
     }
+
+
+    private void filter (String text){
+        ArrayList <Product> filteredList = new ArrayList<>();
+        for(Product item : productList ){
+            if(item.getNameOfProduct().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        adapter.filteredList(filteredList);
+
+    }
+
 
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override

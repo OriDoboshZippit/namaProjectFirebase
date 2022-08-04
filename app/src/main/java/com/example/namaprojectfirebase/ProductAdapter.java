@@ -91,8 +91,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         long result = epochExp - epochCurrent;
         long expBorder = 31461060883L;
         System.out.println("EPOCH DIFF" + result + "for product " + productList.get(position).getNameOfProduct());
-        //TODO DATE COLOR EXP BUG
-        if(result < expBorder)
+        //TODO DATE COLOR EXP BUG IS FROM THE LATS PRODUCT AND RESULT GOING TO THE FIRST
+        if(result > expBorder)
         {
 
             System.out.println("RESULT" + result);
@@ -125,6 +125,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public int getItemCount() {
         return productList.size();
     }
+
+    public void filteredList (ArrayList<Product> filteredList){
+        productList = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
