@@ -1,8 +1,10 @@
 package com.example.namaprojectfirebase;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -152,7 +154,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Product product = productList.get(position);
-                    //System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
+                    System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
+                    v.getContext().startActivity(new Intent(mCtx, Order.class));
                 }
             });
 
