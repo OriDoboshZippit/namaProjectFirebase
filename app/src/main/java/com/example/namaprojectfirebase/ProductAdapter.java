@@ -1,6 +1,5 @@
 package com.example.namaprojectfirebase;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -154,8 +153,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Product product = productList.get(position);
-                    System.out.println("HEY I CLICKABLE TOO " + product.getNameOfProduct());
-                    v.getContext().startActivity(new Intent(mCtx, Order.class));
+
+                    String strNameOfProduct = productList.get(position).getNameOfProduct();
+                    System.out.println("Send String " + strNameOfProduct);
+                    Intent intentToEditProduct = new Intent(mCtx, editProduct.class);
+                    intentToEditProduct.putExtra("keyName", strNameOfProduct);
+
+                    v.getContext().startActivity(intentToEditProduct);
+
+                    System.out.println("THE NAME THAT SENDED " + strNameOfProduct);
                 }
             });
 
