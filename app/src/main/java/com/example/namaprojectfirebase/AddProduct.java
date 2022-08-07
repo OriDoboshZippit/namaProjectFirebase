@@ -47,11 +47,11 @@ import java.util.UUID;
 @SuppressWarnings("deprecation")
 public class AddProduct extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
-    public EditText editID, editName, editBuyPrice, editQuantity , editDescription;
+    public EditText editID, editName, editBuyPrice, editCellPrice, editQuantity , editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
     public static String uniqueOfProducID;
-    public double buyPr;
+    public double buyPr, cellPr;
     private DatabaseReference rootDataBase;
     private StorageReference mStorageRef;
     private ImageView imImage;
@@ -157,6 +157,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         editID = (EditText) findViewById(R.id.editID);
         editName = (EditText) findViewById(R.id.editName);
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
+        editCellPrice = (EditText) findViewById(R.id.editCellPrice);
         editQuantity = (EditText) findViewById(R.id.quantity);
         editDescription = (EditText) findViewById(R.id.editDescription);
         imImage = (ImageView) findViewById(R.id.imageView);
@@ -173,23 +174,6 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         catch (NumberFormatException nfe) {
             throw new ParsingException("NumberFormatException: " + nfe.getMessage());
         }
-    }
-
-    public void onRadioButtonClickedDrink(View view) {
-        Type = 1;
-        //System.out.println("Drink");
-    }
-    public void onRadioButtonClickedFood(View view) {
-        Type = 2;
-        //System.out.println("Food");
-    }
-    public void onRadioButtonClickedGrocery(View view) {
-        Type = 3;
-        //System.out.println("Grocery");
-    }
-    public void onRadioButtonClickedFruitsVegetables(View view) {
-        Type = 4;
-        //System.out.println("Fruits and Vegetables");
     }
 
 //
@@ -290,9 +274,14 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
         String BuyPrice = editBuyPrice.getText().toString().trim();
+        String CellPrice = editCellPrice.getText().toString().trim();
 
         String quantityString= editQuantity.getText().toString();
         double quantity = Integer.parseInt(quantityString);
+
+        double minQty = quantity*0.1;
+        int minQuantity = (int) minQty;
+
         //System.out.println("QUANTITY" + quantity);
 
         String addingDate = DateAdding.getText().toString().trim();
@@ -318,9 +307,20 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             editBuyPrice.requestFocus ();
             return;
         }
+         if(CellPrice.isEmpty()) {
+             editCellPrice.setError("Cell price is required");
+             editCellPrice.requestFocus();
+             return;
+         }
 
         try {
             buyPr = StoNum(BuyPrice);
+        } catch (ParsingException e) {
+            //System.out.println(e.getMessage());
+        }
+
+        try {
+            cellPr = StoNum(CellPrice);
         } catch (ParsingException e) {
             //System.out.println(e.getMessage());
         }
@@ -333,7 +333,9 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("nameOfProduct", Name);
         dataOfProduct.put("URL", URL);
         dataOfProduct.put("buyPrice", buyPr);
+        dataOfProduct.put("cellPrice", cellPr);
         dataOfProduct.put("quantity", quantity);
+        dataOfProduct.put("minQty", minQuantity);
         dataOfProduct.put("dataOfAdding", calendarAdd.getTimeInMillis());
         dataOfProduct.put("bestBefore", calendarExp.getTimeInMillis());
         dataOfProduct.put("typeOfProduct", Type);
@@ -346,7 +348,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
                 .setValue(dataOfProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    //System.out.println("The product has been added with UNIQUE ID " + uniqueOfProducID);
+                    System.out.println("The product has been added with UNIQUE ID " + uniqueOfProducID);
                 } else {
 //                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
 
