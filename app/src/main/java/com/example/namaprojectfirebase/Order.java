@@ -82,6 +82,7 @@ public class Order extends Activity {
 
 //                if(count > 2){
                     Cart.dbProducts.child("orderPlaced").setValue(1);
+
 //                }
 //                else
 //                {

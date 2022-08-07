@@ -1,5 +1,7 @@
 package com.example.namaprojectfirebase;
 
+import static com.example.namaprojectfirebase.Login.mAuth;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ProductAdapter adapter;
     public ImageButton addToCart;
-
-
+    public String typeFromDb;
+    DatabaseReference dataSnapshot;
     DatabaseReference dbProducts,addToCartDb;
-
+    public static int globalPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
         dbProducts = FirebaseDatabase.getInstance().getReference("products");
         dbProducts.addListenerForSingleValueEvent(valueEventListener);
 
+
+//        dataSnapshot = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getCurrentUser().getUid()).child("permission");
+//
+//
+
+
+
+
+        dataSnapshot = FirebaseDatabase.getInstance().getReference().child("users");
+        dataSnapshot.addListenerForSingleValueEvent(valueEventListenerNew);
+
     }
 
 
@@ -88,10 +100,33 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     System.out.println("THE BEST BEFORE FROM DB " +snapshot.child("bestBefore").getValue());
                     Product product = snapshot.getValue(Product.class);
-
-                    System.out.println("The before sending to list " +product.getBestBefore());
+                    System.out.println("The before sending to list " + product.getBestBefore());
                     productList.add(product);
 
+                }
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+
+//TODO Get the permission
+    ValueEventListener valueEventListenerNew = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot snapshotUserType : dataSnapshot.getChildren()) {
+                    System.out.println("IUSERRR"  + snapshotUserType.child("permission").getValue());
+                    if(snapshotUserType.child("email").getValue().equals(mAuth.getCurrentUser().getEmail())){
+                        System.out.println("THE TYPE IS : " + snapshotUserType.child("permission").getValue() + "The user " + mAuth.getCurrentUser().getEmail());
+                        globalPermission = Integer.parseInt(snapshotUserType.child("permission").getValue().toString()) ;
+                        System.out.println("THE permission : " + globalPermission);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }

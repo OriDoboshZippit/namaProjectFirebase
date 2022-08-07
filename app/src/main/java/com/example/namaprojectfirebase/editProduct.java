@@ -46,7 +46,7 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
         Bundle extras = getIntent().getExtras();
         nameOfProduct= extras.getString("keyName");
         System.out.println("NAME IN EDIT" + nameOfProduct);
-//TODO EDITABLE PRODUCT // PRICE SELL PRICE //QUANTITY // DELETE // NAME // MINIMUM QNTY
+//TODO EDITABLE PRODUCT DELETE
         findProduct = FirebaseDatabase.getInstance().getReference("products");
         findProduct.addListenerForSingleValueEvent(valueEventListenerForUpdateProduct);
         productQuery = findProduct.orderByKey();
@@ -66,7 +66,6 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
                 if(!editProductQnty.getText().toString().isEmpty()){
                      System.out.println("IM NOT NULLLL" +  findProduct.child(theKeyOfProduct).child("nameOfProfuct").getKey());
                      findProduct.child(theKeyOfProduct).child("quantity").setValue(Integer.parseInt(editProductQnty.getText().toString()));
-
                 }
                 if(!editProductMinQnty.getText().toString().isEmpty()){
                     System.out.println("IM NOT MINQUANTITY" +  findProduct.child(theKeyOfProduct).child("minQty").getKey());
@@ -76,7 +75,6 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
                 if(!editProductSellPrice.getText().toString().isEmpty()){
                     System.out.println("IM NOT MINQUANTITY" +  findProduct.child(theKeyOfProduct).child("sellPrice").getKey());
                         findProduct.child(theKeyOfProduct).child("sellPrice").setValue(Integer.parseInt(editProductSellPrice.getText().toString()));
-
                 }
 
 
@@ -124,7 +122,6 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             System.out.println("IN RUNNING ");
                     for (DataSnapshot snapshotRun : snapshot.getChildren()) {
-
                         if(nameOfProduct.equals(snapshotRun.child("nameOfProduct").getValue())){
                             System.out.println("THE KEY IS FOUNDED" + snapshotRun.getKey());
                             theKeyOfProduct = snapshotRun.getKey();
