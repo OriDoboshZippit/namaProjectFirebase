@@ -6,18 +6,22 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardForRecycle"
         android:layout_width="380dp"
         android:layout_height="138dp"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+       >
 
         <RelativeLayout
             android:id="@+id/my_list_item"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:backgroundTint="@color/white"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="false">
 
             <ImageButton
+                android:id="@+id/imageArrow"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
@@ -27,8 +31,8 @@
                 android:clickable="false"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:visibility="visible"
-                android:src="@drawable/arrowpoint">
+                android:src="@drawable/arrowpoint"
+                android:visibility="visible">
 
             </ImageButton>
 

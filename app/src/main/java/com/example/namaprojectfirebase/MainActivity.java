@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-//TODO Get the permission
+
     ValueEventListener valueEventListenerNew = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {

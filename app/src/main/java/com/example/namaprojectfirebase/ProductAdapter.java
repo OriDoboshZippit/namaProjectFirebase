@@ -1,20 +1,27 @@
 package com.example.namaprojectfirebase;
 
+import static com.example.namaprojectfirebase.MainActivity.globalPermission;
+import static com.example.namaprojectfirebase.R.id.*;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.namaprojectfirebase.ui.home.HomeFragment;
@@ -51,6 +58,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     DatabaseReference cartDb;
     Query cartQuery;
     Handler handlerDataBase;
+    public CardView cardForRecycle;
+    public ImageView imageArrow;
 
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
@@ -66,16 +75,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ProductViewHolder holder = new ProductViewHolder(view);
         cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         cartQuery = cartDb.orderByKey();
+        //TODO PERMISSION SETUP
+        if(globalPermission == 0) {
+            imageArrow.setVisibility(View.GONE);
+        }
 
         //System.out.println("CART" + cartQuery.get());
         return holder;
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         System.out.println("Product before creation "+ productList.get(position).getBestBefore());
         Product product = productList.get(position);
-
 
         //EPOCH TO STRING
         long myTimeAsLong = productList.get(position).getBestBefore();
@@ -138,15 +151,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         TextView textViewTitle, textViewDesc, textViewRating, textViewPrice, expDateInList, counter;
         ImageButton addToCardRecycle;
 
+
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
+
             imageDB = itemView.findViewById(R.id.imageDB);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             textViewRating = itemView.findViewById(R.id.textViewRating);
-            textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
+            textViewDesc = itemView.findViewById(textViewShortDesc);
             addToCardRecycle = itemView.findViewById(R.id.addToCardRecycle);
             expDateInList = itemView.findViewById(R.id.expDateInList);
+            imageArrow = itemView.findViewById(R.id.imageArrow);
+            cardForRecycle = itemView.findViewById(R.id.cardForRecycle);
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -154,16 +175,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     int position = getAdapterPosition();
                     Product product = productList.get(position);
 
+
                     String strNameOfProduct = productList.get(position).getNameOfProduct();
                     System.out.println("Send String " + strNameOfProduct);
+
                     Intent intentToEditProduct = new Intent(mCtx, editProduct.class);
                     intentToEditProduct.putExtra("keyName", strNameOfProduct);
-
-                    v.getContext().startActivity(intentToEditProduct);
-
+                    if(globalPermission != 0) {
+                        v.getContext().startActivity(intentToEditProduct);
+                    }
                     System.out.println("THE NAME THAT SENDED " + strNameOfProduct);
                 }
-            });
+            }
+
+
+
+
+            );
 
 
             // ADD CARD BUTTON WITH QUANTITY
@@ -172,7 +200,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Product product = productList.get(position);
-                    EditText text = (EditText) itemView.findViewById(R.id.textViewQuantity);
+                    EditText text = (EditText) itemView.findViewById(textViewQuantity);
                     String value = text.getText().toString();
                     valueQnty = Integer.parseInt(value);
 
