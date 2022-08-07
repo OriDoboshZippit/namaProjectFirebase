@@ -47,11 +47,11 @@ import java.util.UUID;
 @SuppressWarnings("deprecation")
 public class AddProduct extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     public TextView addProduct, DateAdding, BestBefore, getProduct;
-    public EditText editID, editName, editBuyPrice, editCellPrice, editQuantity , editDescription;
+    public EditText editID, editName, editBuyPrice, editSellPrice, editQuantity , editDescription;
     private DatePickerDialog.OnDateSetListener AddingDateListener, BestBeforeListener;
     public int Type;
     public static String uniqueOfProducID;
-    public double buyPr, cellPr;
+    public double buyPr, sellPr;
     private DatabaseReference rootDataBase;
     private StorageReference mStorageRef;
     private ImageView imImage;
@@ -157,7 +157,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         editID = (EditText) findViewById(R.id.editID);
         editName = (EditText) findViewById(R.id.editName);
         editBuyPrice = (EditText) findViewById(R.id.editBuyPrice);
-        editCellPrice = (EditText) findViewById(R.id.editCellPrice);
+        editSellPrice = (EditText) findViewById(R.id.editCellPrice);
         editQuantity = (EditText) findViewById(R.id.quantity);
         editDescription = (EditText) findViewById(R.id.editDescription);
         imImage = (ImageView) findViewById(R.id.imageView);
@@ -274,7 +274,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         String ID = editID.getText().toString().trim();
         String Name = editName.getText().toString().trim();
         String BuyPrice = editBuyPrice.getText().toString().trim();
-        String CellPrice = editCellPrice.getText().toString().trim();
+        String CellPrice = editSellPrice.getText().toString().trim();
 
         String quantityString= editQuantity.getText().toString();
         double quantity = Integer.parseInt(quantityString);
@@ -308,8 +308,8 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
             return;
         }
          if(CellPrice.isEmpty()) {
-             editCellPrice.setError("Cell price is required");
-             editCellPrice.requestFocus();
+             editSellPrice.setError("Cell price is required");
+             editSellPrice.requestFocus();
              return;
          }
 
@@ -320,7 +320,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         }
 
         try {
-            cellPr = StoNum(CellPrice);
+            sellPr = StoNum(CellPrice);
         } catch (ParsingException e) {
             //System.out.println(e.getMessage());
         }
@@ -333,7 +333,7 @@ public class AddProduct extends AppCompatActivity implements View.OnClickListene
         dataOfProduct.put("nameOfProduct", Name);
         dataOfProduct.put("URL", URL);
         dataOfProduct.put("buyPrice", buyPr);
-        dataOfProduct.put("cellPrice", cellPr);
+        dataOfProduct.put("sellPrice", sellPr);
         dataOfProduct.put("quantity", quantity);
         dataOfProduct.put("minQty", minQuantity);
         dataOfProduct.put("dataOfAdding", calendarAdd.getTimeInMillis());
