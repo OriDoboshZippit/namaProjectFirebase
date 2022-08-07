@@ -3,16 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/Veronika13/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/veron/AndroidStudioProjects/namaProjectFirebase/Veronika13/app/src/main/res/layout/activity_product.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22644927536231885" />
-        <entry key="app/src/main/res/layout/activity_order_form.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/activity_product.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_product_edit.xml" value="0.19542032877604165" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/cart.xml" value="0.1953125" />
-        <entry key="app/src/main/res/layout/recyclerlist.xml" value="0.5500667556742324" />
-        <entry key="app/src/main/res/layout/recyclerlistcart.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/cart.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/recyclerlist.xml" value="0.2234375" />
+        <entry key="app/src/main/res/layout/recyclerlistcart.xml" value="0.2234375" />
+        <entry key="app/src/main/res/layout/singleitemcart.xml" value="0.2234375" />
       </map>
     </option>
   </component>

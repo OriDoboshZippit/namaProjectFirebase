@@ -11,7 +11,7 @@ public class Product {
 
     public String id, nameOfProduct, description;
     public int type;
-    public double buyPrice, sellPrice, quantity;
+    public double buyPrice, sellPrice, quantity, minQty;
     public long addingDateList, bestBeforeList;
     public String URL;
     public String imageID;
@@ -49,6 +49,9 @@ public class Product {
         System.out.println("I SET QUANTITY");
         this.quantity = quantity;
     }
+    public void setMinQty ( double minQty) {
+        this.minQty = minQty;
+    }
 
 
     public String getNameOfProduct() {
@@ -62,6 +65,8 @@ public class Product {
     public double getBuyPrice() {
         return buyPrice;
     }
+
+    public double getSellPrice() { return sellPrice; }
 
     public double getQuantity() {
         return quantity;
