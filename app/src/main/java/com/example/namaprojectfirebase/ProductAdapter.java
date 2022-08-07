@@ -107,7 +107,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.expDateInList.setText("Exp. date: " +  text);
         holder.textViewTitle.setText(product.getNameOfProduct());
         holder.textViewDesc.setText(product.getDescription());
-        holder.textViewPrice.setText("Price: " + String.valueOf(product.getBuyPrice()));
+        holder.textViewPrice.setText("Price: " + String.valueOf(product.getSellPrice()));
         holder.textViewRating.setText("Available Quantity: " + String.valueOf((int) product.getQuantity()));
 
 

@@ -26,8 +26,8 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
     String nameOfProduct;
     DatabaseReference findProduct;
     Query productQuery;
-    EditText editProductName,editProductSellPrice,gettingThefirstDbPrice;
-    TextView editProductNameTitle,editProductQnty;
+    EditText editProductName,editProductSellPrice;
+    TextView editProductNameTitle,editProductQnty,editProductMinQnty;
     Button updateBtn, deleteBtn;
     public static String firstAttempQnty,theKeyOfProduct;
 
@@ -63,10 +63,25 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case  R.id.productButtonPageEditUpdate: {
                 System.out.println("FIRST ATTEMPT STRING "  + firstAttempQnty  + " EDIT" + editProductQnty.getText().toString());
-                 if(!editProductQnty.getText().toString().isEmpty()){
+                if(!editProductQnty.getText().toString().isEmpty()){
                      System.out.println("IM NOT NULLLL" +  findProduct.child(theKeyOfProduct).child("nameOfProfuct").getKey());
                      findProduct.child(theKeyOfProduct).child("quantity").setValue(Integer.parseInt(editProductQnty.getText().toString()));
-                 }
+
+                }
+                if(!editProductMinQnty.getText().toString().isEmpty()){
+                    System.out.println("IM NOT MINQUANTITY" +  findProduct.child(theKeyOfProduct).child("minQty").getKey());
+                    findProduct.child(theKeyOfProduct).child("minQty").setValue(Integer.parseInt(editProductMinQnty.getText().toString()));
+
+                }
+                if(!editProductSellPrice.getText().toString().isEmpty()){
+                    System.out.println("IM NOT MINQUANTITY" +  findProduct.child(theKeyOfProduct).child("sellPrice").getKey());
+                        findProduct.child(theKeyOfProduct).child("sellPrice").setValue(Integer.parseInt(editProductSellPrice.getText().toString()));
+
+                }
+
+
+
+
             }
 
             case R.id.productButtonPageEditDelete: {
@@ -117,11 +132,13 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
                             editProductSellPrice = (EditText) findViewById(R.id.sellPriceEditPage);
                             editProductNameTitle = (TextView) findViewById(R.id.nameOfProductEdit);
                             editProductQnty = (TextView) findViewById(R.id.quantityOfProductEditPage);
+                            editProductMinQnty = (EditText) findViewById(R.id.minQuantityOfProductEditPage);
                             editProductName.setHint(snapshotRun.child("nameOfProduct").getValue().toString());
-                            editProductSellPrice.setHint(snapshotRun.child("buyPrice").getValue().toString());
+                            editProductSellPrice.setHint(snapshotRun.child("sellPrice").getValue().toString());
                             editProductNameTitle.setText(snapshotRun.child("nameOfProduct").getValue().toString());
                             editProductQnty.setHint(snapshotRun.child("quantity").getValue().toString());
                             firstAttempQnty = snapshotRun.child("quantity").getValue().toString();
+                            editProductMinQnty.setHint(snapshotRun.child("minQty").getValue().toString());
                         }
                         System.out.println("THE VALUE OF PRODUCT" + snapshotRun.getValue() + " AND NAME IS " + snapshotRun.child("nameOfProduct").getValue());
                     }

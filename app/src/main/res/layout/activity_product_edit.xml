@@ -10,7 +10,6 @@
     tools:layout_editor_absoluteY="146dp"
 
     >
-//
 
     <TextView
         android:id="@+id/nameOfProductEdit"
@@ -151,7 +150,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.439" />
 
-<!--    <EditText-->
+    <!--    <EditText-->
 <!--        android:id="@+id/bestBeforeEditPage"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="40dp"-->
@@ -167,6 +166,24 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.505" />-->
+
+    <EditText
+        android:id="@+id/minQuantityOfProductEditPage"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="99dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint=" Min Quantity"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.424" />
 
     <Button
         android:id="@+id/productButtonPageEditUpdate"
