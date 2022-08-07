@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +25,13 @@ import java.util.List;
 public class editProduct extends AppCompatActivity implements View.OnClickListener {
     Product editableProduct;
     String nameOfProduct;
-    DatabaseReference findProduct;
+    DatabaseReference findProduct,deleteProduct;
     Query productQuery;
     EditText editProductName,editProductSellPrice;
     TextView editProductNameTitle,editProductQnty,editProductMinQnty;
     Button updateBtn, deleteBtn;
     public static String firstAttempQnty,theKeyOfProduct;
-
+    DatabaseReference deleteDocument;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,12 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
         findProduct.addListenerForSingleValueEvent(valueEventListenerForUpdateProduct);
         productQuery = findProduct.orderByKey();
         System.out.println(findProduct);
+        deleteProduct = FirebaseDatabase.getInstance().getReference();
+
+
+
+        System.out.println(deleteDocument);
+
 //        workWithExistFunc(nameOfProduct);
 
 
@@ -83,7 +90,12 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
             }
 
             case R.id.productButtonPageEditDelete: {
-                System.out.println("THE DELETE");
+
+//                findProduct.child(theKeyOfProduct).child("sellPrice").setValue(Integer.parseInt(editProductSellPrice.getText().toString()));
+//                System.out.println("THE DELETING PRODUCT IS "  + deleteDocument.collection("products").document(theKeyOfProduct).getId());
+                deleteProduct.child("products").child(theKeyOfProduct).removeValue();
+//                        .addOnSuccessListener { Toast.makeText(applicationContext, "Successfully deleted user", Toast.LENGTH_SHORT).show() }
+//                         .addOnFailureListener { Toast.makeText(applicationContext, "Unable to delete user", Toast.LENGTH_SHORT).show() }
                 break;
             }
 
