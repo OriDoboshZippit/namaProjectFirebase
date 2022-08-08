@@ -44,6 +44,8 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
         deleteBtn = (Button) findViewById(R.id.productButtonPageEditDelete);
         deleteBtn.setOnClickListener(this);
 
+
+
         Bundle extras = getIntent().getExtras();
         nameOfProduct= extras.getString("keyName");
         System.out.println("NAME IN EDIT" + nameOfProduct);
@@ -65,6 +67,7 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
 
     }
 
+
     public void onClick(View v) {
         switch (v.getId()) {
             case  R.id.productButtonPageEditUpdate: {
@@ -82,43 +85,28 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
                     System.out.println("IM NOT MINQUANTITY" +  findProduct.child(theKeyOfProduct).child("sellPrice").getKey());
                         findProduct.child(theKeyOfProduct).child("sellPrice").setValue(Integer.parseInt(editProductSellPrice.getText().toString()));
                 }
+                break;
             }
 
             case R.id.productButtonPageEditDelete: {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
-                builder.setTitle("Are you sure that you want to delete " + nameOfProduct + "?");
-                builder.setMessage("This action is nonreturnable.");
-                builder.setPositiveButton("Yes I want to delete.", new DialogInterface.OnClickListener() {
+                builder.setTitle("Are you sure?");
+                builder.setMessage("This action is nonreturnable. ");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                                Toast.makeText(ProductAdapter.ProductViewHolder.this, "You welcome", Toast.LENGTH_SHORT).show();
                         deleteProduct.child("products").child(theKeyOfProduct).removeValue();
                     }
                 });
                 builder.show();
-//            } else {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-//                builder.setCancelable(true);
-//                builder.setTitle("You need to add more than 0 items to cart");
-//                builder.setMessage("For any help you can talk to the supervisor.");
-//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-////                                Toast.makeText(ProductAdapter.ProductViewHolder.this, "You welcome", Toast.LENGTH_SHORT).show();
-//                    }
-//                builder.show();
-            }
-//                findProduct.child(theKeyOfProduct).child("sellPrice").setValue(Integer.parseInt(editProductSellPrice.getText().toString()));
-//                System.out.println("THE DELETING PRODUCT IS "  + deleteDocument.collection("products").document(theKeyOfProduct).getId());
 
-//                        .addOnSuccessListener { Toast.makeText(applicationContext, "Successfully deleted user", Toast.LENGTH_SHORT).show() }
-//                         .addOnFailureListener { Toast.makeText(applicationContext, "Unable to delete user", Toast.LENGTH_SHORT).show() }
                 break;
             }
 
         }
-
+    }
 
 
 
