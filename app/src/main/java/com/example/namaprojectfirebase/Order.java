@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,13 +27,15 @@ import java.util.List;
 public class Order extends Activity {
     public static DatabaseReference orderDbSnap,allProducts;
     public int count = 0,flagRunningCart =0,valueUpdated=0;
+    public EditText editClientName, editAddress, editPhone, editComments ;
+    public Button addPurchases;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_form);
         Button getOrder = (Button) findViewById(R.id.markOrderRecieved);
-
+        System.out.println("IM IN ORDER CARD ");
         Query orderQueryCopyAllToOrders, updateQuantityFromGlobal;
 
         orderDbSnap = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
@@ -41,6 +44,13 @@ public class Order extends Activity {
 
         allProducts = FirebaseDatabase.getInstance().getReference("products");
         updateQuantityFromGlobal = allProducts.orderByKey();
+
+
+        editClientName = (EditText) findViewById(R.id.nameOfTheClient);
+        editAddress = (EditText) findViewById(R.id.editAddressClient);
+        editPhone = (EditText) findViewById(R.id.phoneOfClient);
+        editComments = (EditText) findViewById(R.id.editComments);
+
 
         List productsInCartNameQuantity = new ArrayList();
 
