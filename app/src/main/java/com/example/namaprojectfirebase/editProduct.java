@@ -89,7 +89,6 @@ public class editProduct extends AppCompatActivity implements View.OnClickListen
             }
 
             case R.id.productButtonPageEditDelete: {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle("Are you sure?");

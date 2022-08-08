@@ -61,7 +61,12 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
                 @Override
                 public void onClick(View v) {
                   int position = getAdapterPosition();
-//                    Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").setValue(15);
+                  if(!productList.isEmpty()){
+                      productList.get(position).setQuantity(productList.get(position).getQuantity() +1);
+                      System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+                  }
+
+//                    Cart.dbProducts.child("Jelly").child("quantity").setValue((Cart.dbProducts.child("Jelly").child("quantity").get() );
 //                    //System.out.println("PLUSS" + " To the product "+ Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").get());
 
                 }
@@ -70,7 +75,12 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             itemView.findViewById(R.id.quantityMinus).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //System.out.println("MINUSS");
+                    int position = getAdapterPosition();
+                    if(!productList.isEmpty()){
+                        productList.get(position).setQuantity(productList.get(position).getQuantity() - 1);
+                        System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+
+                    }
                 }
             });
 

@@ -27,8 +27,6 @@ import java.util.logging.Handler;
 
 
 public class Cart extends AppCompatActivity {
-
-
     RecyclerView recyclerView;
     CartProductAdapter adapter;
     List<Product> productList;
