@@ -1,6 +1,8 @@
 package com.example.namaprojectfirebase;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,13 +62,15 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             itemView.findViewById(R.id.quantityPlus).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  int position = getAdapterPosition();
-                  if(!productList.isEmpty()){
-                      productList.get(position).setQuantity(productList.get(position).getQuantity() +1);
-                      System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
-                  }
+                    int position = getAdapterPosition();
+                    if(!productList.isEmpty()){
+                        productList.get(position).setQuantity(productList.get(position).getQuantity() +1);
+                        System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+                        Cart.dbProducts.child(productList.get(position).getNameOfProduct()).child("quantity").setValue(productList.get(position).getQuantity());
 
-//                    Cart.dbProducts.child("Jelly").child("quantity").setValue((Cart.dbProducts.child("Jelly").child("quantity").get() );
+                    }
+
+//
 //                    //System.out.println("PLUSS" + " To the product "+ Cart.dbProducts.child("-N75vtUd5iOR1aluZC7n").child("quantity").get());
 
                 }
@@ -76,11 +80,32 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if(!productList.isEmpty()){
-                        productList.get(position).setQuantity(productList.get(position).getQuantity() - 1);
-                        System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+                    productList.get(position).setQuantity(productList.get(position).getQuantity() - 1);
+                    System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+                    Cart.dbProducts.child(productList.get(position).getNameOfProduct()).child("quantity").setValue(productList.get(position).getQuantity());
+                }
+            });
 
-                    }
+            itemView.findViewById(R.id.deleteFromCart).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    productList.get(position).setQuantity(productList.get(position).getQuantity() - 1);
+                    System.out.println("QUANTITY FROM LIST "+ productList.get(position).getQuantity());
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
+                    builder.setCancelable(true);
+                    builder.setTitle("Are you sure?");
+                    builder.setMessage("This action is nonreturnable. ");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Cart.dbProducts.child(productList.get(position).getNameOfProduct()).removeValue();
+
+                        }
+                    });
+                    builder.show();
+
                 }
             });
 
