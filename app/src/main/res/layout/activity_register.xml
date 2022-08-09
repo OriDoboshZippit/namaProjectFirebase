@@ -46,19 +46,20 @@
         android:id="@+id/registerUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:backgroundTint="@color/black"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/aldrich"
         android:text="REGISTER"
-        app:cornerRadius="15dp"
+        android:textColor="@color/black"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="330dp"
+        android:layout_width="302dp"
+        android:layout_height="325dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,55 +148,43 @@
     </RelativeLayout>
 
     <RadioGroup
-        android:layout_width="150dp"
-        android:layout_height="113dp"
+        android:layout_width="302dp"
+        android:layout_height="135dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797">
+        app:layout_constraintVertical_bias="0.822">
 
         <RadioButton
             android:id="@+id/radioAdmin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:onClick="onRadioButtonClickedAdmin"
             android:text="Administrator" />
 
         <RadioButton
             android:id="@+id/radioWorker"
             android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:onClick="onRadioButtonClickedWorker"
-            android:layout_height="wrap_content"
             android:text="Worker" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:layout_width="150dp"
-        android:layout_height="114dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797">
-
-        <RadioButton
-            android:id="@+id/radioAccountant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClickedAccountant"
-            android:text="Accountant" />
 
         <RadioButton
             android:id="@+id/radioCourier"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:onClick="onRadioButtonClickedCourier"
             android:text="Courier" />
+
+        <RadioButton
+            android:id="@+id/radioAccountant"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:onClick="onRadioButtonClickedAccountant"
+            android:text="Accountant" />
     </RadioGroup>
 
 

@@ -73,19 +73,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public void onRadioButtonClickedAdmin(View view) {
         permission = 1;
-        //System.out.println("Admin");
+        System.out.println("Admin");
     }
     public void onRadioButtonClickedWorker(View view) {
         permission = 2;
-        //System.out.println("Worker");
+        System.out.println("Worker");
     }
     public void onRadioButtonClickedCourier(View view) {
         permission = 3;
-        //System.out.println("Courier");
+        System.out.println("Courier");
     }
     public void onRadioButtonClickedAccountant(View view) {
         permission = 4;
-        //System.out.println("Accountant");
+        System.out.println("Accountant");
     }
 
     private void registeruser() {
@@ -98,6 +98,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String address = editAddress.getText().toString().trim();
         String salaryStr = editSalary.getText().toString().trim();
         int salary = Integer.parseInt(salaryStr);
+        System.out.println("kfjnikdfmmsmdwsf   " + salary);
 
 
         if (fullName.isEmpty()) {
@@ -115,10 +116,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             editTextEmail.setError("Email is required!");
             editTextEmail.requestFocus();
             return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email");
-            editTextEmail.requestFocus();
         }
 
         if(password.isEmpty()){
@@ -138,10 +135,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            //System.out.println("After task new user");
+                            System.out.println("After task new user, the permission is   " + permission);
+
                             if (task.isSuccessful()) {
                                 User user = new User(fullName, license, email,phone, address, salary, permission);
-                                //System.out.println("After builder new user");
+                                System.out.println("After builder new user" + permission);
                                 FirebaseDatabase.getInstance().getReference("users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -149,8 +147,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(Register.this, " User has been registered", Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                        }else {
+                                            Toast.makeText(Register.this, " failed", Toast.LENGTH_LONG).show();
 
                                         }
                                     }
@@ -158,7 +156,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                             }
                             else{
-                                Toast.makeText(Register.this, " Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Register.this, " Failed to register! This email is already exist", Toast.LENGTH_LONG).show();
                             }
                         }
 

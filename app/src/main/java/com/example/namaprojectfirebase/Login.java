@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity {
     private TextView register;
     private EditText editTextEmail, editTextPassword;
     private Button signIn, Register;
+    ProductAdapter adapter;
     private String users,email,password;
     public static FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
     public static String nameFromDB;
     public Query currentUser;
     DatabaseReference databaseReference;
+    public static int globalPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,33 @@ public class Login extends AppCompatActivity {
         editTextPassword = (EditText) findViewById (R.id.editTextTextPassword);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         currentUser = databaseReference.orderByChild("adressText");
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+        databaseReference.addListenerForSingleValueEvent(valueEventListenerNew);
     }
+
+    ValueEventListener valueEventListenerNew = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot snapshotUserType : dataSnapshot.getChildren()) {
+                    System.out.println("IUSERRR"  + snapshotUserType.child("permission").getValue());
+                    if(snapshotUserType.child("email").getValue().equals(mAuth.getCurrentUser().getEmail())){
+                        System.out.println("THE TYPE IS : " + snapshotUserType.child("permission").getValue() + "The user " + mAuth.getCurrentUser().getEmail());
+                        globalPermission = Integer.parseInt(snapshotUserType.child("permission").getValue().toString()) ;
+                        System.out.println("THE permission : " + globalPermission);
+                    }
+                }
+                //adapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
 
     //login button
