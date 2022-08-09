@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public String typeFromDb;
     DatabaseReference dataSnapshot;
     DatabaseReference dbProducts,addToCartDb;
-    public static int globalPermission;
+//    public static int globalPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("IUSERRR"  + snapshotUserType.child("permission").getValue());
                     if(snapshotUserType.child("email").getValue().equals(mAuth.getCurrentUser().getEmail())){
                         System.out.println("THE TYPE IS : " + snapshotUserType.child("permission").getValue() + "The user " + mAuth.getCurrentUser().getEmail());
-                        globalPermission = Integer.parseInt(snapshotUserType.child("permission").getValue().toString()) ;
-                        System.out.println("THE permission : " + globalPermission);
+                        Login.globalPermission = Integer.parseInt(snapshotUserType.child("permission").getValue().toString()) ;
+                        System.out.println("THE permission : " + Login.globalPermission);
                     }
                 }
                 adapter.notifyDataSetChanged();

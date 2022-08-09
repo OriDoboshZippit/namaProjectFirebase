@@ -1,6 +1,6 @@
 package com.example.namaprojectfirebase;
 
-import static com.example.namaprojectfirebase.MainActivity.globalPermission;
+//import static com.example.namaprojectfirebase.MainActivity.globalPermission;
 import static com.example.namaprojectfirebase.R.id.*;
 
 import android.app.AlertDialog;
@@ -76,7 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         cartDb = FirebaseDatabase.getInstance().getReference("carts").child(HomeFragment.uniqueOfCartID);
         cartQuery = cartDb.orderByKey();
         //TODO PERMISSION SETUP
-        if(globalPermission == 0) {
+        if(Login.globalPermission != 1) {
             imageArrow.setVisibility(View.GONE);
         }
 
@@ -181,7 +181,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                     Intent intentToEditProduct = new Intent(mCtx, editProduct.class);
                     intentToEditProduct.putExtra("keyName", strNameOfProduct);
-                    if(globalPermission != 0) {
+                    if(Login.globalPermission == 1) {
                         v.getContext().startActivity(intentToEditProduct);
                     }
                     System.out.println("THE NAME THAT SENDED " + strNameOfProduct);

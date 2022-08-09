@@ -1,7 +1,7 @@
 package com.example.namaprojectfirebase.ui.home;
 
 import static com.example.namaprojectfirebase.Login.mAuth;
-import static com.example.namaprojectfirebase.MainActivity.globalPermission;
+//import static com.example.namaprojectfirebase.MainActivity.globalPermission;
 
 import android.app.Activity;
 import android.content.Context;
@@ -136,7 +136,7 @@ public class HomeFragment<puiblic> extends Fragment {
         overdueBtn = (ImageButton) root.findViewById(R.id.overdueBtn);
 
 
-        System.out.println("global permission" + globalPermission);
+        System.out.println("global permission" + Login.globalPermission);
         if (Login.globalPermission == 2) {
             //general worker
             btnAdd.setVisibility(View.INVISIBLE);
