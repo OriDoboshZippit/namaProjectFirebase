@@ -1,12 +1,15 @@
 package com.example.namaprojectfirebase.ui.home;
 
 import static com.example.namaprojectfirebase.Login.mAuth;
+import static com.example.namaprojectfirebase.MainActivity.globalPermission;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,7 @@ import com.example.namaprojectfirebase.AddProduct;
 import com.example.namaprojectfirebase.Cart;
 import com.example.namaprojectfirebase.Login;
 import com.example.namaprojectfirebase.MainActivity;
+import com.example.namaprojectfirebase.ProductAdapter;
 import com.example.namaprojectfirebase.R;
 import com.example.namaprojectfirebase.Register;
 import com.example.namaprojectfirebase.databinding.FragmentHomeBinding;
@@ -41,10 +45,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class HomeFragment<puiblic> extends Fragment {
-
+    final String chief = "chief@nama.com";
     private FragmentHomeBinding binding;
     public TextView activeUserNameHomeFragment;
-    public ImageButton btnPLus,btnTable, btnAdd,  ordrButton;
+    public ImageButton btnPLus,btnTable, btnAdd,  ordrButton, userControl, grafBtn, overdueBtn;
     public TextView iRemember;
 /*    public EditText iForget;
     public Button rememberMe, rememberYou;*/
@@ -52,6 +56,7 @@ public class HomeFragment<puiblic> extends Fragment {
     public static String uniqueOfCartID;
     public String text;
     private boolean switchOnOff;
+    DatabaseReference dataSnapshot;
 
     public String nameFromDB;
 /*    public static final String SHARED_PREFS = "sharedPrefs";
@@ -63,7 +68,12 @@ public class HomeFragment<puiblic> extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
+
+
+
+
         if(dbCarts != null) {
             dbCarts = FirebaseDatabase.getInstance().getReference().child("carts");
             dbCarts.addValueEventListener(new ValueEventListener() {
@@ -110,7 +120,7 @@ public class HomeFragment<puiblic> extends Fragment {
         //System.out.println("DB CARTS"  + dbCarts);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         final String admin = "f@f.com";
-        final String chief = "chief@nama.com";
+
         final String currentUser = mAuth.getCurrentUser().getEmail();
         //System.out.println("THE USER IS " + currentUser);
 
@@ -121,12 +131,49 @@ public class HomeFragment<puiblic> extends Fragment {
         btnPLus = (ImageButton) root.findViewById(R.id.plusButton);
         btnAdd = (ImageButton) root.findViewById(R.id.addUser);
         ordrButton = (ImageButton) root.findViewById(R.id.orderButton);
+        userControl = (ImageButton) root.findViewById(R.id.controlUser);
+        grafBtn = (ImageButton) root.findViewById(R.id.grafBtn);
+        overdueBtn = (ImageButton) root.findViewById(R.id.overdueBtn);
 
 
+        System.out.println("global permission" + globalPermission);
+        if (Login.globalPermission == 2) {
+            //general worker
+            btnAdd.setVisibility(View.INVISIBLE);
+            userControl.setVisibility(View.INVISIBLE);
+            grafBtn.setVisibility(View.INVISIBLE);
+        }
+
+        if (Login.globalPermission == 3) {
+            //deliveryman
+            System.out.println("Welcome deliveryman");
+            btnAdd.setVisibility(View.INVISIBLE);
+            userControl.setVisibility(View.INVISIBLE);
+            grafBtn.setVisibility(View.INVISIBLE);
+            btnPLus.setVisibility(View.INVISIBLE);
+            grafBtn.setVisibility(View.INVISIBLE);
+            overdueBtn.setVisibility(View.INVISIBLE);
+            ordrButton.setVisibility(View.INVISIBLE);
+        }
+
+        if (Login.globalPermission == 4) {
+            //accountant
+            btnAdd.setVisibility(View.INVISIBLE);
+            btnPLus.setVisibility(View.INVISIBLE);
+            overdueBtn.setVisibility(View.INVISIBLE);
+            ordrButton.setVisibility(View.INVISIBLE);
+        }
+
+
+       /* if (globalPermission != 1 && currentUser.matches(chief)){
+            btnAdd.setVisibility(View.INVISIBLE);
+            userControl.setVisibility(View.INVISIBLE);
+
+        }
         if (!currentUser.matches(admin) && !currentUser.matches(chief)){
             btnPLus.setVisibility(View.INVISIBLE);
-            btnAdd.setVisibility(View.INVISIBLE);
-        }
+
+        }*/
 
 
         btnAdd.setOnClickListener(new View.OnClickListener()
@@ -178,8 +225,12 @@ public class HomeFragment<puiblic> extends Fragment {
 //        activeUserNameHomeFragment = root.findViewById(R.id.activeUserNameHomeFragment);
 //        activeUserNameHomeFragment.setText(Login.nameFromDB);
 
+
+
         return root;
     }
+
+
 /*
     public void rememberData() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);

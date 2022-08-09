@@ -41,18 +41,8 @@
         app:layout_constraintVertical_bias="0.162">
 
         <ImageButton
-            android:id="@+id/orderButton"
-            android:layout_width="201sp"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
-            android:padding="0px"
-            android:soundEffectsEnabled="true"
-            android:src="@drawable/cart"
-            tools:ignore="MissingConstraints" />
-
-        <ImageButton
             android:id="@+id/orderButton2"
-            android:layout_width="201sp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
             android:padding="0px"
@@ -97,16 +87,6 @@
             app:layout_constraintVertical_bias="0.302">
 
             <ImageButton
-                android:id="@+id/search_button"
-                android:layout_width="201sp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                android:padding="0px"
-                android:soundEffectsEnabled="true"
-                android:src="@drawable/search"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
                 android:id="@+id/tableButton"
                 android:layout_width="201sp"
                 android:layout_height="match_parent"
@@ -114,6 +94,16 @@
                 android:padding="0px"
                 android:soundEffectsEnabled="true"
                 android:src="@drawable/show"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/orderButton"
+                android:layout_width="201sp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:padding="0px"
+                android:soundEffectsEnabled="true"
+                android:src="@drawable/cart"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
     </LinearLayout>
@@ -130,11 +120,10 @@
         app:layout_constraintVertical_bias="0.723">
 
         <ImageButton
-            android:id="@+id/plusButton3"
-            android:layout_width="400dp"
+            android:id="@+id/grafBtn"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
-            android:onClick="addProduct"
             android:padding="0px"
             android:soundEffectsEnabled="true"
             android:src="@drawable/graf"
@@ -163,7 +152,7 @@
             tools:ignore="MissingConstraints" />
 
         <ImageButton
-            android:id="@+id/addUser2"
+            android:id="@+id/controlUser"
             android:layout_width="201sp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
@@ -196,11 +185,10 @@
             tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/plusButton2"
+            android:id="@+id/overdueBtn"
             android:layout_width="201sp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
-            android:onClick="addProduct"
             android:padding="0px"
             android:soundEffectsEnabled="true"
             android:src="@drawable/overdue"
